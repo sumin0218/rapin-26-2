@@ -31,6 +31,8 @@ rapin-26-2/
 │  │  ├─ og/               공유 미리보기 이미지 (1200×630)
 │  │  └─ favicon.svg
 │  └─ vendor/              GSAP, ScrollTrigger (CDN 없이 저장소에 포함)
+├─ docs/
+│  └─ REQUIREMENTS.md  요구사항
 └─ data/
    ├─ concert.json         날짜, 장소, 입장, 링크
    ├─ setlist.json         순서표
