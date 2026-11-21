@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RAP-IN 26-2 정기공연</title>
+<meta name="description" content="RAP-IN 26-2 정기공연 공식 큐시트. 공연 정보와 순서표를 확인하세요.">
+<meta name="theme-color" content="#0d0d0d">
+
+<!-- 공유 미리보기 (카카오톡, 인스타그램 등). 배포 주소가 정해지면 og:url, og:image를 절대 주소로 바꿔 주세요 -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="RAP-IN 26-2 정기공연">
+<meta property="og:description" content="공연 정보와 순서표">
+<meta property="og:image" content="assets/img/og/og-image.png">
+<meta property="og:url" content="https://suimn0218.github.io/rapin-26-2/">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/PretendardVariable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/poster.css">
+<link rel="stylesheet" href="assets/css/program.css">
+<script>document.documentElement.classList.replace("no-js","js");</script>
+</head>
+<body>
+<a class="skip" href="#program" data-i18n="skip">순서표로 바로 가기</a>
+
+<header class="topbar" role="banner">
+  <a class="brand" href="#top" aria-label="RAP-IN">RAP-IN</a>
+  <nav class="lang" aria-label="언어" data-i18n-attr="aria-label:lang">
+    <button type="button" data-lang="ko" lang="ko">한국어</button>
+    <button type="button" data-lang="en" lang="en">EN</button>
+    <button type="button" data-lang="zh" lang="zh">中文</button>
+  </nav>
+</header>
+
+<main id="top">
+  <!-- 1. 모션 포스터: pin-wrap 높이만큼 스크롤하는 동안 .stage가 화면에 고정되고 애니메이션이 진행돼요 -->
+  <section class="poster pin-wrap" id="poster" aria-labelledby="poster-title">
+    <div class="stage">
+      <!-- 포스터 레이어 자리. 실제 포스터가 나오면 assets/img/poster/ 의 레이어 이미지로 바꿔요 -->
+      <div class="layer layer-bg" aria-hidden="true"></div>
+      <div class="layer layer-shape s1" aria-hidden="true"></div>
+      <div class="layer layer-shape s2" aria-hidden="true"></div>
+      <div class="layer layer-shape s3" aria-hidden="true"></div>
+      <div class="poster-text layer">
+        <p class="eyebrow" data-i18n="eyebrow">RAP-IN 26-2</p>
+        <h1 id="poster-title" class="title" data-i18n="title">정기공연</h1>
+        <p class="when" data-bind="dateText"></p>
+      </div>
+      <p class="scroll-hint" aria-hidden="true" data-i18n="scrollHint">스크롤</p>
+    </div>
+  </section>
+
+  <!-- 2. 공연 정보 -->
+  <section class="info section" id="info" aria-labelledby="info-title">
+    <h2 id="info-title" data-i18n="infoTitle">공연 정보</h2>
+    <dl class="info-list">
+      <div><dt data-i18n="date">일시</dt><dd data-bind="dateText"></dd></div>
+      <div><dt data-i18n="venue">장소</dt><dd><a data-bind="venue" data-bind-href="mapUrl" target="_blank" rel="noopener"></a></dd></div>
+      <div><dt data-i18n="admission">입장</dt><dd data-bind="admission"></dd></div>
+    </dl>
+  </section>
+
+  <!-- 3. 순서표 -->
+  <section class="program section" id="program" aria-labelledby="program-title">
+    <h2 id="program-title" data-i18n="programTitle">순서표</h2>
+    <div id="setlist" class="setlist" aria-live="polite"></div>
+  </section>
+
+  <!-- 4. 동아리 소개 -->
+  <section class="about section" id="about" aria-labelledby="about-title">
+    <h2 id="about-title" data-i18n="aboutTitle">RAP-IN</h2>
+    <p data-i18n="aboutText">경희대학교 힙합 동아리 RAP-IN입니다.</p>
+    <ul class="links" id="links"></ul>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>© <span data-bind="year"></span> RAP-IN</p>
+</footer>
+
+<!-- GSAP은 외부 CDN 대신 저장소 안에 같이 둬요 (공연장 와이파이가 불안정해도 동작하게) -->
+<script src="assets/vendor/gsap.min.js" defer></script>
+<script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+<script type="module" src="assets/js/main.js"></script>
+</body>
+</html>

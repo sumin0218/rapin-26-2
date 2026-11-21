@@ -1,0 +1,40 @@
+/* 페이지 뼈대: 상단 바, 섹션, 푸터 */
+.topbar {
+  position: fixed; inset: 0 0 auto 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px var(--pad);
+  padding-top: max(14px, env(safe-area-inset-top));
+  mix-blend-mode: difference; /* 포스터 위에서도 글자가 보이게 */
+}
+.brand { font-weight: 900; letter-spacing: -.02em; text-decoration: none; font-size: 18px; }
+
+.lang { display: flex; }
+.lang button {
+  border: 1.5px solid currentColor; background: transparent; padding: 6px 10px;
+  font-size: 12px; font-weight: 700; cursor: pointer; margin-left: -1.5px;
+}
+.lang button[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+
+.section {
+  max-width: var(--max); margin: 0 auto;
+  padding: clamp(72px, 12vw, 140px) var(--pad);
+}
+.section h2 {
+  font-size: clamp(32px, 6vw, 64px); font-weight: 900; letter-spacing: -.03em; line-height: 1;
+  margin-bottom: clamp(24px, 4vw, 44px);
+}
+
+.info-list { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.info-list > div { display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.info-list dt { color: var(--sub); font-size: 14px; }
+.info-list dd { font-size: 18px; font-weight: 600; }
+
+.about p { max-width: 640px; color: var(--sub); font-size: 18px; }
+.links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.links a { display: inline-block; border: 1.5px solid var(--fg); padding: 10px 14px; font-weight: 700; text-decoration: none; }
+
+.footer { padding: 40px var(--pad) max(40px, env(safe-area-inset-bottom)); color: var(--sub); font-size: 13px; text-align: center; }
+
+@media (max-width: 640px) {
+  .info-list > div { grid-template-columns: 1fr; gap: 4px; }
+}

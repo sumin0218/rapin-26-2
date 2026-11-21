@@ -1,0 +1,23 @@
+/* 순서표 */
+.part + .part { margin-top: clamp(48px, 8vw, 88px); }
+.part-head {
+  display: flex; align-items: baseline; gap: 14px;
+  border-bottom: 3px solid var(--fg); padding-bottom: 10px; margin-bottom: 6px;
+}
+.part-head .n { font-size: clamp(40px, 7vw, 72px); font-weight: 900; letter-spacing: -.05em; line-height: .85; }
+.part-head .t { font-size: 18px; font-weight: 700; }
+
+.cue {
+  display: grid; grid-template-columns: 56px minmax(0, 1fr) minmax(0, .9fr);
+  gap: 16px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid var(--line);
+}
+.cue .no { font-size: 22px; font-weight: 900; color: var(--accent); }
+.cue .song { font-size: 18px; font-weight: 700; }
+.cue .song small { display: block; color: var(--sub); font-size: 13px; font-weight: 500; }
+.cue .artists { color: var(--sub); font-size: 15px; }
+.cue.now { background: linear-gradient(90deg, rgba(255, 59, 31, .16), transparent 70%); }
+
+@media (max-width: 640px) {
+  .cue { grid-template-columns: 40px 1fr; }
+  .cue .artists { grid-column: 2; }
+}

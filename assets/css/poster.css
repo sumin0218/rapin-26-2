@@ -1,0 +1,32 @@
+/* 모션 포스터
+   .pin-wrap 높이 = 스크롤할 거리. 그 동안 .stage가 화면에 붙어 있어요.
+   실제 포스터 레이어가 나오면 .layer-bg / .layer-shape 자리를 이미지로 바꿔요. */
+.poster.pin-wrap { position: relative; height: calc(var(--vh) * 3); }
+.poster .stage {
+  position: sticky; top: 0; height: var(--vh); overflow: hidden;
+  display: grid; place-items: center;
+}
+.layer { position: absolute; will-change: transform, opacity; }
+
+/* 임시 레이어 (포스터 나오기 전 자리 표시) */
+.layer-bg { inset: -10%; background: radial-gradient(60% 50% at 50% 45%, #2a2a2a, var(--bg) 70%); }
+.layer-shape { border-radius: 50%; mix-blend-mode: screen; filter: blur(2px); }
+.layer-shape.s1 { width: 46vmin; height: 46vmin; background: var(--accent); left: 12%; top: 18%; }
+.layer-shape.s2 { width: 30vmin; height: 30vmin; background: #3d5afe; right: 14%; top: 30%; }
+.layer-shape.s3 { width: 22vmin; height: 22vmin; background: #ffd400; left: 40%; bottom: 14%; }
+
+.poster-text { position: relative; text-align: center; padding: 0 var(--pad); }
+.poster .eyebrow { font-size: clamp(14px, 2vw, 18px); font-weight: 700; letter-spacing: .2em; color: var(--sub); }
+.poster .title { font-size: clamp(56px, 14vw, 180px); font-weight: 900; letter-spacing: -.05em; line-height: .9; margin: 10px 0 18px; }
+.poster .when { font-size: clamp(15px, 2.2vw, 20px); font-weight: 600; }
+
+.scroll-hint {
+  position: absolute; bottom: max(24px, env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%);
+  font-size: 12px; letter-spacing: .2em; color: var(--sub);
+}
+.scroll-hint::after { content: ""; display: block; width: 1px; height: 28px; margin: 8px auto 0; background: currentColor; animation: hint 1.6s ease-in-out infinite; transform-origin: top; }
+@keyframes hint { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(0); transform-origin: bottom; } }
+
+/* 애니메이션을 줄이거나 GSAP을 못 불러오면: 고정 없이 포스터 한 화면만 */
+.reduced .poster.pin-wrap, .no-gsap .poster.pin-wrap { height: auto; }
+.reduced .poster .stage, .no-gsap .poster .stage { position: relative; }

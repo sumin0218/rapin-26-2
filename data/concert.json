@@ -1,0 +1,22 @@
+{
+  "_note": "공연 기본 정보. 값이 정해지면 바꿔 주세요. 문구는 언어별로 {ko, en, zh} 객체로 쓸 수 있어요.",
+  "dateText": {
+    "ko": "2026년 12월 (날짜 미정)",
+    "en": "December 2026 (date TBA)",
+    "zh": "2026年12月（日期待定）"
+  },
+  "venue": {
+    "ko": "장소 미정",
+    "en": "Venue TBA",
+    "zh": "地点待定"
+  },
+  "mapUrl": "",
+  "admission": {
+    "ko": "무료 입장",
+    "en": "Free admission",
+    "zh": "免费入场"
+  },
+  "links": [
+    { "label": { "ko": "인스타그램", "en": "Instagram", "zh": "Instagram" }, "url": "https://instagram.com/" }
+  ]
+}
