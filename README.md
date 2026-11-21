@@ -63,11 +63,11 @@ python -m http.server 8000
    git init -b main
    git add .
    git commit -m "Initial structure"
-   git remote add origin https://github.com/suimn0218/rapin-26-2.git
+   git remote add origin https://github.com/sumin0218/rapin-26-2.git
    git push -u origin main
    ```
 3. 저장소 **Settings → Pages**에서 Source를 `Deploy from a branch`, Branch를 `main` / `/ (root)`로 저장해요.
-4. 1~2분 뒤 `https://suimn0218.github.io/rapin-26-2/`에서 열려요.
+4. 1~2분 뒤 `https://sumin0218.github.io/rapin-26-2/`에서 열려요.
 5. 배포 주소가 정해지면 `index.html`의 `og:url`, `og:image`를 절대 주소로 바꿔 주세요 (카카오톡 미리보기용).
 
 ## 공개 페이지 체크리스트
