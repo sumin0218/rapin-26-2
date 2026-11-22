@@ -1,47 +1,33 @@
 /* 모션 포스터 (SAGGING 2026)
-   .pin-wrap 높이 = 스크롤할 거리. 그 동안 .stage가 화면에 붙어 있어요.
-   포스터는 595 × 842(피그마 A4) 좌표 그대로 그리고, 화면 크기에 맞게 통째로 확대/축소해요. */
-.poster.pin-wrap { position: relative; height: calc(var(--vh) * 2.6); }
-.poster .stage {
-  position: sticky; top: 0; height: var(--vh); overflow: hidden;
-  display: grid; place-items: center; padding-top: 40px;
-}
+   - 화면 가득: 포스터 높이를 화면 높이에 맞추고, 가로는 화면 비율에 따라 레이어 간격을 좁히거나 넓혀요 (poster.js의 fit)
+   - 스크롤: .stage가 화면에 붙어 있는 동안 학관소극장 쪽으로 빨려 들어가고, 그 안에서 공연 정보가 나와요 */
+.poster.pin-wrap { position: relative; height: calc(var(--vh) * 3.2); }
+.poster .stage { position: sticky; top: 0; height: var(--vh); overflow: hidden; background: #8fb3dc; }
 
-/* 포스터 뒤 배경: 포스터 하늘을 흐리게 깔아서 양옆이 비어 보이지 않게 */
-.poster .backdrop {
-  position: absolute; inset: -40px;
-  background: url("../img/poster/bg.webp") center / cover no-repeat;
-  filter: blur(28px) saturate(1.2) brightness(.7);
-  transform: scale(1.1);
-}
-
-.poster-frame { position: relative; z-index: 1; }
+.poster-cam { position: absolute; inset: 0; will-change: transform; }
 .poster-art {
   position: absolute; left: 0; top: 0;
-  width: 595px; height: 842px;
+  height: 842px; /* 너비와 배율은 poster.js가 정해요 */
   transform-origin: 0 0;
-  clip-path: inset(0);
-  background: #fff;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, .45);
 }
 /* 이미지가 준비되기 전에는 숨겨 두기 (반쯤 그려진 포스터가 보이지 않게) */
-.js .poster .stage:not(.ready) .poster-art > :not(.poster-band) { visibility: hidden; }
-.reduced .poster .stage .poster-art > *, .no-gsap .poster .stage .poster-art > * { visibility: visible !important; }
+.js .poster .stage:not(.ready) .poster-art { visibility: hidden; }
+.reduced .poster .stage .poster-art, .no-gsap .poster .stage .poster-art { visibility: visible; }
 
-.L, .Le, .Li, .Lh { position: absolute; }
+.L, .Lr, .Le, .Li, .Lh { position: absolute; }
 .L { will-change: transform, opacity; }
-.Le, .Li { inset: 0; }
-.Lh { inset: 0; }
+.Lr, .Le, .Li, .Lh { inset: 0; }
 .Lh img { width: 100%; height: 100%; object-fit: cover; display: block; user-select: none; -webkit-user-drag: none; }
 
-/* 하단 띠: 피그마 하단사각형 + 텍스트 */
+/* 하단 띠: 화면 아래 끝에 가로로 꽉 */
 .poster-band {
-  position: absolute; left: -26px; top: 823px; width: 621px; height: 19px; z-index: 5;
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 3;
   background: #fff; color: #000;
-  display: flex; align-items: center; padding-left: 32px;
-  font-size: 14px; letter-spacing: 13.3px; white-space: nowrap; line-height: 1;
+  padding: 6px 0 max(6px, env(safe-area-inset-bottom));
+  text-align: center; white-space: nowrap; overflow: hidden;
+  font-size: clamp(11px, 2.8vw, 15px); letter-spacing: .6em; line-height: 1.2;
 }
-:lang(en) .poster-band, :lang(zh-CN) .poster-band { letter-spacing: 4px; font-size: 13px; }
+:lang(en) .poster-band, :lang(zh-CN) .poster-band { letter-spacing: .25em; }
 
 /* 반짝이 별 */
 .sparkles { position: absolute; inset: 0; pointer-events: none; z-index: 4; }
@@ -60,15 +46,29 @@
 }
 
 .scroll-hint {
-  position: absolute; bottom: max(14px, env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%); z-index: 2;
-  font-size: 11px; letter-spacing: .2em; color: rgba(255, 255, 255, .8); margin: 0;
+  position: absolute; bottom: calc(44px + env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%); z-index: 4;
+  font-size: 11px; font-weight: 700; letter-spacing: .2em; color: #fff; margin: 0;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, .6);
 }
-.scroll-hint::after { content: ""; display: block; width: 1px; height: 22px; margin: 6px auto 0; background: currentColor; animation: hint 1.6s ease-in-out infinite; transform-origin: top; }
+.scroll-hint::after { content: ""; display: block; width: 1.5px; height: 22px; margin: 6px auto 0; background: currentColor; animation: hint 1.6s ease-in-out infinite; transform-origin: top; }
 @keyframes hint { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(0); transform-origin: bottom; } }
+
+/* 빨려 들어간 뒤 나오는 공연 정보 */
+.info-reveal {
+  position: absolute; inset: 0; z-index: 5;
+  display: grid; place-items: center; padding: 80px var(--pad) 40px;
+  background: radial-gradient(120% 80% at 50% 50%, rgba(13, 13, 13, .55), rgba(13, 13, 13, .92));
+  opacity: 0; visibility: hidden;
+}
+.info-card { width: min(560px, 100%); }
+.info-kicker { font-size: 12px; font-weight: 800; letter-spacing: .3em; color: var(--accent); margin-bottom: 10px; }
+.info-reveal h2 { font-size: clamp(36px, 9vw, 64px); font-weight: 900; letter-spacing: -.03em; line-height: 1; margin-bottom: 28px; }
 
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
-/* 애니메이션을 줄이거나 GSAP을 못 불러오면: 고정 없이 정지 포스터 한 화면 */
+/* 애니메이션을 줄이거나 GSAP을 못 불러오면: 고정 없이 포스터 한 화면 + 아래에 공연 정보 */
 .reduced .poster.pin-wrap, .no-gsap .poster.pin-wrap { height: auto; }
-.reduced .poster .stage, .no-gsap .poster .stage { position: relative; min-height: var(--vh); }
-.reduced .sparkles, .no-gsap .sparkles { display: none; }
+.reduced .poster .stage, .no-gsap .poster .stage { position: relative; height: auto; overflow: visible; background: none; }
+.reduced .poster-cam, .no-gsap .poster-cam { position: relative; height: var(--vh); overflow: hidden; }
+.reduced .info-reveal, .no-gsap .info-reveal { position: relative; opacity: 1; visibility: visible; background: none; padding: clamp(72px, 12vw, 140px) var(--pad); }
+.reduced .sparkles, .no-gsap .sparkles, .reduced .scroll-hint, .no-gsap .scroll-hint { display: none; }

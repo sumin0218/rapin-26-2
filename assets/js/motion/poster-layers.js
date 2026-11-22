@@ -6,21 +6,23 @@
 //   shadow: 그림자 (CSS drop-shadow 값)
 //   depth: 스크롤할 때 얼마나 크게 움직일지 (0 = 거의 안 움직임)
 //   enter: 처음 등장 방식, idle: 가만히 있을 때 움직임
+//   kind:  "bg" = 화면 전체를 덮는 배경, "logo" = 좁은 화면에서 통째로 줄이는 타이틀
+//   focus: 스크롤하면 이 레이어 쪽으로 빨려 들어가요
 const A = "assets/img/poster/";
 
 export const POSTER_W = 595;
 export const POSTER_H = 842;
 
 export const LAYERS = [
-  { id: "bg-lightning", src: A + "bg-lightning.webp", box: [-111, -43, 869, 916], depth: 0.05, enter: "fade", idle: "flash" },
-  { id: "bg",           src: A + "bg.webp",           box: [-132, -25, 890, 938], depth: 0.08, enter: "fade" },
+  { id: "bg-lightning", src: A + "bg-lightning.webp", box: [-111, -43, 869, 916], kind: "bg", depth: 0.05, enter: "fade", idle: "flash" },
+  { id: "bg",           src: A + "bg.webp",           box: [-132, -25, 890, 938], kind: "bg", depth: 0.08, enter: "fade" },
   { id: "tile",         src: A + "tile.webp",         box: [72.09, 277.31, 382.172, 309.23], inner: [334.875, 233.995], rot: -14.25, radius: 9,
                         shadow: "8px 5px 8.3px rgba(140,130,63,.26)", depth: 0.4, enter: "slide-up" },
   { id: "hongseong",    src: A + "hongseong-tingjun.webp", box: [111, 306, 234, 271], shadow: "9px -3px 4px rgba(0,0,0,.31)",
                         depth: 0.55, enter: "stick", idle: "sway", origin: "50% 100%", alt: "" },
-  { id: "logo-a",       src: A + "logo.webp", box: [-3, -218, 602, 802], depth: 0.9, enter: "drop", group: "logo" },
-  { id: "logo-b",       src: A + "logo.webp", box: [-3, -218, 602, 802], depth: 0.9, enter: "drop", group: "logo" },
-  { id: "logo-c",       src: A + "logo.webp", box: [-3, -217, 602, 802], depth: 0.9, enter: "drop", group: "logo" },
+  { id: "logo-a",       src: A + "logo.webp", box: [-3, -218, 602, 802], kind: "logo", depth: 0.9, enter: "drop", group: "logo" },
+  { id: "logo-b",       src: A + "logo.webp", box: [-3, -218, 602, 802], kind: "logo", depth: 0.9, enter: "drop", group: "logo" },
+  { id: "logo-c",       src: A + "logo.webp", box: [-3, -217, 602, 802], kind: "logo", depth: 0.9, enter: "drop", group: "logo" },
   { id: "heli",         src: A + "heli.webp", box: [-3, -25, 168, 133], depth: 1.2, enter: "fly-in", idle: "hover" },
   { id: "jimen2",       src: A + "jimen2.webp", box: [258, 283, 325, 435], flip: true, depth: 0.6, enter: "stick", idle: "sway", origin: "50% 100%" },
   { id: "giraffe",      src: A + "giraffe.webp", box: [386, 95, 239, 424], depth: 0.7, enter: "rise", idle: "nod", origin: "60% 100%" },
@@ -30,7 +32,7 @@ export const LAYERS = [
   { id: "chicken",      src: A + "chicken.webp", box: [409, 626, 159, 159], depth: 0.85, enter: "pop", idle: "peck", origin: "50% 90%" },
   { id: "bodo",         src: A + "tile.webp", box: [344.4, 657, 341.494, 298.898], inner: [292.905, 233.995], rot: -14.25, radius: 9,
                         shadow: "0 -12px 8.3px rgba(140,130,63,.5)", depth: 0.5, enter: "slide-up" },
-  { id: "hakgwan",      src: A + "hakgwan.webp", fit: "fill", box: [409, 657, 208.265, 199.285], inner: [173.689, 161.227], rot: -14.37,
+  { id: "hakgwan",      src: A + "hakgwan.webp", fit: "fill", focus: true, box: [409, 657, 208.265, 199.285], inner: [173.689, 161.227], rot: -14.37,
                         shadow: "-3px 1px 4px rgba(0,0,0,.73)", depth: 0.95, enter: "stamp", idle: "tilt" },
   { id: "lildonggyu",   src: A + "lildonggyu.webp", box: [-111, 306, 285, 623], flip: true, shadow: "7px 1px 4px rgba(0,0,0,.25)",
                         depth: 0.9, enter: "stick", idle: "sway", origin: "50% 100%" },

@@ -37,28 +37,30 @@
 
 <main id="top">
   <!-- 1. 모션 포스터: pin-wrap 높이만큼 스크롤하는 동안 .stage가 화면에 고정되고 애니메이션이 진행돼요 -->
+  <!-- 1. 모션 포스터 + 공연 정보
+       화면 가득 포스터 → 스크롤하면 학관소극장 쪽으로 빨려 들어가고 → 그 안에서 공연 정보가 나와요.
+       포스터 레이어는 assets/js/motion/poster-layers.js 에서 만들어요. -->
   <section class="poster pin-wrap" id="poster" aria-labelledby="poster-title">
     <div class="stage">
-      <div class="backdrop" aria-hidden="true"></div>
-      <!-- 포스터 레이어는 assets/js/motion/poster-layers.js 에서 만들어요 -->
-      <div class="poster-frame">
-        <div class="poster-art" role="img" aria-label="SAGGING 2026 포스터" data-i18n-attr="aria-label:posterAlt">
-          <div class="poster-band"><span data-i18n="band">래빈 정기공연 12.3.19:00 학생회관 소극장</span></div>
-        </div>
+      <div class="poster-cam">
+        <div class="poster-art" role="img" aria-label="SAGGING 2026 포스터" data-i18n-attr="aria-label:posterAlt"></div>
+        <div class="poster-band"><span data-i18n="band">래빈 정기공연 12.3.19:00 학생회관 소극장</span></div>
       </div>
       <h1 id="poster-title" class="sr-only" data-i18n="title">RAP-IN 26-2 정기공연 SAGGING 2026</h1>
       <p class="scroll-hint" aria-hidden="true" data-i18n="scrollHint">스크롤</p>
-    </div>
-  </section>
 
-  <!-- 2. 공연 정보 -->
-  <section class="info section" id="info" aria-labelledby="info-title">
-    <h2 id="info-title" data-i18n="infoTitle">공연 정보</h2>
-    <dl class="info-list">
-      <div><dt data-i18n="date">일시</dt><dd data-bind="dateText"></dd></div>
-      <div><dt data-i18n="venue">장소</dt><dd><a data-bind="venue" data-bind-href="mapUrl" target="_blank" rel="noopener"></a></dd></div>
-      <div><dt data-i18n="admission">입장</dt><dd data-bind="admission"></dd></div>
-    </dl>
+      <div class="info-reveal" id="info" aria-labelledby="info-title">
+        <div class="info-card">
+          <p class="info-kicker">SAGGING 2026</p>
+          <h2 id="info-title" data-i18n="infoTitle">공연 정보</h2>
+          <dl class="info-list">
+            <div><dt data-i18n="date">일시</dt><dd data-bind="dateText"></dd></div>
+            <div><dt data-i18n="venue">장소</dt><dd><a data-bind="venue" data-bind-href="mapUrl" target="_blank" rel="noopener"></a></dd></div>
+            <div><dt data-i18n="admission">입장</dt><dd data-bind="admission"></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- 3. 순서표 -->
