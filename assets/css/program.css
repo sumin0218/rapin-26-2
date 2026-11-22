@@ -1,4 +1,5 @@
-/* 셋리스트: 1차 리허설 큐시트처럼 부마다 종이 카드 한 장, 머리에 찢은 테이프 라벨 */
+/* 셋리스트: 배치는 1차 리허설 큐시트(부마다 카드 한 장), 꾸밈은 90년대 힙합 포스터
+   검정 종이, 금색, 굵은 기울임 대문자, 딱 떨어지는 그림자, 망점 */
 .lineup {
   position: relative; z-index: 5;
   /* 포스터 화면과 겹쳐 두고, 아래에서 올라오는 동작은 poster.js 가 맡아요 */
@@ -14,89 +15,105 @@
   .part:nth-child(2) { margin-top: 0; }
   .lineup-more { max-width: 480px; margin-left: auto; margin-right: auto; }
   /* 1부와 2부 줄 높이를 똑같이 맞춰서 좌우가 나란히 */
-  .cue { height: 74px; padding-top: 0; padding-bottom: 0; align-items: center; }
+  .cue { height: 78px; padding-top: 0; padding-bottom: 0; align-items: center; }
   .cue .title, .cue .credit, .cue .artists { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 }
 
-/* 글꼴은 Pretendard, 그라데이션 없이 평평한 색 */
+/* 글꼴은 Pretendard, 그라데이션 없이 평평한 색과 딱딱한 그림자 */
 .lineup, .lineup button { font-family: var(--font); }
 /* 보이기 전에는 아래 포스터를 가리지 않게 (poster.js 가 .is-shown 을 붙여요) */
 .lineup { pointer-events: none; }
 .lineup.is-shown { pointer-events: auto; }
 .lineup {
-  --ink: #191c24; --muted: #636a7a; --line: #dde0e8; --blue: #3a3fd8; --blue-soft: #e6e7fb;
-  --tape0: #ffd23f; --tape1: #ff7aa2; --tape-ink: #16130a;
-  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --paper: #14110c; --cream: #f3e9cf; --gold: #ffc21a; --red: #e8322b; --dim: rgba(243, 233, 207, .62); --rule: rgba(243, 233, 207, .16);
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --dots: radial-gradient(circle, rgba(255, 194, 26, .22) 1.2px, transparent 1.6px);
 }
 
-.lineup-title {
-  margin: 0 0 22px; padding-top: 6px; text-align: center; color: #fff;
-  font-size: clamp(34px, 9vw, 56px); font-weight: 900; letter-spacing: -.02em; line-height: 1;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, .45);
-}
+/* 제목: 금은 보석 글씨 그림 */
+.lineup-title { margin: 0 auto 18px; padding-top: 4px; text-align: center; line-height: 0; }
+.lineup-title img { display: inline-block; width: min(92%, 560px); height: auto; filter: drop-shadow(0 6px 14px rgba(0, 0, 0, .55)); }
 
-/* 부 카드 */
+/* 부 카드: 검정 종이 + 크림 테두리 + 금색 그림자 */
 .part {
-  background-color: rgba(255, 255, 255, .95); background-image: var(--grain);
-  border: 1px solid var(--line); border-radius: 14px; color: var(--ink);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+  position: relative; color: var(--cream);
+  background-color: var(--paper); background-image: var(--grain);
+  border: 3px solid var(--cream); border-radius: 4px;
+  box-shadow: 8px 8px 0 var(--gold);
 }
-.setlist .part + .part { margin-top: 22px; }
+.part:nth-child(2) { box-shadow: 8px 8px 0 var(--red); }
+/* 오른쪽 위 망점 */
+.part::before {
+  content: ""; position: absolute; right: 0; top: 0; width: 46%; height: 120px; pointer-events: none;
+  background-image: var(--dots); background-size: 7px 7px;
+  -webkit-mask-image: linear-gradient(225deg, #000 10%, transparent 70%); mask-image: linear-gradient(225deg, #000 10%, transparent 70%);
+}
+.setlist .part + .part { margin-top: 30px; }
 .part-head {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 16px 20px 12px; border-bottom: 1px solid var(--line);
+  position: relative; display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 20px 14px; border-bottom: 3px solid var(--cream);
 }
-.part-head .cnt { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
-/* 찢은 테이프 라벨 */
+.part-head .cnt {
+  font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--cream);
+  border: 1.5px solid var(--cream); padding: 3px 8px 2px; font-variant-numeric: tabular-nums;
+}
+/* 부 이름: 기울어진 금색 스티커 */
 .tape {
-  display: inline-block; padding: 4px 16px 3px; color: var(--tape-ink); background: var(--tape0);
-  font-size: 24px; font-weight: 900; letter-spacing: -.01em; line-height: 1.15;
-  --r: -2.2deg; transform: rotate(var(--r));
-  clip-path: polygon(0 8%,3% 0,8% 9%,14% 2%,22% 8%,30% 1%,38% 7%,47% 0,55% 8%,63% 2%,71% 9%,79% 1%,87% 8%,94% 0,100% 7%,98% 50%,100% 92%,95% 100%,88% 92%,80% 99%,72% 91%,64% 100%,56% 93%,48% 100%,40% 92%,32% 99%,24% 91%,16% 100%,9% 92%,3% 99%,0 90%,2% 50%);
+  display: inline-block; padding: 4px 14px 3px; background: var(--gold); color: #0b0906;
+  font-size: 26px; font-weight: 900; font-style: italic; letter-spacing: -.02em; line-height: 1.1; text-transform: uppercase;
+  transform: rotate(-3deg) skewX(-8deg); box-shadow: 4px 4px 0 #0b0906, 4px 4px 0 1.5px var(--cream);
+  margin: -2px 0 0 -4px;
 }
-.tape.t1 { background: var(--tape1); --r: 1.6deg; }
+.tape.t1 { background: var(--red); color: var(--cream); transform: rotate(2deg) skewX(-8deg); }
 
 /* 곡 줄 */
 .cues { list-style: none; margin: 0; padding: 0; }
 .cue {
-  display: grid; grid-template-columns: 30px minmax(0, 1fr) auto; gap: 12px; align-items: start;
-  padding: 11px 20px; border-bottom: 1px solid var(--line); transition: background .2s;
+  position: relative; display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 14px; align-items: start;
+  padding: 12px 20px; border-bottom: 1px dashed var(--rule); transition: background .15s;
 }
 .cue:last-child { border-bottom: 0; }
-.cue.is-playing { background: var(--blue-soft); }
-.cue .no { font-size: 17px; font-weight: 800; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; line-height: 1.4; }
-.cue.is-playing .no { color: var(--blue); }
-.cue .song { min-width: 0; display: flex; flex-direction: column; }
-.cue .title { font-size: 16px; font-weight: 700; line-height: 1.35; overflow-wrap: anywhere; }
-.cue .credit { font-size: 13px; color: var(--blue); }
-.cue .artists { font-size: 13px; color: var(--muted); overflow-wrap: anywhere; }
-
-/* 미리듣기 알약 버튼: 재생하면 안쪽이 왼쪽부터 차올라요 */
-.pv {
-  position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 5px;
-  margin-top: 1px; padding: 4px 11px 4px 9px; border: 1px solid var(--line); border-radius: 999px;
-  background: #fff; color: var(--blue); font-size: 12px; font-weight: 700; white-space: nowrap; cursor: pointer;
+.cue.is-playing { background: rgba(255, 194, 26, .12); }
+.cue .no {
+  font-size: 24px; font-weight: 900; font-style: italic; letter-spacing: -.04em; line-height: 1.05;
+  color: var(--gold); text-align: right; font-variant-numeric: tabular-nums; text-shadow: 2px 2px 0 #000;
 }
-.pv:hover { border-color: var(--blue); }
-.pv:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
-.pv .fill { position: absolute; inset: 0; background: var(--blue); transform-origin: left; transform: scaleX(var(--p, 0)); }
+.part:nth-child(2) .cue .no { color: var(--red); }
+.cue .song { min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.cue .title { font-size: 17px; font-weight: 900; letter-spacing: -.01em; line-height: 1.3; text-transform: uppercase; overflow-wrap: anywhere; }
+.cue .credit { font-size: 12px; font-weight: 700; letter-spacing: .02em; color: var(--gold); }
+.cue .artists { font-size: 13px; color: var(--dim); overflow-wrap: anywhere; }
+
+/* 미리듣기: 크림 테두리 알약, 재생하면 금색이 차올라요 */
+.pv {
+  position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 1px; padding: 5px 12px 5px 10px; border: 2px solid var(--cream); border-radius: 999px;
+  background: transparent; color: var(--cream); font-size: 11.5px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase;
+  white-space: nowrap; cursor: pointer; box-shadow: 2px 2px 0 var(--cream); transition: transform .1s, box-shadow .1s;
+}
+.pv:hover { background: rgba(243, 233, 207, .1); }
+.pv:active { transform: translate(2px, 2px); box-shadow: 0 0 0 var(--cream); }
+.pv:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.pv .fill { position: absolute; inset: 0; background: var(--gold); transform-origin: left; transform: scaleX(var(--p, 0)); }
 .pv .ic, .pv .lb { position: relative; }
 .pv .ic { width: 0; height: 0; border-left: 8px solid currentColor; border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
-.pv[data-state="play"], .pv[data-state="load"] { color: #fff; background: #8a8ee6; border-color: var(--blue); }
-.pv[data-state="play"] .ic { width: 8px; height: 8px; border: 0; background: currentColor; border-radius: 1px; }
-.pv[data-state="load"] .ic { width: 9px; height: 9px; border: 1.5px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: spin .8s linear infinite; }
+.pv[data-state="play"], .pv[data-state="load"] { color: #0b0906; background: #8a6c1a; border-color: var(--gold); box-shadow: 2px 2px 0 var(--gold); }
+.pv[data-state="play"] .ic { width: 8px; height: 8px; border: 0; background: currentColor; }
+.pv[data-state="load"] .ic { width: 9px; height: 9px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: spin .8s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-.lineup-more { display: flex; gap: 10px; justify-content: center; margin-top: 28px; flex-wrap: wrap; }
+.lineup-more { display: flex; gap: 10px; justify-content: center; margin-top: 32px; flex-wrap: wrap; }
 .lineup-more .menu-btn { width: auto; flex: 1 1 140px; max-width: 220px; padding: 13px 14px; font-size: 14px; }
 
 @media (max-width: 560px) {
-  .part-head { padding: 14px 16px 10px; }
-  .tape { font-size: 21px; }
-  .cue { grid-template-columns: 24px minmax(0, 1fr) auto; gap: 10px; padding: 10px 14px; }
-  .cue .no { font-size: 15px; }
-  .cue .title { font-size: 15px; }
-  .cue .credit, .cue .artists { font-size: 12.5px; }
+  .part { box-shadow: 6px 6px 0 var(--gold); margin-right: 6px; }
+  .part:nth-child(2) { box-shadow: 6px 6px 0 var(--red); }
+  .part-head { padding: 14px 14px 12px; }
+  .tape { font-size: 22px; }
+  .cue { grid-template-columns: 30px minmax(0, 1fr) auto; gap: 10px; padding: 11px 14px; }
+  .cue .no { font-size: 20px; }
+  .cue .title { font-size: 15.5px; }
+  .cue .credit, .cue .artists { font-size: 12px; }
 }
 
 /* 애니메이션을 줄이거나 GSAP을 못 불러오면 셋리스트를 포스터 아래에 그냥 보여줘요 */
