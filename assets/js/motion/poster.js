@@ -5,7 +5,7 @@
 //     .Le        처음 등장 연출
 //     .Li (안쪽)  가만히 있을 때 살랑살랑
 //   스크롤 연출은 레이어들을 담은 .poster-cam 전체에 걸어요.
-import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11221505";
+import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11221510";
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 // SAGGING 2026 글자 높이 미세 조정 (+면 아래로). 휴대폰(좁은 화면)에서만 조금 더 내려요
@@ -237,16 +237,16 @@ function scrollAnim(gsap) {
     // 같은 자리의 번개 버전 하늘로 서서히 바뀜 (개선문은 그대로)
     .fromTo(".poster-bgs .storm", { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power1.inOut" }, 0.45);
 
-  // 셋리스트: 스크롤하는 동안 제자리에 머물도록 위치를 보정하고, 요소들이 다 빠져나간 뒤 서서히 나타나요
+  // 셋리스트: 스크롤하는 동안 제자리에 머물도록 위치를 보정하고, 요소들이 다 빠져나간 뒤 아래에서 올라와요
   const gap = $(".pin-spacer-gap");
   gsap.timeline({
     defaults: { ease: "none" },
     scrollTrigger: { trigger: ".poster.pin-wrap", start: "top top", endTrigger: gap, end: "bottom bottom", scrub: true, invalidateOnRefresh: true,
-      onUpdate: (st) => $(".lineup").classList.toggle("is-shown", st.progress > 0.8) },
+      onUpdate: (st) => $(".lineup").classList.toggle("is-shown", st.progress > 0.9) },
   })
     .fromTo(".lineup", { y: () => -gap.offsetHeight }, { y: 0, duration: 1 }, 0)
-    .fromTo(".lineup", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.35, ease: "power1.out", immediateRender: false }, 0.65)
-    .fromTo(".lineup-inner", { scale: 0.96, filter: "blur(8px)" }, { scale: 1, filter: "blur(0px)", duration: 0.35, ease: "power2.out" }, 0.65);
+    // 빨려 들어가는 동작이 끝나갈 때쯤 화면 아래에서 올라와요
+    .fromTo(".lineup-inner", { y: () => innerHeight }, { y: 0, duration: 0.42, ease: "power2.out" }, 0.58);
   return tl;
 }
 

@@ -2,8 +2,7 @@
    포스터 콘셉트(크롬 글씨, 반짝이, 타일)에 맞춰 번호와 버튼을 크롬으로 */
 .lineup {
   position: relative; z-index: 5;
-  /* 빨려 들어간 뒤 바로 그 자리(상단 띠 아래)에 서서히 나타나도록, 포스터 화면과 겹쳐 둬요.
-     스크롤하는 동안의 위치 보정과 페이드는 poster.js 가 맡아요 */
+  /* 포스터 화면과 겹쳐 두고, 아래에서 올라오는 동작은 poster.js 가 맡아요 */
   margin-top: calc(var(--vh) * -1 + var(--band-h, 32px) + 18px);
   padding: 0 var(--pad) max(48px, env(safe-area-inset-bottom));
 }
