@@ -54,6 +54,16 @@ function buildLayers(art) {
     if (L.fit) img.style.objectFit = L.fit;
 
     holder.append(img);
+    // 번개 버전 배경 (원래 배경과 똑같은 자리에 겹쳐 둬서 개선문이 움직이지 않아요)
+    if (L.storm) {
+      const st = document.createElement("img");
+      st.className = "storm"; st.src = L.storm; st.alt = ""; st.decoding = "async";
+      const bo = document.createElement("img");
+      bo.className = "bolts"; bo.src = L.bolts; bo.alt = ""; bo.decoding = "async";
+      const fl = document.createElement("div");
+      fl.className = "sky-flash";
+      holder.append(st, fl, bo);
+    }
     idle.append(holder);
     enter.append(idle);
     resp.append(enter);
@@ -144,7 +154,7 @@ function enterAnim(gsap) {
     .from(by("slap"), { scale: 2.4, rotation: 25, opacity: 0, duration: 0.35, ease: "power4.in" }, 1.6)
     // 필기체: 왼쪽부터 써지듯
     .fromTo(by("write"), { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 1.1, ease: "power1.inOut" }, 1.8)
-    .from(".scroll-cue", { autoAlpha: 0, y: 30, duration: 0.6, ease: "back.out(2)" }, 2.3);
+    .from(".scroll-cue .cue-text, .scroll-cue .cue-arrows", { opacity: 0, y: 30, duration: 0.6, ease: "back.out(2)" }, 2.3);
   return tl;
 }
 
@@ -191,15 +201,21 @@ function idleAnim(gsap) {
 }
 
 // 스크롤: 요소들이 가운데에서 화면 밖으로 빠져나가며 커지고(빨려 들어가는 느낌),
-//         개선문 배경만 남아 어두워진 뒤 그 위로 셋리스트가 올라와요.
+//         개선문만 남은 채 같은 자리의 번개 버전으로 바뀌고, 그 위로 셋리스트가 올라와요.
 function scrollAnim(gsap) {
   const cx = POSTER_W / 2, cy = POSTER_H * 0.55;
+  const root = document.documentElement;
   const tl = gsap.timeline({
     defaults: { ease: "none" },
     scrollTrigger: {
       trigger: ".poster.pin-wrap", start: "top top",
       endTrigger: ".lineup", end: "top 85%",
       scrub: 0.6, invalidateOnRefresh: true,
+      // 조금이라도 내려가면 "내려서 입장하기" 숨김, 다 넘어가면 번개 시작
+      onUpdate: (st) => {
+        root.classList.toggle("past-intro", st.progress > 0.02);
+        setStorm(st.progress > 0.85);
+      },
     },
   });
   LAYERS.forEach((L) => {
@@ -216,9 +232,34 @@ function scrollAnim(gsap) {
     }, (1 - d) * 0.2);
   });
   tl.fromTo(".poster-bgs", { scale: 1, filter: "brightness(1) saturate(1)" },
-      { scale: 1.18, filter: "brightness(.55) saturate(1.05)", transformOrigin: "50% 50%", duration: 1, ease: "power1.inOut" }, 0)
-    .to(".scroll-cue", { autoAlpha: 0, y: 20, duration: 0.08 }, 0);
+      { scale: 1.18, filter: "brightness(.8) saturate(1.05)", transformOrigin: "50% 50%", duration: 1, ease: "power1.inOut" }, 0)
+    // 같은 자리의 번개 버전 하늘로 서서히 바뀜 (개선문은 그대로)
+    .fromTo(".poster-bgs .storm", { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power1.inOut" }, 0.45);
   return tl;
+}
+
+// 번개: 셋리스트 화면에서만, 불규칙한 간격으로 번쩍. 번개가 칠 때 하늘도 같이 밝아져요.
+let stormOn = false, stormTimer = 0;
+function strike() {
+  const { gsap } = window;
+  const bolts = $(".poster-bgs .bolts"), flash = $(".poster-bgs .sky-flash");
+  if (!bolts || !stormOn) return;
+  const tl = gsap.timeline();
+  tl.set([bolts, flash], { opacity: 0 })
+    .to(flash, { opacity: 0.55, duration: 0.05 }, 0)
+    .to(bolts, { opacity: 1, duration: 0.04 }, 0.02)
+    .to([bolts, flash], { opacity: 0.15, duration: 0.07 }, 0.1)
+    .to([bolts, flash], { opacity: 1, duration: 0.04 }, 0.2)       // 두 번 번쩍
+    .to(flash, { opacity: 0, duration: 0.5, ease: "power2.out" }, 0.28)
+    .to(bolts, { opacity: 0, duration: 0.9, ease: "power2.out" }, 0.32);
+  stormTimer = setTimeout(strike, 2600 + Math.random() * 3800);
+}
+function setStorm(on) {
+  if (on === stormOn) return;
+  stormOn = on;
+  clearTimeout(stormTimer);
+  if (on) stormTimer = setTimeout(strike, 350);
+  else window.gsap.to(".poster-bgs .bolts, .poster-bgs .sky-flash", { opacity: 0, duration: 0.2 });
 }
 
 // 스크롤 유도: 버튼을 누르면 공연 정보가 나오는 지점까지 자동으로 내려가요

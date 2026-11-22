@@ -15,7 +15,9 @@ export const POSTER_W = 595;
 export const POSTER_H = 842;
 
 export const LAYERS = [
-  { id: "bg",           src: A + "bg.webp",           box: [-132, -25, 890, 938], kind: "bg", depth: 0.08, enter: "fade", idle: "flash" },
+  { id: "bg",           src: A + "bg.webp",           box: [-132, -25, 890, 938], kind: "bg", depth: 0.08, enter: "fade",
+                        // 셋리스트로 넘어가면 같은 자리의 번개 버전으로 바뀌고 번개가 쳐요
+                        storm: A + "bg-storm.webp", bolts: A + "lightning.webp" },
   { id: "tile",         src: A + "tile.webp",         box: [72.09, 277.31, 382.172, 309.23], inner: [334.875, 233.995], rot: -14.25, radius: 9,
                         shadow: "8px 5px 8.3px rgba(140,130,63,.26)", depth: 0.4, enter: "slide-up" },
   { id: "hongseong",    src: A + "hongseong-tingjun.webp", box: [111, 306, 234, 271], shadow: "9px -3px 4px rgba(0,0,0,.31)",

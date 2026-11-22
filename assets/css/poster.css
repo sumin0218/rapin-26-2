@@ -21,6 +21,12 @@
 .L { will-change: transform, opacity; }
 .Lr, .Le, .Li, .Lh { inset: 0; }
 .Lh img { width: 100%; height: 100%; object-fit: cover; display: block; user-select: none; -webkit-user-drag: none; }
+/* 번개 버전 배경: 원래 배경 위에 같은 크기로 겹쳐요 */
+.Lh .storm, .Lh .bolts, .Lh .sky-flash { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
+.Lh .sky-flash { background: radial-gradient(70% 45% at 50% 12%, rgba(220, 230, 255, .85), rgba(160, 180, 255, .2) 60%, transparent 80%); mix-blend-mode: screen; }
+.Lh .bolts { filter: drop-shadow(0 0 6px rgba(190, 210, 255, .9)); }
+/* 조금이라도 내려가면 "내려서 입장하기" 숨김 */
+.past-intro .scroll-cue { opacity: 0 !important; visibility: hidden !important; transition: opacity .2s, visibility 0s .2s; }
 
 /* 반짝이 별 */
 .sparkles { position: absolute; inset: 0; pointer-events: none; z-index: 4; }

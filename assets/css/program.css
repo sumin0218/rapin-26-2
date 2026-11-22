@@ -6,6 +6,13 @@
   padding: 0 var(--pad) max(48px, env(safe-area-inset-bottom));
 }
 .lineup-inner { max-width: 760px; margin: 0 auto; }
+/* PC: 1부와 2부를 좌우로 */
+@media (min-width: 1100px) {
+  .lineup-inner { max-width: 1320px; }
+  .setlist { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; align-items: start; }
+  .setlist .part + .part { margin-top: 0; }
+  .lineup-more { max-width: 480px; margin-left: auto; margin-right: auto; }
+}
 
 .chrome-text {
   background: linear-gradient(180deg, #ffffff 0%, #e9edf3 38%, #8d96a6 50%, #f6f8fb 62%, #b9c0cc 100%);
