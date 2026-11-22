@@ -20,5 +20,7 @@
   "close": "닫기",
   "menu": "메뉴",
   "previewPlay": "{t} 20초 미리듣기",
-  "previewStop": "{t} 미리듣기 멈추기"
+  "previewStop": "{t} 미리듣기 멈추기",
+  "bgmOn": "배경음악 켜기",
+  "bgmOff": "배경음악 끄기"
 }

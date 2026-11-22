@@ -1,10 +1,11 @@
 // 진입점: 데이터 불러오기 → 언어 적용 → 순서표 그리기 → 포스터 모션 시작
-import { loadJSON } from "./data.js?v=11221439";
+import { loadJSON } from "./data.js?v=11221445";
 import { initI18n, t, getLang, onLangChange } from "./i18n.js";
-import { renderInfo } from "./sections/info.js?v=11221439";
-import { renderProgram } from "./sections/program.js?v=11221439";
-import { initPoster } from "./motion/poster.js?v=11221439";
-import { initPanels } from "./sections/panels.js?v=11221439";
+import { renderInfo } from "./sections/info.js?v=11221445";
+import { renderProgram } from "./sections/program.js?v=11221445";
+import { initPoster } from "./motion/poster.js?v=11221445";
+import { initPanels } from "./sections/panels.js?v=11221445";
+import { initBgm } from "./bgm.js?v=11221445";
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 if (reduced) document.documentElement.classList.add("reduced");
@@ -27,6 +28,7 @@ async function start() {
   // GSAP은 defer로 불러와서, 모듈이 실행될 때 이미 준비돼 있어요
   initPoster();
   initPanels();
+  initBgm();
 }
 
 start().catch((err) => {

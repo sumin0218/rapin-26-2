@@ -20,5 +20,7 @@
   "close": "Close",
   "menu": "Menu",
   "previewPlay": "Play 20s preview of {t}",
-  "previewStop": "Stop preview of {t}"
+  "previewStop": "Stop preview of {t}",
+  "bgmOn": "Turn on music",
+  "bgmOff": "Turn off music"
 }

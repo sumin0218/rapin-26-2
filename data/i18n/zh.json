@@ -20,5 +20,7 @@
   "close": "关闭",
   "menu": "菜单",
   "previewPlay": "试听 {t} 20秒",
-  "previewStop": "停止试听 {t}"
+  "previewStop": "停止试听 {t}",
+  "bgmOn": "开启背景音乐",
+  "bgmOff": "关闭背景音乐"
 }

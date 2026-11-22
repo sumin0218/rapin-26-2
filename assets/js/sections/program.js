@@ -31,15 +31,18 @@ function tick() {
 }
 
 function stop() {
+  const was = !!playingBtn;
   audio.pause();
   cancelAnimationFrame(raf);
   if (playingBtn) setBtn(playingBtn, "idle");
   playingBtn = null;
+  if (was) dispatchEvent(new Event("preview:stop"));
 }
 
 function toggle(btn) {
   if (playingBtn === btn) { stop(); return; }
   stop();
+  dispatchEvent(new Event("preview:play"));
   playingBtn = btn;
   setBtn(btn, "load");
   audio.src = btn.dataset.src;

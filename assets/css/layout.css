@@ -45,3 +45,22 @@
 @media (max-width: 640px) {
   .info-list > div { grid-template-columns: 1fr; gap: 4px; }
 }
+
+/* 배경음악 버튼: 작은 동그라미, 흰 테두리, 속이 빈 스피커 아이콘 */
+.bgm-btn {
+  position: fixed; z-index: 55;
+  top: calc(var(--band-h, 32px) + 10px); right: clamp(10px, 3vw, 24px);
+  width: 34px; height: 34px; padding: 0; border-radius: 50%;
+  border: 1.5px solid #fff; background: transparent; color: #fff; cursor: pointer;
+  display: grid; place-items: center;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, .55));
+}
+.bgm-btn svg { width: 18px; height: 18px; overflow: visible; }
+.bgm-btn path { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.bgm-btn .mute { display: none; }
+.bgm-btn:not(.is-on) .wave { display: none; }
+.bgm-btn:not(.is-on) .mute { display: inline; }
+.bgm-btn.is-playing .w1 { animation: bgm-wave 1.2s ease-in-out infinite; }
+.bgm-btn.is-playing .w2 { animation: bgm-wave 1.2s ease-in-out .2s infinite; }
+@keyframes bgm-wave { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+.bgm-btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
