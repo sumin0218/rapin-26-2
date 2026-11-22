@@ -43,10 +43,10 @@
   "dow": "목",
   "igOpen": "{n} 소개 보기",
   "soonKicker": "SETLIST DROP",
-  "soonText": "셋리스트는 11월 27일(금) 밤 10시에 공개돼요",
   "soonDone": "곧 공개돼요. 잠시 후 새로고침해 주세요",
   "cdD": "일",
   "cdH": "시간",
   "cdM": "분",
-  "cdS": "초"
+  "cdS": "초",
+  "soonOpen": "공개"
 }

@@ -138,8 +138,10 @@ function renderSoon(root, setlist, t) {
   card.append(head);
   const body = el("div", "soon-body");
   const when = el("p", "soon-when");
-  when.append(el("b", null, "11.27"), el("span", null, "FRI 22:00"));
-  body.append(when, el("p", "soon-text", t("soonText")));
+  const side = el("span", "side");
+  side.append(el("small", null, t("soonOpen")), el("span", null, "FRI 22:00"));
+  when.append(el("b", null, "11.27"), side);
+  body.append(when);
   const cd = el("div", "soon-cd");
   cd.setAttribute("aria-hidden", "true");
   const units = ["cdD", "cdH", "cdM", "cdS"].map((k) => {

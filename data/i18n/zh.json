@@ -43,10 +43,10 @@
   "dow": "周四",
   "igOpen": "查看 {n} 的介绍",
   "soonKicker": "SETLIST DROP",
-  "soonText": "曲目将于 11月27日（周五）晚上10点公开",
   "soonDone": "即将公开，请稍后刷新",
   "cdD": "天",
   "cdH": "时",
   "cdM": "分",
-  "cdS": "秒"
+  "cdS": "秒",
+  "soonOpen": "公开"
 }

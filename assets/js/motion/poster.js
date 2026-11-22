@@ -5,7 +5,7 @@
 //     .Le        처음 등장 연출
 //     .Li (안쪽)  가만히 있을 때 살랑살랑
 //   스크롤 연출은 레이어들을 담은 .poster-cam 전체에 걸어요.
-import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11221638";
+import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11221643";
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 // SAGGING 2026 글자 높이 미세 조정 (+면 아래로). 휴대폰(좁은 화면)에서만 조금 더 내려요
@@ -249,8 +249,8 @@ function scrollAnim(gsap) {
     // ① 요소들이 다 빠져나간 뒤 Setlist 글씨가 천천히 커지며 나타나고
     .fromTo(".lineup-title", { autoAlpha: 0, scale: 0.6, rotate: -5 }, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.2, ease: "back.out(1.6)" }, 0.53)
     // ② 그다음 목록이 화면 아래에서 올라와요 (차례가 오기 전엔 아예 숨겨서 포스터 위로 삐져나오지 않게)
-    .fromTo(".setlist", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.01 }, 0.74)
-    .fromTo(".setlist", { y: () => innerHeight + 60 }, { y: 0, duration: 0.26, ease: "power2.out" }, 0.74);
+    .fromTo(".setlist", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.01 }, 0.64)
+    .fromTo(".setlist", { y: () => innerHeight + 60 }, { y: 0, duration: 0.3, ease: "power2.out" }, 0.64);
   return tl;
 }
 

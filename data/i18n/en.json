@@ -43,10 +43,10 @@
   "dow": "THU",
   "igOpen": "Open {n}'s profile",
   "soonKicker": "SETLIST DROP",
-  "soonText": "The setlist drops Fri, Nov 27 at 10 PM (KST)",
   "soonDone": "Dropping any moment. Refresh in a bit",
   "cdD": "days",
   "cdH": "hrs",
   "cdM": "min",
-  "cdS": "sec"
+  "cdS": "sec",
+  "soonOpen": "DROPS"
 }
