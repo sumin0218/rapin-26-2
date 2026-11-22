@@ -103,6 +103,16 @@ export function renderProgram(setlist, lang, t) {
     });
 
     sec.append(list);
+    // 테두리 위에서 반짝이는 별 몇 개 (자리와 박자는 매번 조금씩 달라요)
+    for (let i = 0; i < 6; i++) {
+      const k = el("i", "spk");
+      const edge = i % 4, at = 8 + Math.random() * 84;
+      k.style.cssText = edge === 0 ? `left:${at}%;top:0` : edge === 1 ? `right:0;top:${at}%` : edge === 2 ? `left:${at}%;bottom:0` : `left:0;top:${at}%`;
+      k.style.setProperty("--d", (Math.random() * 3.2).toFixed(2) + "s");
+      k.style.setProperty("--s", (0.6 + Math.random() * 0.7).toFixed(2));
+      k.setAttribute("aria-hidden", "true");
+      sec.append(k);
+    }
     root.append(sec);
   });
 }
