@@ -304,7 +304,10 @@
               "zh": "D’aira"
             }
           ],
-          "preview": "assets/audio/preview/s28.mp3"
+          "preview": "assets/audio/preview/s28.mp3",
+          "tags": [
+            "sd"
+          ]
         },
         {
           "id": "s26",
@@ -498,7 +501,10 @@
               "zh": "D’aira"
             }
           ],
-          "preview": "assets/audio/preview/s34.mp3"
+          "preview": "assets/audio/preview/s34.mp3",
+          "tags": [
+            "sd"
+          ]
         },
         {
           "id": "s24",

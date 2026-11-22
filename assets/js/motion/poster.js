@@ -5,7 +5,7 @@
 //     .Le        처음 등장 연출
 //     .Li (안쪽)  가만히 있을 때 살랑살랑
 //   스크롤 연출은 레이어들을 담은 .poster-cam 전체에 걸어요.
-import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11221531";
+import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11221543";
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 // SAGGING 2026 글자 높이 미세 조정 (+면 아래로). 휴대폰(좁은 화면)에서만 조금 더 내려요
@@ -210,7 +210,7 @@ function scrollAnim(gsap) {
     defaults: { ease: "none" },
     scrollTrigger: {
       trigger: ".poster.pin-wrap", start: "top top",
-      endTrigger: ".pin-spacer-gap", end: "bottom bottom",
+      end: () => "+=" + $(".pin-spacer-gap").offsetHeight,
       scrub: 0.6, invalidateOnRefresh: true,
       // 조금이라도 내려가면 "내려서 입장하기" 숨김, 다 넘어가면 번개 시작
       onUpdate: (st) => {
@@ -239,18 +239,18 @@ function scrollAnim(gsap) {
     // 빠지는 동작은 앞쪽에서 끝나고, 남은 스크롤은 셋리스트 등장에 써요
     .to({}, { duration: 0.95 }, 1);
 
-  // 셋리스트: 스크롤하는 동안 제자리에 머물도록 위치를 보정하고, 요소들이 다 빠져나간 뒤 아래에서 올라와요
+  // 셋리스트: 제자리 고정은 CSS sticky 가 맡고(떨림 없음), 여기서는 등장만 그려요
   const gap = $(".pin-spacer-gap");
   gsap.timeline({
     defaults: { ease: "none" },
-    scrollTrigger: { trigger: ".poster.pin-wrap", start: "top top", endTrigger: gap, end: "bottom bottom", scrub: true, invalidateOnRefresh: true,
+    scrollTrigger: { trigger: ".poster.pin-wrap", start: "top top", end: () => "+=" + gap.offsetHeight, scrub: 0.5, invalidateOnRefresh: true,
       onUpdate: (st) => $(".lineup").classList.toggle("is-shown", st.progress > 0.9) },
   })
-    .fromTo(".lineup", { y: () => -gap.offsetHeight }, { y: 0, duration: 1 }, 0)
     // ① 요소들이 다 빠져나간 뒤 Setlist 글씨가 천천히 커지며 나타나고
     .fromTo(".lineup-title", { autoAlpha: 0, scale: 0.6, rotate: -5 }, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.2, ease: "back.out(1.6)" }, 0.53)
-    // ② 그다음 목록이 화면 아래에서 올라와요
-    .fromTo([".setlist", ".lineup-more"], { y: () => innerHeight }, { y: 0, duration: 0.26, ease: "power2.out" }, 0.74);
+    // ② 그다음 목록이 화면 아래에서 올라와요 (차례가 오기 전엔 아예 숨겨서 포스터 위로 삐져나오지 않게)
+    .fromTo([".setlist", ".lineup-more"], { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.01 }, 0.74)
+    .fromTo([".setlist", ".lineup-more"], { y: () => innerHeight + 60 }, { y: 0, duration: 0.26, ease: "power2.out" }, 0.74);
   return tl;
 }
 
@@ -284,7 +284,7 @@ function scrollCue() {
   if (!btn) return;
   btn.addEventListener("click", () => {
     const gap = $(".pin-spacer-gap");
-    const target = gap.getBoundingClientRect().bottom + scrollY - innerHeight;
+    const target = $(".poster.pin-wrap").getBoundingClientRect().top + scrollY + gap.offsetHeight;
     scrollTo({ top: target, behavior: reduced ? "auto" : "smooth" });
   });
 }

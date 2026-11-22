@@ -91,7 +91,13 @@ export function renderProgram(setlist, lang, t) {
       li.append(el("span", "no", String(no).padStart(2, "0")));
 
       const song = el("div", "song");
-      song.append(el("b", "title", s.title));
+      const title = el("b", "title", s.title);
+      // 스트리트 댄스 / 커버 무대 표시 (data/setlist.json 의 tags)
+      for (const tg of s.tags || []) {
+        const label = tg === "sd" ? "STREET DANCE" : tg === "cover" ? "COVER" : tg.toUpperCase();
+        title.append(el("span", "tag tag-" + tg, label));
+      }
+      song.append(title);
       if (s.credit) song.append(el("small", "credit", typeof s.credit === "object" ? s.credit[lang] ?? s.credit.ko : s.credit));
       const names = (s.artists || []).map((a) => (typeof a === "object" ? a[lang] ?? a.ko : a));
       song.append(el("small", "artists", names.length ? names.join(", ") : t("tba")));
