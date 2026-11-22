@@ -27,7 +27,6 @@
 <a class="skip" href="#program" data-i18n="skip">순서표로 바로 가기</a>
 
 <header class="topbar" role="banner">
-  <a class="brand" href="#top" aria-label="RAP-IN">RAP-IN</a>
   <nav class="lang" aria-label="언어" data-i18n-attr="aria-label:lang">
     <button type="button" data-lang="ko" lang="ko">한국어</button>
     <button type="button" data-lang="en" lang="en">EN</button>
@@ -44,10 +43,13 @@
     <div class="stage">
       <div class="poster-cam">
         <div class="poster-art" role="img" aria-label="SAGGING 2026 포스터" data-i18n-attr="aria-label:posterAlt"></div>
-        <div class="poster-band"><span data-i18n="band">래빈 정기공연 12.3.19:00 학생회관 소극장</span></div>
+        <div class="poster-band"><span data-i18n="band">래빈 정기공연 12.03.19:00 학생회관 소극장</span></div>
       </div>
       <h1 id="poster-title" class="sr-only" data-i18n="title">RAP-IN 26-2 정기공연 SAGGING 2026</h1>
-      <p class="scroll-hint" aria-hidden="true" data-i18n="scrollHint">스크롤</p>
+      <button type="button" class="scroll-cue" aria-controls="info">
+        <span class="cue-text" data-i18n="scrollHint">내려서 입장하기</span>
+        <span class="cue-arrows" aria-hidden="true"><i></i><i></i><i></i></span>
+      </button>
 
       <div class="info-reveal" id="info" aria-labelledby="info-title">
         <div class="info-card">

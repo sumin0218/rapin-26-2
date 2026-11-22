@@ -8,9 +8,16 @@
 import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js";
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const LOGO_LIFT = -14; // SAGGING 2026 글자를 피그마보다 살짝 위로
 const $ = (s, r = document) => r.querySelector(s);
 
 function buildLayers(art) {
+  // 배경(개선문)과 앞쪽 레이어를 나눠 담아요. 스크롤하면 앞쪽만 빨려 들어가고 배경은 남아요.
+  const bgs = document.createElement("div");
+  bgs.className = "poster-bgs";
+  const fg = document.createElement("div");
+  fg.className = "poster-fg";
+  art.append(bgs, fg);
   LAYERS.forEach((L) => {
     const [, , w, h] = L.box;
     const outer = document.createElement("div");
@@ -51,7 +58,7 @@ function buildLayers(art) {
     enter.append(idle);
     resp.append(enter);
     outer.append(resp);
-    art.append(outer);
+    (L.kind === "bg" ? bgs : fg).append(outer);
   });
 }
 
@@ -87,10 +94,10 @@ function fit(stage, art) {
 
     const ncx = cx + (x + w / 2 - cx) * k;
     el.style.left = ox + ncx - w / 2 + "px";
-    el.style.top = y + "px";
+    el.style.top = y + (L.kind === "logo" ? LOGO_LIFT : 0) + "px";
 
     let rs = 1, origin = "50% 50%";
-    if (L.kind === "logo") { rs = Math.min(k, 1); origin = "50% 70%"; }
+    if (L.kind === "logo") { rs = Math.min(k, 1); origin = "50% 27%"; }
     else if (k < 1) { rs = (1 + k) / 2; origin = L.origin || "50% 50%"; }
     r.style.transformOrigin = origin;
     r.style.transform = rs === 1 ? "" : `scale(${rs})`;
@@ -138,7 +145,7 @@ function enterAnim(gsap) {
     // 필기체: 왼쪽부터 써지듯
     .fromTo(by("write"), { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 1.1, ease: "power1.inOut" }, 1.8)
     .from(".poster-band", { yPercent: 100, duration: 0.5 }, 1.9)
-    .from(".scroll-hint", { opacity: 0, duration: 0.5 }, 2.4);
+    .from(".scroll-cue", { autoAlpha: 0, y: 30, duration: 0.6, ease: "back.out(2)" }, 2.3);
   return tl;
 }
 
@@ -184,46 +191,55 @@ function idleAnim(gsap) {
   });
 }
 
-// 스크롤: 학관소극장(장소) 타일 쪽으로 빨려 들어가고, 그 안에서 공연 정보가 나와요
-function scrollAnim(gsap, stage) {
+// 스크롤: 앞쪽 레이어가 학관소극장(장소) 타일 쪽으로 빨려 들어가고,
+//         개선문 배경은 그대로 남은 채 그 위에 공연 정보가 나와요
+function scrollAnim(gsap) {
   const focusLayer = LAYERS.find((L) => L.focus);
-  const focusEl = () => $(`.L[data-id="${focusLayer.id}"] .Lh`);
-  const focusPoint = () => {
-    const a = focusEl().getBoundingClientRect(), b = stage.getBoundingClientRect();
-    return { x: a.left + a.width / 2 - b.left, y: a.top + a.height / 2 - b.top };
-  };
-  let fp = focusPoint();
+  const focusEl = $(`.L[data-id="${focusLayer.id}"]`);
+  // 포스터 좌표(.poster-art 기준)에서 타일 가운데
+  const fp = () => ({ x: focusEl.offsetLeft + focusEl.offsetWidth / 2, y: focusEl.offsetTop + focusEl.offsetHeight / 2 });
+  const sel = (fn) => LAYERS.filter(fn).map((L) => `.L[data-id="${L.id}"]`);
 
   const tl = gsap.timeline({
     defaults: { ease: "none" },
-    scrollTrigger: {
-      trigger: ".poster.pin-wrap", start: "top top", end: "bottom bottom", scrub: 0.7,
-      invalidateOnRefresh: true,
-      onRefreshInit: () => { gsap.set(".poster-cam", { clearProps: "transform" }); fp = focusPoint(); },
-    },
+    scrollTrigger: { trigger: ".poster.pin-wrap", start: "top top", end: "bottom bottom", scrub: 0.7, invalidateOnRefresh: true },
   });
 
-  // 0 ~ 0.7: 카메라가 타일 쪽으로 돌진 (타일이 똑바로 서도록 살짝 회전)
-  tl.fromTo(".poster-cam",
+  // 0 ~ 0.65: 앞쪽 레이어가 타일 쪽으로 돌진 (타일이 똑바로 서도록 살짝 회전)
+  tl.fromTo(".poster-fg",
       { scale: 1, rotation: 0 },
-      { scale: 9, rotation: -(focusLayer.rot || 0), ease: "power2.in", duration: 0.7,
-        transformOrigin: () => `${fp.x}px ${fp.y}px` }, 0)
+      { scale: 8, rotation: -(focusLayer.rot || 0), ease: "power2.in", duration: 0.65,
+        transformOrigin: () => { const p = fp(); return `${p.x}px ${p.y}px`; } }, 0)
     // 앞쪽 인물들은 먼저 스쳐 지나가듯 커지며 사라짐 (깊이감)
-    .to(LAYERS.filter((L) => (L.depth ?? 0) >= 0.75 && !L.focus && L.kind !== "logo").map((L) => `.L[data-id="${L.id}"]`),
+    .to(sel((L) => (L.depth ?? 0) >= 0.75 && !L.focus && L.kind !== "logo"),
       { scale: 1.6, opacity: 0, ease: "power1.in", duration: 0.4 }, 0)
-    // 나머지(로고, 뒤쪽 인물)도 타일만 남도록 차례로 사라짐
-    .to(LAYERS.filter((L) => !L.focus && L.kind !== "bg" && (L.depth ?? 0) < 0.75 || L.kind === "logo").map((L) => `.L[data-id="${L.id}"]`),
+    // 로고, 뒤쪽 인물도 차례로 사라짐
+    .to(sel((L) => !L.focus && L.kind !== "bg" && ((L.depth ?? 0) < 0.75 || L.kind === "logo")),
       { opacity: 0, ease: "power1.in", duration: 0.3 }, 0.15)
-    .to(".scroll-hint", { opacity: 0, duration: 0.08 }, 0)
+    // 타일도 화면을 스치며 사라지면 개선문만 남음
+    .to(focusEl, { opacity: 0, duration: 0.12 }, 0.5)
+    // 배경은 살짝만 다가오고 조금 어두워져서 글자가 잘 보이게
+    .fromTo(".poster-bgs", { scale: 1, filter: "brightness(1) saturate(1)" }, { scale: 1.12, filter: "brightness(.85) saturate(1.05)", transformOrigin: "50% 45%", duration: 0.65, ease: "power1.inOut" }, 0)
+    .to(".scroll-cue", { autoAlpha: 0, y: 20, duration: 0.08 }, 0)
     .to(".poster-band", { yPercent: 100, duration: 0.15 }, 0)
-    .to(".poster-cam", { filter: "blur(6px) brightness(.7)", duration: 0.2, ease: "power1.in" }, 0.5)
     // 0.55 ~ 0.8: 공연 정보 등장
-    .fromTo(".info-reveal", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.2 }, 0.55)
-    .fromTo(".info-card", { scale: 0.4, y: 30 }, { scale: 1, y: 0, duration: 0.25, ease: "power3.out" }, 0.58)
-    .from(".info-list > div", { y: 20, opacity: 0, stagger: 0.03, duration: 0.12 }, 0.68)
+    .fromTo(".info-reveal", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.15 }, 0.55)
+    .fromTo(".info-card", { scale: 0.4, rotation: -(focusLayer.rot || 0) * 0.5, y: 40 }, { scale: 1, rotation: 0, y: 0, duration: 0.25, ease: "back.out(1.6)" }, 0.55)
+    .from(".info-list > div", { y: 20, opacity: 0, stagger: 0.03, duration: 0.12 }, 0.66)
     // 0.8 ~ 1: 잠깐 머물렀다가 다음 섹션으로
     .to({}, { duration: 0.2 }, 0.8);
   return tl;
+}
+
+// 스크롤 유도: 버튼을 누르면 공연 정보가 나오는 지점까지 자동으로 내려가요
+function scrollCue() {
+  const btn = $(".scroll-cue");
+  if (!btn) return;
+  btn.addEventListener("click", () => {
+    const wrap = $(".poster.pin-wrap");
+    const target = wrap.offsetTop + (wrap.offsetHeight - innerHeight) * 0.82;
+    scrollTo({ top: target, behavior: reduced ? "auto" : "smooth" });
+  });
 }
 
 export function initPoster() {
@@ -232,13 +248,15 @@ export function initPoster() {
   buildLayers(art);
   sparkles();
 
-  const refit = () => fit(stage, art);
+  scrollCue();
+  const refit = () => fit($(".poster-cam", stage), art);
   refit();
   addEventListener("resize", refit);
 
   const { gsap, ScrollTrigger } = window;
   if (reduced || !gsap || !ScrollTrigger) {
     document.documentElement.classList.add(reduced ? "reduced" : "no-gsap");
+    stage.classList.add("ready");
     return;
   }
   gsap.registerPlugin(ScrollTrigger);
@@ -251,7 +269,7 @@ export function initPoster() {
   ]).then(() => {
     stage.classList.add("ready");
     enterAnim(gsap).eventCallback("onComplete", () => idleAnim(gsap));
-    scrollAnim(gsap, stage);
+    scrollAnim(gsap);
     addEventListener("orientationchange", () => ScrollTrigger.refresh());
   });
 }

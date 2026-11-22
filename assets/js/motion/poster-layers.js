@@ -14,8 +14,7 @@ export const POSTER_W = 595;
 export const POSTER_H = 842;
 
 export const LAYERS = [
-  { id: "bg-lightning", src: A + "bg-lightning.webp", box: [-111, -43, 869, 916], kind: "bg", depth: 0.05, enter: "fade", idle: "flash" },
-  { id: "bg",           src: A + "bg.webp",           box: [-132, -25, 890, 938], kind: "bg", depth: 0.08, enter: "fade" },
+  { id: "bg",           src: A + "bg.webp",           box: [-132, -25, 890, 938], kind: "bg", depth: 0.08, enter: "fade", idle: "flash" },
   { id: "tile",         src: A + "tile.webp",         box: [72.09, 277.31, 382.172, 309.23], inner: [334.875, 233.995], rot: -14.25, radius: 9,
                         shadow: "8px 5px 8.3px rgba(140,130,63,.26)", depth: 0.4, enter: "slide-up" },
   { id: "hongseong",    src: A + "hongseong-tingjun.webp", box: [111, 306, 234, 271], shadow: "9px -3px 4px rgba(0,0,0,.31)",
@@ -23,10 +22,9 @@ export const LAYERS = [
   { id: "logo-a",       src: A + "logo.webp", box: [-3, -218, 602, 802], kind: "logo", depth: 0.9, enter: "drop", group: "logo" },
   { id: "logo-b",       src: A + "logo.webp", box: [-3, -218, 602, 802], kind: "logo", depth: 0.9, enter: "drop", group: "logo" },
   { id: "logo-c",       src: A + "logo.webp", box: [-3, -217, 602, 802], kind: "logo", depth: 0.9, enter: "drop", group: "logo" },
-  { id: "heli",         src: A + "heli.webp", box: [-3, -25, 168, 133], depth: 1.2, enter: "fly-in", idle: "hover" },
+  { id: "heli",         src: A + "heli.webp", box: [-38, -37, 183, 145], depth: 1.2, enter: "fly-in", idle: "hover" },
   { id: "jimen2",       src: A + "jimen2.webp", box: [258, 283, 325, 435], flip: true, depth: 0.6, enter: "stick", idle: "sway", origin: "50% 100%" },
-  { id: "giraffe",      src: A + "giraffe.webp", box: [386, 95, 239, 424], depth: 0.7, enter: "rise", idle: "nod", origin: "60% 100%" },
-  { id: "image1397",    src: A + "image1397.webp", fit: "fill", box: [304, 509, 356, 426], flip: true, blend: "darken", depth: 0.65, enter: "stick", idle: "sway", origin: "50% 100%" },
+  { id: "giraffe",      src: A + "giraffe.webp", fit: "fill", box: [395, 106, 239, 449], depth: 0.7, enter: "rise", idle: "nod", origin: "60% 100%" },
   { id: "mrdongmen",    src: A + "mrdongmen.webp", box: [223, 283, 451, 652], flip: true, shadow: "11px 4px 4px rgba(0,0,0,.25)",
                         depth: 0.75, enter: "stick", idle: "sway", origin: "50% 100%" },
   { id: "chicken",      src: A + "chicken.webp", box: [409, 626, 159, 159], depth: 0.85, enter: "pop", idle: "peck", origin: "50% 90%" },
