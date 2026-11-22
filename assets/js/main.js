@@ -1,11 +1,11 @@
 // 진입점: 데이터 불러오기 → 언어 적용 → 순서표 그리기 → 포스터 모션 시작
-import { loadJSON } from "./data.js?v=11221454";
+import { loadJSON } from "./data.js?v=11221456";
 import { initI18n, t, getLang, onLangChange } from "./i18n.js";
-import { renderInfo } from "./sections/info.js?v=11221454";
-import { renderProgram } from "./sections/program.js?v=11221454";
-import { initPoster } from "./motion/poster.js?v=11221454";
-import { initPanels } from "./sections/panels.js?v=11221454";
-import { initBgm } from "./bgm.js?v=11221454";
+import { renderInfo } from "./sections/info.js?v=11221456";
+import { renderProgram } from "./sections/program.js?v=11221456";
+import { initPoster } from "./motion/poster.js?v=11221456";
+import { initPanels } from "./sections/panels.js?v=11221456";
+import { initBgm } from "./bgm.js?v=11221456";
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 if (reduced) document.documentElement.classList.add("reduced");
@@ -41,6 +41,7 @@ function pingBand(delay) {
 }
 
 async function start() {
+  initBgm();   // 데이터를 기다리지 않고 바로 (음악이 늦게 시작되지 않게)
   const [concert, setlist] = await Promise.all([
     loadJSON("data/concert.json"),
     loadJSON("data/setlist.json"),
@@ -60,7 +61,6 @@ async function start() {
   // GSAP은 defer로 불러와서, 모듈이 실행될 때 이미 준비돼 있어요
   initPoster();
   initPanels();
-  initBgm();
 }
 
 start().catch((err) => {

@@ -13,7 +13,7 @@ export function initBgm() {
   place(); addEventListener("resize", place);
   const audio = new Audio("assets/audio/bgm.mp3");
   audio.loop = true;
-  audio.preload = "none";
+  audio.preload = "auto";   // 들어오자마자 미리 받아 둬서 누르는 순간 바로 나오게
   audio.volume = VOLUME;
 
   let want = true;
@@ -37,14 +37,16 @@ export function initBgm() {
     sync();
   });
 
-  // 첫 사용자 동작에서 시작 (스크롤만으로는 브라우저가 소리를 허락하지 않아요)
+  // 1) 들어오자마자 바로 재생을 시도해요. 브라우저가 허락하면(자주 방문한 사이트 등) 바로 나와요.
+  if (want) audio.play().then(() => { off(); sync(); }).catch(() => {});
+  // 2) 막혔으면 첫 사용자 동작에서 시작 (스크롤만으로는 브라우저가 소리를 허락하지 않아요)
   const first = (e) => {
     if (e.target.closest && e.target.closest("#bgm-btn")) { off(); return; }
-    off();
-    if (want && !ducked) play();
+    if (!audio.paused) { off(); return; }
+    if (want && !ducked) audio.play().then(() => { off(); sync(); }).catch(() => {});
   };
-  const evs = ["pointerdown", "keydown", "touchend"];
-  const off = () => evs.forEach((ev) => removeEventListener(ev, first, true));
+  const evs = ["pointerdown", "mousedown", "keydown", "touchend", "click"];
+  function off() { evs.forEach((ev) => removeEventListener(ev, first, true)); }
   evs.forEach((ev) => addEventListener(ev, first, true));
 
   // 미리듣기와 겹치지 않게
