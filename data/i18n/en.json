@@ -15,7 +15,7 @@
   "aboutText": "RAP-IN is the black music club at Kyung Hee University.",
   "posterAlt": "SAGGING 2026 poster",
   "artistsTitle": "Artists",
-  "artistsSoon": "Artist profiles are coming soon.",
+  "artistsSoon": "Artist profiles drop together with the setlist.",
   "close": "Close",
   "menu": "Menu",
   "previewPlay": "Play 20s preview of {t}",
@@ -41,5 +41,12 @@
   "venueMain": "Student Hall Theater",
   "venueSub": "Kyung Hee University, Global Campus",
   "dow": "THU",
-  "igOpen": "Open {n}'s profile"
+  "igOpen": "Open {n}'s profile",
+  "soonKicker": "SETLIST DROP",
+  "soonText": "The setlist drops Fri, Nov 27 at 10 PM (KST)",
+  "soonDone": "Dropping any moment. Refresh in a bit",
+  "cdD": "days",
+  "cdH": "hrs",
+  "cdM": "min",
+  "cdS": "sec"
 }

@@ -15,7 +15,7 @@
   "aboutText": "경희대학교 흑인음악 동아리 RAP-IN입니다.",
   "posterAlt": "SAGGING 2026 포스터",
   "artistsTitle": "아티스트 소개",
-  "artistsSoon": "아티스트 소개는 곧 공개돼요.",
+  "artistsSoon": "아티스트 소개는 셋리스트와 함께 공개돼요.",
   "close": "닫기",
   "menu": "메뉴",
   "previewPlay": "{t} 20초 미리듣기",
@@ -41,5 +41,12 @@
   "venueMain": "학생회관 소극장",
   "venueSub": "경희대학교 국제캠퍼스",
   "dow": "목",
-  "igOpen": "{n} 소개 보기"
+  "igOpen": "{n} 소개 보기",
+  "soonKicker": "SETLIST DROP",
+  "soonText": "셋리스트는 11월 27일(금) 밤 10시에 공개돼요",
+  "soonDone": "곧 공개돼요. 잠시 후 새로고침해 주세요",
+  "cdD": "일",
+  "cdH": "시간",
+  "cdM": "분",
+  "cdS": "초"
 }

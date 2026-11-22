@@ -144,3 +144,17 @@
 /* 애니메이션을 줄이거나 GSAP을 못 불러오면 셋리스트를 포스터 아래에 그냥 보여줘요 */
 .reduced .lineup-hold, .no-gsap .lineup-hold { margin-top: 0; }
 .reduced .lineup, .no-gsap .lineup { position: relative; top: auto; padding-top: 40px; background: #1b2230; pointer-events: auto; }
+
+/* 셋리스트 공개 전 카드 */
+.part.soon .tape { color: var(--caution); }
+.soon-body { padding: 26px 22px 28px; text-align: center; }
+.soon-when { display: flex; align-items: flex-end; justify-content: center; gap: 12px; color: #fff; }
+.soon-when b { font-family: "Anton", var(--font); font-weight: 400; font-size: clamp(64px, 16vw, 120px); line-height: .9; }
+.soon-when span { font-family: "Bungee", var(--font); font-size: clamp(18px, 4.4vw, 30px); line-height: 1; padding-bottom: .35em; color: var(--caution); }
+.soon-text { margin-top: 14px; font-size: 15px; font-weight: 700; color: rgba(233, 228, 214, .8); }
+.soon-cd { display: flex; justify-content: center; gap: clamp(8px, 2.6vw, 16px); margin-top: 22px; }
+.soon-cd .u { min-width: clamp(62px, 17vw, 96px); padding: 10px 6px 8px; background: var(--bone); color: #111; border: 2px solid #000; box-shadow: 4px 4px 0 #000; }
+.soon-cd b { display: block; font-family: "Anton", var(--font); font-weight: 400; font-size: clamp(30px, 8vw, 46px); line-height: 1; font-variant-numeric: tabular-nums; }
+.soon-cd small { display: block; margin-top: 4px; font-size: 11px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; color: #444; }
+.soon-done { margin-top: 20px; font-family: "Bungee", "Pretendard Variable", var(--font); font-size: 18px; color: var(--caution); }
+@media (min-width: 1100px) { .setlist:has(.part.soon) { display: block; max-width: 760px; margin: 0 auto; } }

@@ -15,7 +15,7 @@
   "aboutText": "RAP-IN 是庆熙大学的黑人音乐社团。",
   "posterAlt": "SAGGING 2026 海报",
   "artistsTitle": "艺人介绍",
-  "artistsSoon": "艺人介绍即将公开。",
+  "artistsSoon": "艺人介绍将与曲目一同公开。",
   "close": "关闭",
   "menu": "菜单",
   "previewPlay": "试听 {t} 20秒",
@@ -41,5 +41,12 @@
   "venueMain": "学生会馆 小剧场",
   "venueSub": "庆熙大学 国际校区",
   "dow": "周四",
-  "igOpen": "查看 {n} 的介绍"
+  "igOpen": "查看 {n} 的介绍",
+  "soonKicker": "SETLIST DROP",
+  "soonText": "曲目将于 11月27日（周五）晚上10点公开",
+  "soonDone": "即将公开，请稍后刷新",
+  "cdD": "天",
+  "cdH": "时",
+  "cdM": "分",
+  "cdS": "秒"
 }

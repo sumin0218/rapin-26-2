@@ -176,3 +176,4 @@ html:not([lang="en"]) .t-adm,
 html:not([lang="en"]) .ig-label { font-family: var(--font); font-weight: 900; }
 html:not([lang="en"]) .t-adm { font-size: 24px; }
 html:not([lang="en"]) .ig-label { font-size: 13px; }
+.ig-soon { grid-column: 1 / -1; padding: 40px 16px; text-align: center; font-weight: 800; color: rgba(233, 228, 214, .8); border: 2px dashed rgba(233, 228, 214, .3); }

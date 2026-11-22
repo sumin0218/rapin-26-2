@@ -73,6 +73,9 @@ export function renderProgram(setlist, lang, t) {
   stop();
   const root = document.getElementById("setlist");
   root.textContent = "";
+
+  // 공개 전: 공개 시각 카드 + 카운트다운 (곡 데이터는 아예 올리지 않아요)
+  if (setlist.released === false) { renderSoon(root, setlist, t); return; }
   let no = 0;
 
   setlist.parts.forEach((part, pi) => {
@@ -123,4 +126,39 @@ export function renderProgram(setlist, lang, t) {
     sec.append(list);
     root.append(sec);
   });
+}
+
+// ───── 공개 전 카드 ─────
+let cdTimer = 0;
+function renderSoon(root, setlist, t) {
+  clearInterval(cdTimer);
+  const card = el("section", "part soon");
+  const head = el("div", "part-head");
+  head.append(el("b", "tape", t("soonKicker")));
+  card.append(head);
+  const body = el("div", "soon-body");
+  const when = el("p", "soon-when");
+  when.append(el("b", null, "11.27"), el("span", null, "FRI 22:00"));
+  body.append(when, el("p", "soon-text", t("soonText")));
+  const cd = el("div", "soon-cd");
+  cd.setAttribute("aria-hidden", "true");
+  const units = ["cdD", "cdH", "cdM", "cdS"].map((k) => {
+    const u = el("div", "u"); const n = el("b", null, "--"); u.append(n, el("small", null, t(k))); cd.append(u); return n;
+  });
+  body.append(cd);
+  card.append(body);
+  root.append(card);
+
+  const at = Date.parse(setlist.revealAt || "2026-11-27T22:00:00+09:00");
+  const pad = (n) => String(n).padStart(2, "0");
+  const tick = () => {
+    let s = Math.max(0, Math.floor((at - Date.now()) / 1000));
+    if (s === 0) { cd.replaceWith(el("p", "soon-done", t("soonDone"))); clearInterval(cdTimer); return; }
+    const d = Math.floor(s / 86400); s -= d * 86400;
+    const h = Math.floor(s / 3600); s -= h * 3600;
+    const m = Math.floor(s / 60); s -= m * 60;
+    [d, h, m, s].forEach((v, i) => { units[i].textContent = i === 0 ? String(v) : pad(v); });
+  };
+  tick();
+  cdTimer = setInterval(tick, 1000);
 }

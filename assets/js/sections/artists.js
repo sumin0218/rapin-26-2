@@ -124,6 +124,16 @@ export function renderArtists(data, setlist, lang, t) {
 
   const grid = document.getElementById("ig-grid");
   grid.textContent = "";
+  // 아직 공개 전이면 피드 자리에 안내 한 줄
+  const empty = !list.length;
+  document.getElementById("ig-n-artists").textContent = empty ? "?" : list.length;
+  if (empty) {
+    document.getElementById("ig-n-songs").textContent = "?";
+    const li = el("li", "ig-soon", t("artistsSoon"));
+    grid.append(li);
+    wire();
+    return;
+  }
   list.forEach((a, i) => {
     const li = el("li");
     const b = el("button", "ig-tile" + (a._liked ? " liked" : ""));
