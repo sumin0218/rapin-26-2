@@ -1,7 +1,10 @@
 /* 모션 포스터 (SAGGING 2026)
    - 화면 가득: 포스터 높이를 화면 높이에 맞추고, 가로는 화면 비율에 따라 레이어 간격을 좁히거나 넓혀요 (poster.js의 fit)
    - 스크롤: .stage가 화면에 붙어 있는 동안 학관소극장 쪽으로 빨려 들어가고, 그 안에서 공연 정보가 나와요 */
-.poster.pin-wrap { position: relative; height: calc(var(--vh) * 2.6); }
+/* 구조: [고정 .stage 100vh] [빠져나가는 동안의 스크롤 거리] [셋리스트]
+   .stage는 sticky라서 셋리스트를 다 내릴 때까지 배경으로 붙어 있어요 */
+.poster.pin-wrap { position: relative; }
+.pin-spacer-gap { height: calc(var(--vh) * 1.1); }
 .poster .stage { position: sticky; top: 0; height: var(--vh); overflow: hidden; background: #8fb3dc; }
 
 .poster-cam { position: absolute; inset: 0; will-change: transform; }

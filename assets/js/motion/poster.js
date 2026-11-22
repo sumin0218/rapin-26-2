@@ -190,62 +190,34 @@ function idleAnim(gsap) {
   });
 }
 
-// 스크롤: 학관소극장 타일(장소, 시간이 적힌 타일)이 화면 가운데로 다가오며 똑바로 서고,
-//         나머지 앞쪽 레이어는 빨려 들어가듯 지나가며 사라져요. 개선문 배경은 그대로 남아요.
+// 스크롤: 요소들이 가운데에서 화면 밖으로 빠져나가며 커지고(빨려 들어가는 느낌),
+//         개선문 배경만 남아 어두워진 뒤 그 위로 셋리스트가 올라와요.
 function scrollAnim(gsap) {
-  const focusLayer = LAYERS.find((L) => L.focus);
-  const focusEl = $(`.L[data-id="${focusLayer.id}"]`);
-  const art = $(".poster-art");
-  const cam = $(".poster-cam");
-  // 포스터 좌표(.poster-art 기준)
-  const fp = () => ({ x: focusEl.offsetLeft + focusEl.offsetWidth / 2, y: focusEl.offsetTop + focusEl.offsetHeight / 2 });
-  const artScale = () => cam.clientHeight / POSTER_H;
-  // 타일이 화면에 꽉 차지 않고 크게 보이도록 배율 계산
-  const zoom = () => {
-    const [iw, ih] = focusLayer.inner;
-    const s = artScale();
-    return Math.min((cam.clientWidth * 0.62) / (iw * s), (cam.clientHeight * 0.25) / (ih * s));
-  };
-  // 타일을 상단 띠 바로 아래에 박을 위치 (화면 px)
-  const band = () => (document.querySelector(".topbar")?.offsetHeight || 0);
-  const tileH = () => focusLayer.inner[1] * artScale() * zoom();
-  const tileCY = () => band() + 12 + tileH() / 2;
-  const placeLineup = () => {
-    const top = tileCY() + tileH() / 2 + 6;
-    document.querySelector(".lineup").style.setProperty("--lineup-top", top + "px");
-  };
-  placeLineup();
-  addEventListener("resize", placeLineup);
-  const sel = (fn) => LAYERS.filter(fn).map((L) => `.L[data-id="${L.id}"]`);
-
+  const cx = POSTER_W / 2, cy = POSTER_H * 0.55;
   const tl = gsap.timeline({
     defaults: { ease: "none" },
-    scrollTrigger: { trigger: ".poster.pin-wrap", start: "top top", end: "bottom bottom", scrub: 0.7, invalidateOnRefresh: true },
+    scrollTrigger: {
+      trigger: ".poster.pin-wrap", start: "top top",
+      endTrigger: ".lineup", end: "top 85%",
+      scrub: 0.6, invalidateOnRefresh: true,
+    },
   });
-
-  tl.fromTo(".poster-fg",
-      { x: 0, y: 0, scale: 1, rotation: 0 },
-      {
-        x: () => cam.clientWidth / 2 / artScale() - fp().x,
-        y: () => tileCY() / artScale() - fp().y,
-        scale: zoom, rotation: -(focusLayer.rot || 0),
-        transformOrigin: () => { const p = fp(); return `${p.x}px ${p.y}px`; },
-        ease: "power2.inOut", duration: 0.6,
-      }, 0)
-    // 앞쪽 인물들은 스쳐 지나가듯 커지며 먼저 사라짐 (깊이감)
-    .to(sel((L) => (L.depth ?? 0) >= 0.75 && !L.focus && L.kind !== "logo"),
-      { scale: 1.6, opacity: 0, ease: "power1.in", duration: 0.35 }, 0)
-    // 로고, 뒤쪽 인물, 타일 벽도 차례로 사라지고 학관소극장 타일만 남음
-    .to(sel((L) => !L.focus && L.kind !== "bg" && ((L.depth ?? 0) < 0.75 || L.kind === "logo")),
-      { opacity: 0, ease: "power1.in", duration: 0.3 }, 0.12)
-    // 배경은 살짝만 다가오고 조금 어두워져서 타일이 돋보이게
-    .fromTo(".poster-bgs", { scale: 1, filter: "brightness(1) saturate(1)" },
-      { scale: 1.12, filter: "brightness(.6) saturate(1.05)", transformOrigin: "50% 45%", duration: 0.6, ease: "power1.inOut" }, 0)
-    .to(".scroll-cue", { autoAlpha: 0, y: 20, duration: 0.08 }, 0)
-    // 타일이 위에 박히면 그 아래로 셋리스트가 올라옴 (여기서 페이지 스크롤 끝, 이후는 셋리스트 안에서 스크롤)
-    .fromTo(".lineup", { autoAlpha: 0, yPercent: 35 }, { autoAlpha: 1, yPercent: 0, duration: 0.2, ease: "power3.out" }, 0.55)
-    .fromTo(".lineup .cue", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.12, stagger: 0.012, ease: "power2.out" }, 0.6)
-    .to({}, { duration: 0.05 }, 0.95);
+  LAYERS.forEach((L) => {
+    if (L.kind === "bg") return;
+    const [x, y, w, h] = L.box;
+    const dx = x + w / 2 - cx, dy = y + h / 2 - cy;
+    const d = L.depth ?? 0.5;
+    const push = 1.4 + d * 1.6;                     // 앞쪽(깊이 큰) 레이어일수록 더 멀리, 더 크게
+    tl.to(`.L[data-id="${L.id}"]`, {
+      x: dx * push + Math.sign(dx || 1) * 120 * d,
+      y: dy * push + Math.sign(dy || 1) * 90 * d,
+      scale: 1 + d * 1.8, rotation: (dx > 0 ? 1 : -1) * d * 10,
+      opacity: 0, ease: "power2.in", duration: 0.75,
+    }, (1 - d) * 0.2);
+  });
+  tl.fromTo(".poster-bgs", { scale: 1, filter: "brightness(1) saturate(1)" },
+      { scale: 1.18, filter: "brightness(.55) saturate(1.05)", transformOrigin: "50% 50%", duration: 1, ease: "power1.inOut" }, 0)
+    .to(".scroll-cue", { autoAlpha: 0, y: 20, duration: 0.08 }, 0);
   return tl;
 }
 
@@ -254,8 +226,9 @@ function scrollCue() {
   const btn = $(".scroll-cue");
   if (!btn) return;
   btn.addEventListener("click", () => {
-    const wrap = $(".poster.pin-wrap");
-    const target = wrap.offsetTop + wrap.offsetHeight - innerHeight;
+    const lineup = $(".lineup");
+    const band = $(".topbar")?.offsetHeight || 0;
+    const target = lineup.getBoundingClientRect().top + scrollY - band - 8;
     scrollTo({ top: target, behavior: reduced ? "auto" : "smooth" });
   });
 }

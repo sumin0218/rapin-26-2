@@ -37,7 +37,7 @@
 
 <main id="top">
   <!-- 모션 포스터
-       화면 가득 포스터 → 스크롤하면 학관소극장 타일이 화면 위쪽에 박히고 → 그 아래로 셋리스트가 올라와요.
+       화면 가득 포스터 → 스크롤하면 요소들이 화면 밖으로 빠져나가며 빨려 들어가고 → 개선문 배경 위로 셋리스트가 올라와요.
        공연 정보와 아티스트 소개는 셋리스트 맨 아래 버튼으로 패널을 열어요.
        포스터 레이어는 assets/js/motion/poster-layers.js 에서 만들어요. -->
   <section class="poster pin-wrap" id="poster" aria-labelledby="poster-title">
@@ -51,9 +51,12 @@
         <span class="cue-arrows" aria-hidden="true"><i></i><i></i><i></i></span>
       </button>
 
-      <!-- 학관소극장 타일이 위에 박히면, 그 아래로 셋리스트가 올라와요 (이 안에서 스크롤) -->
-      <section class="lineup" id="lineup" aria-labelledby="program-title">
-        <div class="lineup-scroll" tabindex="-1">
+    </div>
+    <!-- 요소들이 빠져나가는 동안 스크롤할 거리 -->
+    <div class="pin-spacer-gap" aria-hidden="true"></div>
+    <!-- 셋리스트: 개선문 배경(위 .stage)이 뒤에 붙어 있는 채로 그 위를 스크롤해 올라와요 -->
+    <section class="lineup" id="lineup" aria-labelledby="program-title">
+        <div class="lineup-inner">
           <h2 id="program-title" class="lineup-title"><span data-i18n="programTitle">셋리스트</span></h2>
           <div id="setlist" class="setlist"></div>
           <nav class="lineup-more" aria-label="더 보기" data-i18n-attr="aria-label:menu">
@@ -62,7 +65,6 @@
           </nav>
         </div>
       </section>
-    </div>
   </section>
 </main>
 

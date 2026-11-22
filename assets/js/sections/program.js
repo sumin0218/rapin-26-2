@@ -91,7 +91,7 @@ export function renderProgram(setlist, lang, t) {
         b.dataset.title = s.title;
         b.dataset.playLabel = t("previewPlay");
         b.dataset.stopLabel = t("previewStop");
-        b.innerHTML = '<svg viewBox="0 0 40 40" aria-hidden="true"><circle class="trk" cx="20" cy="20" r="18"/><circle class="bar" cx="20" cy="20" r="18"/></svg><span class="ic" aria-hidden="true"></span><span class="sec" aria-hidden="true">20s</span>';
+        b.innerHTML = '<svg viewBox="0 0 40 40" aria-hidden="true"><circle class="trk" cx="20" cy="20" r="18.2"/><circle class="bar" cx="20" cy="20" r="18.2"/></svg><span class="ic" aria-hidden="true"></span><span class="sec" aria-hidden="true">20s</span>';
         b.addEventListener("click", () => toggle(b));
         li.append(b);
         setBtn(b, "idle");
