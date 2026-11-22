@@ -10,7 +10,7 @@
 @media (min-width: 1100px) {
   .lineup-inner { max-width: 1320px; }
   .setlist { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; align-items: start; }
-  .setlist .part + .part { margin-top: 0; }
+  .setlist > .part + .part { margin-top: 0; }
   .lineup-more { max-width: 480px; margin-left: auto; margin-right: auto; }
 }
 
@@ -19,6 +19,23 @@
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 
+/* 셋리스트 위 공연 일시, 장소 스티커 */
+.lineup-when {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px;
+  margin: 0 auto 14px; padding-top: 8px; text-align: center;
+}
+.lineup-when b {
+  font-size: clamp(15px, 4vw, 20px); font-weight: 900; letter-spacing: .02em; color: #111;
+  padding: 7px 14px; border-radius: 999px;
+  background: linear-gradient(180deg, #fff5c7 0%, #f3c64b 42%, #b8820f 54%, #ffe489 70%, #d79b22 100%);
+  border: 1.5px solid #fff3c4; box-shadow: 0 2px 0 #7a5306, 0 8px 18px rgba(0, 0, 0, .35);
+}
+.lineup-when span {
+  font-size: clamp(14px, 3.6vw, 17px); font-weight: 800; color: #111;
+  padding: 7px 14px; border-radius: 999px;
+  background: linear-gradient(180deg, #ffffff 0%, #dfe3ea 45%, #9aa3b2 55%, #f4f6fa 100%);
+  border: 1.5px solid rgba(255, 255, 255, .9); box-shadow: 0 2px 0 #6c7484, 0 8px 18px rgba(0, 0, 0, .3);
+}
 .lineup-title {
   margin-bottom: 16px; padding-top: 8px; text-align: center;
   font-size: clamp(26px, 7vw, 40px); font-weight: 900; letter-spacing: .02em; line-height: 1;

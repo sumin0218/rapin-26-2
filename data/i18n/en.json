@@ -13,7 +13,6 @@
   "tba": "TBA",
   "aboutTitle": "RAP-IN",
   "aboutText": "RAP-IN is the hip-hop club of Kyung Hee University.",
-  "band": "RAP-IN 12.03 19:00 Student Hall Theater",
   "posterAlt": "SAGGING 2026 poster",
   "artistsTitle": "Artists",
   "artistsSoon": "Artist profiles are coming soon.",
@@ -22,5 +21,8 @@
   "previewPlay": "Play 20s preview of {t}",
   "previewStop": "Stop preview of {t}",
   "bgmOn": "Turn on music",
-  "bgmOff": "Turn off music"
+  "bgmOff": "Turn off music",
+  "bandPre": "Kyung Hee Univ. Black Music Club RAP-IN Concert",
+  "bandWhen": "Thu 12.03 19:00-21:00",
+  "bandVenue": "Student Hall Theater"
 }

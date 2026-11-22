@@ -17,17 +17,22 @@
 
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/PretendardVariable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/base.css?v=11221451">
-<link rel="stylesheet" href="assets/css/layout.css?v=11221451">
-<link rel="stylesheet" href="assets/css/poster.css?v=11221451">
-<link rel="stylesheet" href="assets/css/program.css?v=11221451">
+<link rel="stylesheet" href="assets/css/base.css?v=11221454">
+<link rel="stylesheet" href="assets/css/layout.css?v=11221454">
+<link rel="stylesheet" href="assets/css/poster.css?v=11221454">
+<link rel="stylesheet" href="assets/css/program.css?v=11221454">
 <script>document.documentElement.classList.replace("no-js","js");</script>
 </head>
 <body>
 <a class="skip" href="#program" data-i18n="skip">순서표로 바로 가기</a>
 
 <header class="topbar" role="banner">
-  <p class="band"><span data-i18n="band">래빈 정기공연 12.03.19:00 학생회관 소극장</span></p>
+  <!-- 공연 정보 띠: 한 줄에 다 들어가면 그대로, 넘치면 전광판처럼 흘러가요 (main.js의 initBand) -->
+  <div class="band" role="text">
+    <div class="band-track">
+      <span class="band-item"><span data-i18n="bandPre">경희대학교 흑인음악동아리 래빈 정기공연</span> <b class="band-when" data-i18n="bandWhen">12.03(목) 19:00-21:00</b> <span data-i18n="bandVenue">학생회관 소극장</span></span>
+    </div>
+  </div>
   <nav class="lang" aria-label="언어" data-i18n-attr="aria-label:lang">
     <button type="button" data-lang="ko" lang="ko">한국어</button>
     <button type="button" data-lang="en" lang="en">EN</button>
@@ -68,6 +73,7 @@
     <!-- 셋리스트: 개선문 배경(위 .stage)이 뒤에 붙어 있는 채로 그 위를 스크롤해 올라와요 -->
     <section class="lineup" id="lineup" aria-labelledby="program-title">
         <div class="lineup-inner">
+          <p class="lineup-when"><b data-i18n="bandWhen">12.03(목) 19:00-21:00</b><span data-i18n="bandVenue">학생회관 소극장</span></p>
           <h2 id="program-title" class="lineup-title"><span data-i18n="programTitle">셋리스트</span></h2>
           <div id="setlist" class="setlist"></div>
           <nav class="lineup-more" aria-label="더 보기" data-i18n-attr="aria-label:menu">
@@ -110,6 +116,6 @@
 <!-- GSAP은 외부 CDN 대신 저장소 안에 같이 둬요 (공연장 와이파이가 불안정해도 동작하게) -->
 <script src="assets/vendor/gsap.min.js" defer></script>
 <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
-<script type="module" src="assets/js/main.js?v=11221451"></script>
+<script type="module" src="assets/js/main.js?v=11221454"></script>
 </body>
 </html>

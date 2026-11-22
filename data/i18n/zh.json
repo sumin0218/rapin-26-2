@@ -13,7 +13,6 @@
   "tba": "待公布",
   "aboutTitle": "RAP-IN",
   "aboutText": "RAP-IN 是庆熙大学的嘻哈社团。",
-  "band": "RAP-IN 定期公演 12.03 19:00 学生会馆小剧场",
   "posterAlt": "SAGGING 2026 海报",
   "artistsTitle": "艺人介绍",
   "artistsSoon": "艺人介绍即将公开。",
@@ -22,5 +21,8 @@
   "previewPlay": "试听 {t} 20秒",
   "previewStop": "停止试听 {t}",
   "bgmOn": "开启背景音乐",
-  "bgmOff": "关闭背景音乐"
+  "bgmOff": "关闭背景音乐",
+  "bandPre": "庆熙大学黑人音乐社团 RAP-IN 定期公演",
+  "bandWhen": "12.03(周四) 19:00-21:00",
+  "bandVenue": "学生会馆小剧场"
 }
