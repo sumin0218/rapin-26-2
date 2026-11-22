@@ -3,7 +3,7 @@ import { loadJSON } from "./data.js";
 import { initI18n, t, getLang, onLangChange } from "./i18n.js";
 import { renderInfo } from "./sections/info.js";
 import { renderProgram } from "./sections/program.js";
-import { initPosterMotion } from "./motion/poster.js";
+import { initPoster } from "./motion/poster.js";
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 if (reduced) document.documentElement.classList.add("reduced");
@@ -24,7 +24,7 @@ async function start() {
   onLangChange(draw);
 
   // GSAP은 defer로 불러와서, 모듈이 실행될 때 이미 준비돼 있어요
-  if (!reduced) initPosterMotion();
+  initPoster();
 }
 
 start().catch((err) => {

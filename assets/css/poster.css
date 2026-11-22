@@ -1,32 +1,74 @@
-/* 모션 포스터
+/* 모션 포스터 (SAGGING 2026)
    .pin-wrap 높이 = 스크롤할 거리. 그 동안 .stage가 화면에 붙어 있어요.
-   실제 포스터 레이어가 나오면 .layer-bg / .layer-shape 자리를 이미지로 바꿔요. */
-.poster.pin-wrap { position: relative; height: calc(var(--vh) * 3); }
+   포스터는 595 × 842(피그마 A4) 좌표 그대로 그리고, 화면 크기에 맞게 통째로 확대/축소해요. */
+.poster.pin-wrap { position: relative; height: calc(var(--vh) * 2.6); }
 .poster .stage {
   position: sticky; top: 0; height: var(--vh); overflow: hidden;
-  display: grid; place-items: center;
+  display: grid; place-items: center; padding-top: 40px;
 }
-.layer { position: absolute; will-change: transform, opacity; }
 
-/* 임시 레이어 (포스터 나오기 전 자리 표시) */
-.layer-bg { inset: -10%; background: radial-gradient(60% 50% at 50% 45%, #2a2a2a, var(--bg) 70%); }
-.layer-shape { border-radius: 50%; mix-blend-mode: screen; filter: blur(2px); }
-.layer-shape.s1 { width: 46vmin; height: 46vmin; background: var(--accent); left: 12%; top: 18%; }
-.layer-shape.s2 { width: 30vmin; height: 30vmin; background: #3d5afe; right: 14%; top: 30%; }
-.layer-shape.s3 { width: 22vmin; height: 22vmin; background: #ffd400; left: 40%; bottom: 14%; }
+/* 포스터 뒤 배경: 포스터 하늘을 흐리게 깔아서 양옆이 비어 보이지 않게 */
+.poster .backdrop {
+  position: absolute; inset: -40px;
+  background: url("../img/poster/bg.webp") center / cover no-repeat;
+  filter: blur(28px) saturate(1.2) brightness(.7);
+  transform: scale(1.1);
+}
 
-.poster-text { position: relative; text-align: center; padding: 0 var(--pad); }
-.poster .eyebrow { font-size: clamp(14px, 2vw, 18px); font-weight: 700; letter-spacing: .2em; color: var(--sub); }
-.poster .title { font-size: clamp(56px, 14vw, 180px); font-weight: 900; letter-spacing: -.05em; line-height: .9; margin: 10px 0 18px; }
-.poster .when { font-size: clamp(15px, 2.2vw, 20px); font-weight: 600; }
+.poster-frame { position: relative; z-index: 1; }
+.poster-art {
+  position: absolute; left: 0; top: 0;
+  width: 595px; height: 842px;
+  transform-origin: 0 0;
+  clip-path: inset(0);
+  background: #fff;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .45);
+}
+/* 이미지가 준비되기 전에는 숨겨 두기 (반쯤 그려진 포스터가 보이지 않게) */
+.js .poster .stage:not(.ready) .poster-art > :not(.poster-band) { visibility: hidden; }
+.reduced .poster .stage .poster-art > *, .no-gsap .poster .stage .poster-art > * { visibility: visible !important; }
+
+.L, .Le, .Li, .Lh { position: absolute; }
+.L { will-change: transform, opacity; }
+.Le, .Li { inset: 0; }
+.Lh { inset: 0; }
+.Lh img { width: 100%; height: 100%; object-fit: cover; display: block; user-select: none; -webkit-user-drag: none; }
+
+/* 하단 띠: 피그마 하단사각형 + 텍스트 */
+.poster-band {
+  position: absolute; left: -26px; top: 823px; width: 621px; height: 19px; z-index: 5;
+  background: #fff; color: #000;
+  display: flex; align-items: center; padding-left: 32px;
+  font-size: 14px; letter-spacing: 13.3px; white-space: nowrap; line-height: 1;
+}
+:lang(en) .poster-band, :lang(zh-CN) .poster-band { letter-spacing: 4px; font-size: 13px; }
+
+/* 반짝이 별 */
+.sparkles { position: absolute; inset: 0; pointer-events: none; z-index: 4; }
+.sparkles i {
+  position: absolute; width: var(--sz); height: var(--sz); margin: calc(var(--sz) / -2) 0 0 calc(var(--sz) / -2);
+  background: radial-gradient(circle, #fff 0 12%, transparent 13%),
+              conic-gradient(from 45deg, transparent 0 20deg, #fff 22deg 23deg, transparent 25deg 110deg, #fff 112deg 113deg, transparent 115deg 200deg, #fff 202deg 203deg, transparent 205deg 290deg, #fff 292deg 293deg, transparent 295deg);
+  filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 8px rgba(255, 240, 200, .9));
+  opacity: 0; transform: scale(.2) rotate(0deg);
+  animation: twinkle 3s ease-in-out infinite;
+}
+@keyframes twinkle {
+  0%, 70%, 100% { opacity: 0; transform: scale(.2) rotate(0deg); }
+  80% { opacity: 1; transform: scale(1) rotate(45deg); }
+  90% { opacity: .6; transform: scale(.6) rotate(90deg); }
+}
 
 .scroll-hint {
-  position: absolute; bottom: max(24px, env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%);
-  font-size: 12px; letter-spacing: .2em; color: var(--sub);
+  position: absolute; bottom: max(14px, env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%); z-index: 2;
+  font-size: 11px; letter-spacing: .2em; color: rgba(255, 255, 255, .8); margin: 0;
 }
-.scroll-hint::after { content: ""; display: block; width: 1px; height: 28px; margin: 8px auto 0; background: currentColor; animation: hint 1.6s ease-in-out infinite; transform-origin: top; }
+.scroll-hint::after { content: ""; display: block; width: 1px; height: 22px; margin: 6px auto 0; background: currentColor; animation: hint 1.6s ease-in-out infinite; transform-origin: top; }
 @keyframes hint { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(0); transform-origin: bottom; } }
 
-/* 애니메이션을 줄이거나 GSAP을 못 불러오면: 고정 없이 포스터 한 화면만 */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* 애니메이션을 줄이거나 GSAP을 못 불러오면: 고정 없이 정지 포스터 한 화면 */
 .reduced .poster.pin-wrap, .no-gsap .poster.pin-wrap { height: auto; }
-.reduced .poster .stage, .no-gsap .poster .stage { position: relative; }
+.reduced .poster .stage, .no-gsap .poster .stage { position: relative; min-height: var(--vh); }
+.reduced .sparkles, .no-gsap .sparkles { display: none; }
