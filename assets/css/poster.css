@@ -65,15 +65,9 @@
 .poster-bgs, .poster-fg { position: absolute; inset: 0; will-change: transform; }
 
 /* 빨려 들어간 뒤 나오는 공연 정보 */
-/* 마지막 화면 메뉴: 화면 가운데보다 조금 아래, 투명한 네모 버튼 3개를 세로로 */
-.menu {
-  position: absolute; left: 0; right: 0; top: 56%; z-index: 5;
-  display: flex; flex-direction: column; align-items: center; gap: 12px;
-  padding: 0 var(--pad);
-  opacity: 0; visibility: hidden;
-}
+/* 투명 네모 버튼 (셋리스트 아래 공연 정보 / 아티스트 소개) */
 .menu-btn {
-  width: min(300px, 74vw); padding: 15px 18px; text-align: center; text-decoration: none;
+  display: block; width: min(300px, 74vw); padding: 15px 18px; text-align: center; text-decoration: none;
   font-size: 16px; font-weight: 800; letter-spacing: .08em; color: #fff;
   background: rgba(255, 255, 255, .14);
   -webkit-backdrop-filter: blur(10px) saturate(1.2); backdrop-filter: blur(10px) saturate(1.2);
@@ -89,7 +83,6 @@
 /* 애니메이션을 줄이거나 GSAP을 못 불러오면: 고정 없이 포스터 한 화면 + 아래에 공연 정보 */
 .reduced .poster.pin-wrap, .no-gsap .poster.pin-wrap { height: auto; }
 .reduced .poster .stage, .no-gsap .poster .stage { position: relative; }
-.reduced .menu, .no-gsap .menu { opacity: 1; visibility: visible; top: auto; bottom: 90px; }
 .reduced .sparkles, .no-gsap .sparkles, .reduced .scroll-cue, .no-gsap .scroll-cue { display: none; }
 
 /* 메뉴 패널 */

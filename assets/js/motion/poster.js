@@ -204,8 +204,18 @@ function scrollAnim(gsap) {
   const zoom = () => {
     const [iw, ih] = focusLayer.inner;
     const s = artScale();
-    return Math.min((cam.clientWidth * 0.74) / (iw * s), (cam.clientHeight * 0.34) / (ih * s));
+    return Math.min((cam.clientWidth * 0.62) / (iw * s), (cam.clientHeight * 0.25) / (ih * s));
   };
+  // 타일을 상단 띠 바로 아래에 박을 위치 (화면 px)
+  const band = () => (document.querySelector(".topbar")?.offsetHeight || 0);
+  const tileH = () => focusLayer.inner[1] * artScale() * zoom();
+  const tileCY = () => band() + 12 + tileH() / 2;
+  const placeLineup = () => {
+    const top = tileCY() + tileH() / 2 + 6;
+    document.querySelector(".lineup").style.setProperty("--lineup-top", top + "px");
+  };
+  placeLineup();
+  addEventListener("resize", placeLineup);
   const sel = (fn) => LAYERS.filter(fn).map((L) => `.L[data-id="${L.id}"]`);
 
   const tl = gsap.timeline({
@@ -217,7 +227,7 @@ function scrollAnim(gsap) {
       { x: 0, y: 0, scale: 1, rotation: 0 },
       {
         x: () => cam.clientWidth / 2 / artScale() - fp().x,
-        y: () => (cam.clientHeight * 0.31) / artScale() - fp().y,
+        y: () => tileCY() / artScale() - fp().y,
         scale: zoom, rotation: -(focusLayer.rot || 0),
         transformOrigin: () => { const p = fp(); return `${p.x}px ${p.y}px`; },
         ease: "power2.inOut", duration: 0.6,
@@ -230,11 +240,12 @@ function scrollAnim(gsap) {
       { opacity: 0, ease: "power1.in", duration: 0.3 }, 0.12)
     // 배경은 살짝만 다가오고 조금 어두워져서 타일이 돋보이게
     .fromTo(".poster-bgs", { scale: 1, filter: "brightness(1) saturate(1)" },
-      { scale: 1.12, filter: "brightness(.8) saturate(1.05)", transformOrigin: "50% 45%", duration: 0.6, ease: "power1.inOut" }, 0)
+      { scale: 1.12, filter: "brightness(.6) saturate(1.05)", transformOrigin: "50% 45%", duration: 0.6, ease: "power1.inOut" }, 0)
     .to(".scroll-cue", { autoAlpha: 0, y: 20, duration: 0.08 }, 0)
-    // 타일이 자리 잡으면 메뉴 버튼 3개가 차례로 (여기서 스크롤 끝)
-    .fromTo(".menu", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.05 }, 0.58)
-    .fromTo(".menu-btn", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.14, stagger: 0.06, ease: "back.out(1.8)" }, 0.58);
+    // 타일이 위에 박히면 그 아래로 셋리스트가 올라옴 (여기서 페이지 스크롤 끝, 이후는 셋리스트 안에서 스크롤)
+    .fromTo(".lineup", { autoAlpha: 0, yPercent: 35 }, { autoAlpha: 1, yPercent: 0, duration: 0.2, ease: "power3.out" }, 0.55)
+    .fromTo(".lineup .cue", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.12, stagger: 0.012, ease: "power2.out" }, 0.6)
+    .to({}, { duration: 0.05 }, 0.95);
   return tl;
 }
 

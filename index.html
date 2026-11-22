@@ -37,8 +37,8 @@
 
 <main id="top">
   <!-- 모션 포스터
-       화면 가득 포스터 → 스크롤하면 학관소극장 타일이 위쪽으로 다가와 서고 → 그 아래 메뉴 버튼 3개가 나와요.
-       스크롤은 여기서 끝나고, 나머지 내용은 버튼을 눌러 패널로 열어요.
+       화면 가득 포스터 → 스크롤하면 학관소극장 타일이 화면 위쪽에 박히고 → 그 아래로 셋리스트가 올라와요.
+       공연 정보와 아티스트 소개는 셋리스트 맨 아래 버튼으로 패널을 열어요.
        포스터 레이어는 assets/js/motion/poster-layers.js 에서 만들어요. -->
   <section class="poster pin-wrap" id="poster" aria-labelledby="poster-title">
     <div class="stage">
@@ -51,16 +51,22 @@
         <span class="cue-arrows" aria-hidden="true"><i></i><i></i><i></i></span>
       </button>
 
-      <nav class="menu" aria-label="메뉴" data-i18n-attr="aria-label:menu">
-        <a class="menu-btn" href="#info" data-i18n="infoTitle">공연 정보</a>
-        <a class="menu-btn" href="#setlist" data-i18n="programTitle">셋리스트</a>
-        <a class="menu-btn" href="#artists" data-i18n="artistsTitle">아티스트 소개</a>
-      </nav>
+      <!-- 학관소극장 타일이 위에 박히면, 그 아래로 셋리스트가 올라와요 (이 안에서 스크롤) -->
+      <section class="lineup" id="lineup" aria-labelledby="program-title">
+        <div class="lineup-scroll" tabindex="-1">
+          <h2 id="program-title" class="lineup-title"><span data-i18n="programTitle">셋리스트</span></h2>
+          <div id="setlist" class="setlist"></div>
+          <nav class="lineup-more" aria-label="더 보기" data-i18n-attr="aria-label:menu">
+            <a class="menu-btn" href="#info" data-i18n="infoTitle">공연 정보</a>
+            <a class="menu-btn" href="#artists" data-i18n="artistsTitle">아티스트 소개</a>
+          </nav>
+        </div>
+      </section>
     </div>
   </section>
 </main>
 
-<!-- 메뉴 버튼으로 여는 패널. 주소 끝의 #info, #setlist, #artists 로 열리고 뒤로가기로 닫혀요 -->
+<!-- 버튼으로 여는 패널. 주소 끝의 #info, #artists 로 열리고 뒤로가기로 닫혀요 -->
 <div class="panel" id="info" role="dialog" aria-modal="true" aria-labelledby="info-title" hidden>
   <div class="panel-body">
     <a class="panel-close" href="#" aria-label="닫기" data-i18n-attr="aria-label:close">×</a>
@@ -77,14 +83,6 @@
       <ul class="links" id="links"></ul>
       <p class="copy">© <span data-bind="year"></span> RAP-IN</p>
     </div>
-  </div>
-</div>
-
-<div class="panel" id="setlist-panel" role="dialog" aria-modal="true" aria-labelledby="program-title" hidden>
-  <div class="panel-body">
-    <a class="panel-close" href="#" aria-label="닫기" data-i18n-attr="aria-label:close">×</a>
-    <h2 id="program-title" data-i18n="programTitle">셋리스트</h2>
-    <div id="setlist" class="setlist"></div>
   </div>
 </div>
 

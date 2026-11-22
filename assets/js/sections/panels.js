@@ -1,6 +1,6 @@
-// 메뉴 패널: 주소 끝 #info / #setlist / #artists 에 맞춰 패널을 열고 닫아요.
+// 패널: 주소 끝 #info / #artists 에 맞춰 패널을 열고 닫아요.
 // 뒤로가기로 닫히고, 링크를 공유하면 그 패널이 열린 채로 들어와요.
-const MAP = { info: "info", setlist: "setlist-panel", artists: "artists" };
+const MAP = { info: "info", artists: "artists" };
 let current = null;
 let lastFocus = null;
 

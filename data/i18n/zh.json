@@ -18,5 +18,7 @@
   "artistsTitle": "艺人介绍",
   "artistsSoon": "艺人介绍即将公开。",
   "close": "关闭",
-  "menu": "菜单"
+  "menu": "菜单",
+  "previewPlay": "试听 {t} 20秒",
+  "previewStop": "停止试听 {t}"
 }

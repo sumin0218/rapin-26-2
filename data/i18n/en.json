@@ -18,5 +18,7 @@
   "artistsTitle": "Artists",
   "artistsSoon": "Artist profiles are coming soon.",
   "close": "Close",
-  "menu": "Menu"
+  "menu": "Menu",
+  "previewPlay": "Play 20s preview of {t}",
+  "previewStop": "Stop preview of {t}"
 }
