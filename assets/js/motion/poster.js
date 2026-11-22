@@ -8,7 +8,7 @@
 import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js";
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const LOGO_LIFT = -14; // SAGGING 2026 글자를 피그마보다 살짝 위로
+const LOGO_LIFT = 4; // SAGGING 2026 글자 높이 미세 조정 (+면 아래로)
 const $ = (s, r = document) => r.querySelector(s);
 
 function buildLayers(art) {
@@ -144,7 +144,6 @@ function enterAnim(gsap) {
     .from(by("slap"), { scale: 2.4, rotation: 25, opacity: 0, duration: 0.35, ease: "power4.in" }, 1.6)
     // 필기체: 왼쪽부터 써지듯
     .fromTo(by("write"), { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 1.1, ease: "power1.inOut" }, 1.8)
-    .from(".poster-band", { yPercent: 100, duration: 0.5 }, 1.9)
     .from(".scroll-cue", { autoAlpha: 0, y: 30, duration: 0.6, ease: "back.out(2)" }, 2.3);
   return tl;
 }
@@ -191,13 +190,22 @@ function idleAnim(gsap) {
   });
 }
 
-// 스크롤: 앞쪽 레이어가 학관소극장(장소) 타일 쪽으로 빨려 들어가고,
-//         개선문 배경은 그대로 남은 채 그 위에 공연 정보가 나와요
+// 스크롤: 학관소극장 타일(장소, 시간이 적힌 타일)이 화면 가운데로 다가오며 똑바로 서고,
+//         나머지 앞쪽 레이어는 빨려 들어가듯 지나가며 사라져요. 개선문 배경은 그대로 남아요.
 function scrollAnim(gsap) {
   const focusLayer = LAYERS.find((L) => L.focus);
   const focusEl = $(`.L[data-id="${focusLayer.id}"]`);
-  // 포스터 좌표(.poster-art 기준)에서 타일 가운데
+  const art = $(".poster-art");
+  const cam = $(".poster-cam");
+  // 포스터 좌표(.poster-art 기준)
   const fp = () => ({ x: focusEl.offsetLeft + focusEl.offsetWidth / 2, y: focusEl.offsetTop + focusEl.offsetHeight / 2 });
+  const artScale = () => cam.clientHeight / POSTER_H;
+  // 타일이 화면에 꽉 차지 않고 크게 보이도록 배율 계산
+  const zoom = () => {
+    const [iw, ih] = focusLayer.inner;
+    const s = artScale();
+    return Math.min((cam.clientWidth * 0.82) / (iw * s), (cam.clientHeight * 0.5) / (ih * s));
+  };
   const sel = (fn) => LAYERS.filter(fn).map((L) => `.L[data-id="${L.id}"]`);
 
   const tl = gsap.timeline({
@@ -205,29 +213,29 @@ function scrollAnim(gsap) {
     scrollTrigger: { trigger: ".poster.pin-wrap", start: "top top", end: "bottom bottom", scrub: 0.7, invalidateOnRefresh: true },
   });
 
-  // 0 ~ 0.65: 앞쪽 레이어가 타일 쪽으로 돌진 (타일이 똑바로 서도록 살짝 회전)
   tl.fromTo(".poster-fg",
-      { scale: 1, rotation: 0 },
-      { scale: 8, rotation: -(focusLayer.rot || 0), ease: "power2.in", duration: 0.65,
-        transformOrigin: () => { const p = fp(); return `${p.x}px ${p.y}px`; } }, 0)
-    // 앞쪽 인물들은 먼저 스쳐 지나가듯 커지며 사라짐 (깊이감)
+      { x: 0, y: 0, scale: 1, rotation: 0 },
+      {
+        x: () => cam.clientWidth / 2 / artScale() - fp().x,
+        y: () => (cam.clientHeight * 0.46) / artScale() - fp().y,
+        scale: zoom, rotation: -(focusLayer.rot || 0),
+        transformOrigin: () => { const p = fp(); return `${p.x}px ${p.y}px`; },
+        ease: "power2.inOut", duration: 0.6,
+      }, 0)
+    // 앞쪽 인물들은 스쳐 지나가듯 커지며 먼저 사라짐 (깊이감)
     .to(sel((L) => (L.depth ?? 0) >= 0.75 && !L.focus && L.kind !== "logo"),
-      { scale: 1.6, opacity: 0, ease: "power1.in", duration: 0.4 }, 0)
-    // 로고, 뒤쪽 인물도 차례로 사라짐
+      { scale: 1.6, opacity: 0, ease: "power1.in", duration: 0.35 }, 0)
+    // 로고, 뒤쪽 인물, 타일 벽도 차례로 사라지고 학관소극장 타일만 남음
     .to(sel((L) => !L.focus && L.kind !== "bg" && ((L.depth ?? 0) < 0.75 || L.kind === "logo")),
-      { opacity: 0, ease: "power1.in", duration: 0.3 }, 0.15)
-    // 타일도 화면을 스치며 사라지면 개선문만 남음
-    .to(focusEl, { opacity: 0, duration: 0.12 }, 0.5)
-    // 배경은 살짝만 다가오고 조금 어두워져서 글자가 잘 보이게
-    .fromTo(".poster-bgs", { scale: 1, filter: "brightness(1) saturate(1)" }, { scale: 1.12, filter: "brightness(.85) saturate(1.05)", transformOrigin: "50% 45%", duration: 0.65, ease: "power1.inOut" }, 0)
+      { opacity: 0, ease: "power1.in", duration: 0.3 }, 0.12)
+    // 배경은 살짝만 다가오고 조금 어두워져서 타일이 돋보이게
+    .fromTo(".poster-bgs", { scale: 1, filter: "brightness(1) saturate(1)" },
+      { scale: 1.12, filter: "brightness(.8) saturate(1.05)", transformOrigin: "50% 45%", duration: 0.6, ease: "power1.inOut" }, 0)
     .to(".scroll-cue", { autoAlpha: 0, y: 20, duration: 0.08 }, 0)
-    .to(".poster-band", { yPercent: 100, duration: 0.15 }, 0)
-    // 0.55 ~ 0.8: 공연 정보 등장
-    .fromTo(".info-reveal", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.15 }, 0.55)
-    .fromTo(".info-card", { scale: 0.4, rotation: -(focusLayer.rot || 0) * 0.5, y: 40 }, { scale: 1, rotation: 0, y: 0, duration: 0.25, ease: "back.out(1.6)" }, 0.55)
-    .from(".info-list > div", { y: 20, opacity: 0, stagger: 0.03, duration: 0.12 }, 0.66)
-    // 0.8 ~ 1: 잠깐 머물렀다가 다음 섹션으로
-    .to({}, { duration: 0.2 }, 0.8);
+    // 타일이 자리 잡으면 입장 안내가 톡
+    .fromTo(".info-reveal", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.12, ease: "back.out(2)" }, 0.6)
+    // 잠깐 머물렀다가 다음 섹션으로
+    .to({}, { duration: 0.28 }, 0.72);
   return tl;
 }
 
@@ -237,7 +245,7 @@ function scrollCue() {
   if (!btn) return;
   btn.addEventListener("click", () => {
     const wrap = $(".poster.pin-wrap");
-    const target = wrap.offsetTop + (wrap.offsetHeight - innerHeight) * 0.82;
+    const target = wrap.offsetTop + (wrap.offsetHeight - innerHeight) * 0.75;
     scrollTo({ top: target, behavior: reduced ? "auto" : "smooth" });
   });
 }

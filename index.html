@@ -27,6 +27,7 @@
 <a class="skip" href="#program" data-i18n="skip">순서표로 바로 가기</a>
 
 <header class="topbar" role="banner">
+  <p class="band"><span data-i18n="band">래빈 정기공연 12.03.19:00 학생회관 소극장</span></p>
   <nav class="lang" aria-label="언어" data-i18n-attr="aria-label:lang">
     <button type="button" data-lang="ko" lang="ko">한국어</button>
     <button type="button" data-lang="en" lang="en">EN</button>
@@ -43,7 +44,6 @@
     <div class="stage">
       <div class="poster-cam">
         <div class="poster-art" role="img" aria-label="SAGGING 2026 포스터" data-i18n-attr="aria-label:posterAlt"></div>
-        <div class="poster-band"><span data-i18n="band">래빈 정기공연 12.03.19:00 학생회관 소극장</span></div>
       </div>
       <h1 id="poster-title" class="sr-only" data-i18n="title">RAP-IN 26-2 정기공연 SAGGING 2026</h1>
       <button type="button" class="scroll-cue" aria-controls="info">
@@ -51,16 +51,11 @@
         <span class="cue-arrows" aria-hidden="true"><i></i><i></i><i></i></span>
       </button>
 
-      <div class="info-reveal" id="info" aria-labelledby="info-title">
-        <div class="info-card">
-          <p class="info-kicker">SAGGING 2026</p>
-          <h2 id="info-title" data-i18n="infoTitle">공연 정보</h2>
-          <dl class="info-list">
-            <div><dt data-i18n="date">일시</dt><dd data-bind="dateText"></dd></div>
-            <div><dt data-i18n="venue">장소</dt><dd><a data-bind="venue" data-bind-href="mapUrl" target="_blank" rel="noopener"></a></dd></div>
-            <div><dt data-i18n="admission">입장</dt><dd data-bind="admission"></dd></div>
-          </dl>
-        </div>
+      <!-- 학관소극장 타일에 장소와 시간이 이미 있어서, 빨려 들어간 뒤에는 입장 안내만 덧붙여요 -->
+      <div class="info-reveal" id="info">
+        <h2 class="sr-only" data-i18n="infoTitle">공연 정보</h2>
+        <p class="sr-only"><span data-bind="dateText"></span> <span data-bind="venue"></span></p>
+        <p class="info-pill"><span data-bind="admission"></span></p>
       </div>
     </div>
   </section>
