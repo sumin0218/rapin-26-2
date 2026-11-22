@@ -25,5 +25,17 @@
       },
       "url": "https://instagram.com/"
     }
-  ]
+  ],
+  "maps": [
+    {
+      "label": "mapNaver",
+      "url": "https://map.naver.com/p/search/%EA%B2%BD%ED%9D%AC%EB%8C%80%ED%95%99%EA%B5%90%20%ED%95%99%EC%83%9D%ED%9A%8C%EA%B4%80"
+    },
+    {
+      "label": "mapKakao",
+      "url": "https://map.kakao.com/?q=%EA%B2%BD%ED%9D%AC%EB%8C%80%ED%95%99%EA%B5%90%20%ED%95%99%EC%83%9D%ED%9A%8C%EA%B4%80"
+    }
+  ],
+  "dateBig": "12.03",
+  "timeText": "19:00 - 21:00"
 }

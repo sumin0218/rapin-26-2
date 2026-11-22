@@ -1,11 +1,12 @@
 // 진입점: 데이터 불러오기 → 언어 적용 → 순서표 그리기 → 포스터 모션 시작
-import { loadJSON } from "./data.js?v=11221546";
+import { loadJSON } from "./data.js?v=11221551";
 import { initI18n, t, getLang, onLangChange } from "./i18n.js";
-import { renderInfo } from "./sections/info.js?v=11221546";
-import { renderProgram } from "./sections/program.js?v=11221546";
-import { initPoster } from "./motion/poster.js?v=11221546";
-import { initPanels } from "./sections/panels.js?v=11221546";
-import { initBgm } from "./bgm.js?v=11221546";
+import { renderInfo } from "./sections/info.js?v=11221551";
+import { renderArtists } from "./sections/artists.js?v=11221551";
+import { renderProgram } from "./sections/program.js?v=11221551";
+import { initPoster } from "./motion/poster.js?v=11221551";
+import { initPanels } from "./sections/panels.js?v=11221551";
+import { initBgm } from "./bgm.js?v=11221551";
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 if (reduced) document.documentElement.classList.add("reduced");
@@ -42,16 +43,18 @@ function pingBand(delay) {
 
 async function start() {
   initBgm();   // 데이터를 기다리지 않고 바로 (음악이 늦게 시작되지 않게)
-  const [concert, setlist] = await Promise.all([
+  const [concert, setlist, artists] = await Promise.all([
     loadJSON("data/concert.json"),
     loadJSON("data/setlist.json"),
+    loadJSON("data/artists.json"),
   ]);
 
   await initI18n();
 
   const draw = () => {
-    renderInfo(concert, getLang());
+    renderInfo(concert, getLang(), t);
     renderProgram(setlist, getLang(), t);
+    renderArtists(artists, setlist, getLang(), t);
   };
   draw();
   initBand();
