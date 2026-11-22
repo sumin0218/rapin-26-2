@@ -5,7 +5,7 @@
 //     .Le        처음 등장 연출
 //     .Li (안쪽)  가만히 있을 때 살랑살랑
 //   스크롤 연출은 레이어들을 담은 .poster-cam 전체에 걸어요.
-import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11221522";
+import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11221531";
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 // SAGGING 2026 글자 높이 미세 조정 (+면 아래로). 휴대폰(좁은 화면)에서만 조금 더 내려요
@@ -215,7 +215,7 @@ function scrollAnim(gsap) {
       // 조금이라도 내려가면 "내려서 입장하기" 숨김, 다 넘어가면 번개 시작
       onUpdate: (st) => {
         root.classList.toggle("past-intro", st.progress > 0.02);
-        setStorm(st.progress > 0.85);
+        setStorm(st.progress > 0.5);
       },
     },
   });
@@ -235,7 +235,9 @@ function scrollAnim(gsap) {
   tl.fromTo(".poster-bgs", { scale: 1, filter: "brightness(1) saturate(1)" },
       { scale: 1.18, filter: "brightness(.58) saturate(1.05)", transformOrigin: "50% 50%", duration: 1, ease: "power1.inOut" }, 0)
     // 같은 자리의 번개 버전 하늘로 서서히 바뀜 (개선문은 그대로)
-    .fromTo(".poster-bgs .storm", { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power1.inOut" }, 0.45);
+    .fromTo(".poster-bgs .storm", { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power1.inOut" }, 0.45)
+    // 빠지는 동작은 앞쪽에서 끝나고, 남은 스크롤은 셋리스트 등장에 써요
+    .to({}, { duration: 0.95 }, 1);
 
   // 셋리스트: 스크롤하는 동안 제자리에 머물도록 위치를 보정하고, 요소들이 다 빠져나간 뒤 아래에서 올라와요
   const gap = $(".pin-spacer-gap");
@@ -245,10 +247,10 @@ function scrollAnim(gsap) {
       onUpdate: (st) => $(".lineup").classList.toggle("is-shown", st.progress > 0.9) },
   })
     .fromTo(".lineup", { y: () => -gap.offsetHeight }, { y: 0, duration: 1 }, 0)
-    // ① 요소들이 바깥으로 빠지는 동안 Setlist 글씨가 툭 커지며 나타나고
-    .fromTo(".lineup-title", { autoAlpha: 0, scale: 0.55, rotate: -6 }, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.24, ease: "back.out(2)" }, 0.46)
-    // ② 그다음 목록이 화면 아래에서 튀어 올라와요
-    .fromTo([".setlist", ".lineup-more"], { y: () => innerHeight }, { y: 0, duration: 0.32, ease: "back.out(1.15)" }, 0.68);
+    // ① 요소들이 다 빠져나간 뒤 Setlist 글씨가 천천히 커지며 나타나고
+    .fromTo(".lineup-title", { autoAlpha: 0, scale: 0.6, rotate: -5 }, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.2, ease: "back.out(1.6)" }, 0.53)
+    // ② 그다음 목록이 화면 아래에서 올라와요
+    .fromTo([".setlist", ".lineup-more"], { y: () => innerHeight }, { y: 0, duration: 0.26, ease: "power2.out" }, 0.74);
   return tl;
 }
 

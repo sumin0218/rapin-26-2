@@ -1,5 +1,5 @@
-/* 셋리스트: 배치는 1차 리허설 큐시트(부마다 카드 한 장), 꾸밈은 90년대 힙합 포스터
-   검정 종이, 금색, 굵은 기울임 대문자, 딱 떨어지는 그림자, 망점 */
+/* 셋리스트: 배치는 1차 리허설 큐시트(부마다 카드 한 장), 꾸밈은 90년대 후드(동네 뒷골목)
+   아스팔트, 철조망 그물, 출입금지 테이프, 도로 표지판 같은 부 이름, 복사지 같은 누런 흰색 */
 .lineup {
   position: relative; z-index: 5;
   /* 포스터 화면과 겹쳐 두고, 아래에서 올라오는 동작은 poster.js 가 맡아요 */
@@ -34,127 +34,92 @@
 .lineup-title { margin: 0 auto 18px; padding-top: 4px; text-align: center; line-height: 0; }
 .lineup-title img { display: inline-block; width: min(92%, 560px); height: auto; filter: drop-shadow(0 6px 14px rgba(0, 0, 0, .55)); }
 
-/* 금박과 보석 */
+/* 포스터 글씨 느낌: 부 이름은 RAPIN IS READY 같은 각진 글씨(Bungee), 번호는 SAGGING 같은 좁고 굵은 글씨(Anton) */
+@font-face { font-family: "Bungee"; src: url("../fonts/bungee.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Anton"; src: url("../fonts/anton.woff2") format("woff2"); font-display: swap; }
+
+/* 아스팔트와 철조망 */
 .lineup {
-  --foil: linear-gradient(135deg, #6b4a0c 0%, #f6d46c 16%, #fff7cf 24%, #d9a521 38%, #7c540b 52%, #f0c955 68%, #fff1b0 76%, #b8860f 100%);
-  --chrome: linear-gradient(180deg, #ffffff 0%, #f4f6f9 42%, #a9b0bb 52%, #e9edf2 72%, #ffffff 100%);
-  --ice: url("../img/diamond.webp");
+  --asphalt: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --fence: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Cpath d='M0 14 L14 0 L28 14 L14 28 Z' fill='none' stroke='%23ffffff' stroke-opacity='.06' stroke-width='1.4'/%3E%3C/svg%3E");
+  --bone: #e9e4d6; --caution: #f2c200; --brick: #c8281e;
 }
 
-/* 부 카드: 검정 종이 + 금박 테두리 + 묵직한 그림자와 은은한 금빛 */
+/* 부 카드: 아스팔트 바닥 위 철조망 그림자, 누런 흰 테두리, 묵직한 검정 그림자 */
 .part {
-  position: relative; color: var(--cream);
-  border: 4px solid transparent; border-radius: 6px;
-  background: var(--grain) padding-box, linear-gradient(var(--paper), var(--paper)) padding-box, var(--foil) border-box;
-  box-shadow: 9px 9px 0 #000, 0 0 34px rgba(255, 196, 40, .28), inset 0 0 0 1px rgba(255, 214, 110, .35);
+  --c: var(--caution); --on-c: #111;
+  position: relative; color: var(--bone);
+  background: var(--fence), var(--asphalt), #161616;
+  border: 3px solid var(--bone); border-radius: 2px;
+  box-shadow: 9px 9px 0 #000;
 }
-/* 오른쪽 위 금색 망점 */
+.part:nth-child(2) { --c: var(--brick); --on-c: #fff; }
+.setlist .part + .part { margin-top: 36px; }
+/* 맨 위 출입금지 테이프 띠 */
 .part::before {
-  content: ""; position: absolute; right: 0; top: 0; width: 50%; height: 140px; pointer-events: none;
-  background-image: var(--dots); background-size: 7px 7px;
-  -webkit-mask-image: linear-gradient(225deg, #000 10%, transparent 70%); mask-image: linear-gradient(225deg, #000 10%, transparent 70%);
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 9px;
+  background: repeating-linear-gradient(-45deg, var(--caution) 0 12px, #111 12px 24px);
+  border-bottom: 2px solid #000;
 }
-.setlist .part + .part { margin-top: 44px; }
 .part-head {
   position: relative; display: flex; justify-content: space-between; align-items: center;
-  padding: 6px 18px 14px; border-bottom: 3px solid transparent;
-  border-image: var(--foil) 1;
+  padding: 22px 18px 14px; border-bottom: 2px solid rgba(233, 228, 214, .5);
 }
-/* 개수 뱃지: 보석 박힌 판 */
-.part-head .cnt {
-  font-size: 12px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; color: #0b0906;
-  background: var(--foil); border: 2px solid #0b0906; padding: 3px 9px 2px;
-  transform: rotate(2.5deg); box-shadow: 3px 3px 0 #000; text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
-}
-/* 부 이름: 카드 위로 삐져나온 금박(1부) / 보석(2부) 스티커, 빛이 한 번씩 훑고 지나가요 */
+.part-head .cnt { font-family: "Bungee", var(--font); font-size: 13px; letter-spacing: .02em; text-transform: uppercase; color: var(--c); font-variant-numeric: tabular-nums; text-shadow: 2px 2px 0 #000; }
+/* 부 이름: 포스터의 RAPIN IS READY 처럼 흰 각진 글씨에 검정 그림자 (기울이지 않음) */
 .tape {
-  position: relative; overflow: hidden; display: inline-block; padding: 5px 16px 4px;
-  margin: -26px 0 0 -14px;
-  background: var(--foil); color: #0b0906;
-  font-size: 28px; font-weight: 900; font-style: italic; letter-spacing: -.02em; line-height: 1.1; text-transform: uppercase;
-  border: 2px solid #0b0906; transform: rotate(-4deg) skewX(-8deg);
-  box-shadow: 5px 5px 0 #000, 0 0 18px rgba(255, 210, 80, .45);
-  text-shadow: 0 1px 0 rgba(255, 255, 255, .55);
+  display: inline-block; padding: 0; background: none; color: #fff;
+  font-family: "Bungee", var(--font); font-size: 34px; font-weight: 400; letter-spacing: 0; line-height: 1; text-transform: uppercase;
+  -webkit-text-stroke: 5px #000; paint-order: stroke fill; text-shadow: 4px 4px 0 #000;
 }
-.tape.t1 {
-  background: var(--ice) center/70px auto; color: #0b0906; transform: rotate(3deg) skewX(-8deg);
-  border-color: #d9a521; box-shadow: 5px 5px 0 #000, 0 0 20px rgba(220, 235, 255, .55);
-  text-shadow: 0 0 8px #fff, 0 0 3px #fff, 0 0 1px #fff;
-}
-.tape::after {
-  content: ""; position: absolute; top: -20%; bottom: -20%; left: -60%; width: 40%;
-  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .9), transparent);
-  transform: skewX(-20deg); animation: shine 3.8s ease-in-out infinite; pointer-events: none;
-}
-.tape.t1::after { animation-delay: 1.9s; }
-@keyframes shine { 0%, 62% { left: -60%; } 100% { left: 130%; } }
 
-/* 반짝이는 별 */
-.spk {
-  position: absolute; width: 18px; height: 18px; margin: -9px; z-index: 2; pointer-events: none;
-  background: #fff; clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
-  filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 8px #ffd56a);
-  transform: scale(0); animation: twinkle 3.2s ease-in-out var(--d, 0s) infinite;
-}
-.spk[style*="right"] { margin: -9px -9px -9px 0; }
-@keyframes twinkle { 0%, 70%, 100% { transform: scale(0) rotate(0); } 82% { transform: scale(var(--s, 1)) rotate(45deg); } }
+.tape .nl, .cnt .nl { font-family: var(--font); font-weight: 900; }
+.tape .nl { font-size: .92em; }
 
 /* 곡 줄 */
-.cues { list-style: none; margin: 0; padding: 0; }
+.cues { list-style: none; margin: 0; padding: 4px 0 0; }
 .cue {
   position: relative; display: grid; grid-template-columns: 42px minmax(0, 1fr) auto; gap: 14px; align-items: start;
-  padding: 12px 18px; border-bottom: 1px dashed var(--rule); transition: background .15s;
+  padding: 12px 18px; border-bottom: 1px solid rgba(233, 228, 214, .12); transition: background .15s;
 }
 .cue:last-child { border-bottom: 0; }
-/* 재생 중인 줄: 보석이 깔리고 왼쪽에 금박 띠 */
-.cue.is-playing { background: linear-gradient(rgba(20, 17, 12, .72), rgba(20, 17, 12, .72)), var(--ice) center/80px auto; }
-.cue.is-playing::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--foil); }
-/* 번호: 금박 글씨(1부) / 크롬 글씨(2부) */
-.cue .no {
-  font-size: 26px; font-weight: 900; font-style: italic; letter-spacing: -.04em; line-height: 1.05; text-align: right; font-variant-numeric: tabular-nums;
-  background: var(--foil); -webkit-background-clip: text; background-clip: text; color: transparent;
-  filter: drop-shadow(2px 2px 0 #000); transform: rotate(-4deg);
-}
-.part:nth-child(2) .cue .no { background-image: var(--chrome); }
+.cue.is-playing { background: rgba(233, 228, 214, .07); }
+.cue.is-playing::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--c); }
+.cue .no { font-family: "Anton", var(--font); font-size: 30px; font-weight: 400; letter-spacing: 0; line-height: 1; text-align: right; font-variant-numeric: tabular-nums; color: var(--bone); opacity: .9; }
+.cue.is-playing .no { color: var(--c); opacity: 1; }
 .cue .song { min-width: 0; display: flex; flex-direction: column; gap: 1px; }
-/* 제목: 크롬 글씨 */
-.cue .title {
-  font-size: 17px; font-weight: 900; letter-spacing: -.01em; line-height: 1.3; text-transform: uppercase; overflow-wrap: anywhere;
-  background: var(--chrome); -webkit-background-clip: text; background-clip: text; color: transparent;
-}
-.cue .credit { font-size: 12px; font-weight: 800; letter-spacing: .02em; color: #ffd45a; text-shadow: 0 0 8px rgba(255, 200, 60, .45); }
-.cue .artists { font-size: 13px; color: var(--dim); overflow-wrap: anywhere; }
+.cue .title { font-size: 17px; font-weight: 900; letter-spacing: -.01em; line-height: 1.3; text-transform: uppercase; color: #fff; overflow-wrap: anywhere; }
+.cue .credit { font-size: 12px; font-weight: 700; letter-spacing: .02em; color: var(--caution); }
+.cue .artists { font-size: 13px; color: rgba(233, 228, 214, .62); overflow-wrap: anywhere; }
 
-/* 미리듣기: 금박 알약, 재생하면 보석이 차올라요 */
+/* 미리듣기: 누런 흰 판, 재생하면 부 색이 차올라요 */
 .pv {
   position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 6px;
-  margin-top: 1px; padding: 5px 12px 5px 10px; border: 2px solid #0b0906; border-radius: 999px;
-  background: var(--foil); color: #0b0906; font-size: 11.5px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase;
-  white-space: nowrap; cursor: pointer; box-shadow: 3px 3px 0 #000, inset 0 1px 0 rgba(255, 255, 255, .7); transition: transform .1s, box-shadow .1s, filter .15s;
+  margin-top: 1px; padding: 5px 12px 5px 10px; border: 2px solid #000; border-radius: 3px;
+  background: var(--bone); color: #111; font-size: 11.5px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase;
+  white-space: nowrap; cursor: pointer; box-shadow: 3px 3px 0 #000; transition: transform .1s, box-shadow .1s;
 }
-.pv:hover { filter: brightness(1.12) saturate(1.1); }
+.pv:hover { background: #fff; }
 .pv:active { transform: translate(3px, 3px); box-shadow: 0 0 0 #000; }
 .pv:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
-.pv .fill { position: absolute; inset: 0; background: var(--ice) center/50px auto; transform-origin: left; transform: scaleX(var(--p, 0)); }
+.pv .fill { position: absolute; inset: 0; background: var(--c); transform-origin: left; transform: scaleX(var(--p, 0)); }
 .pv .ic, .pv .lb { position: relative; }
-.pv .lb { text-shadow: 0 1px 0 rgba(255, 255, 255, .5); }
+.pv[data-state="play"], .pv[data-state="load"] { background: #111; color: #fff; }
+.pv[data-state="play"] .lb, .pv[data-state="load"] .lb { text-shadow: 1px 1px 0 #000, 0 0 3px #000; }
 .pv .ic { width: 0; height: 0; border-left: 8px solid currentColor; border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
-.pv[data-state="play"], .pv[data-state="load"] { background: #2b2722; color: #fff; box-shadow: 3px 3px 0 #000, 0 0 16px rgba(220, 235, 255, .6); }
-.pv[data-state="play"] .lb, .pv[data-state="load"] .lb { text-shadow: 0 0 3px #000, 0 0 6px #000; }
 .pv[data-state="play"] .ic { width: 8px; height: 8px; border: 0; background: currentColor; }
 .pv[data-state="load"] .ic { width: 9px; height: 9px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: spin .8s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-@media (prefers-reduced-motion: reduce) { .tape::after, .spk { animation: none; display: none; } }
 .lineup-more { display: flex; gap: 10px; justify-content: center; margin-top: 32px; flex-wrap: wrap; }
 .lineup-more .menu-btn { width: auto; flex: 1 1 140px; max-width: 220px; padding: 13px 14px; font-size: 14px; }
 
 @media (max-width: 560px) {
-  .part { box-shadow: 6px 6px 0 #000, 0 0 24px rgba(255, 196, 40, .25); margin-right: 6px; }
-  .part-head { padding: 4px 14px 12px; }
-  .tape { font-size: 23px; margin: -22px 0 0 -10px; }
+  .part { box-shadow: 7px 7px 0 #000; margin-right: 7px; }
+  .part-head { padding: 20px 14px 12px; }
+  .tape { font-size: 26px; -webkit-text-stroke-width: 4px; }
   .cue { grid-template-columns: 32px minmax(0, 1fr) auto; gap: 10px; padding: 11px 14px; }
-  .cue .no { font-size: 21px; }
+  .cue .no { font-size: 25px; }
   .cue .title { font-size: 15.5px; }
   .cue .credit, .cue .artists { font-size: 12px; }
 }

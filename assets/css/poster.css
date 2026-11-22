@@ -4,7 +4,7 @@
 /* 구조: [고정 .stage 100vh] [빠져나가는 동안의 스크롤 거리] [셋리스트]
    .stage는 sticky라서 셋리스트를 다 내릴 때까지 배경으로 붙어 있어요 */
 .poster.pin-wrap { position: relative; }
-.pin-spacer-gap { height: calc(var(--vh) * 1.2); }
+.pin-spacer-gap { height: calc(var(--vh) * 2.3); }
 .poster .stage { position: sticky; top: 0; height: var(--vh); overflow: hidden; background: #8fb3dc; }
 
 .poster-cam { position: absolute; inset: 0; will-change: transform; }
