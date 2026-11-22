@@ -7,7 +7,7 @@ const VOLUME = 0.35;
 
 export function initBgm() {
   const btn = document.getElementById("bgm-btn");
-  if (!btn) return;
+  if (!btn) return null;
   const bar = document.querySelector(".topbar");
   const place = () => document.documentElement.style.setProperty("--band-h", (bar ? bar.offsetHeight : 32) + "px");
   place(); addEventListener("resize", place);
@@ -60,4 +60,5 @@ export function initBgm() {
   audio.addEventListener("play", sync);
   audio.addEventListener("pause", sync);
   sync();
+  return audio;
 }
