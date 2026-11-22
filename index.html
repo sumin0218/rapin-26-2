@@ -18,11 +18,11 @@
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/PretendardVariable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/audio/bgm.mp3" as="audio" type="audio/mpeg">
-<link rel="stylesheet" href="assets/css/base.css?v=11221551">
-<link rel="stylesheet" href="assets/css/layout.css?v=11221551">
-<link rel="stylesheet" href="assets/css/poster.css?v=11221551">
-<link rel="stylesheet" href="assets/css/program.css?v=11221551">
-<link rel="stylesheet" href="assets/css/panels.css?v=11221551">
+<link rel="stylesheet" href="assets/css/base.css?v=11221600">
+<link rel="stylesheet" href="assets/css/layout.css?v=11221600">
+<link rel="stylesheet" href="assets/css/poster.css?v=11221600">
+<link rel="stylesheet" href="assets/css/program.css?v=11221600">
+<link rel="stylesheet" href="assets/css/panels.css?v=11221600">
 <script>document.documentElement.classList.replace("no-js","js");</script>
 </head>
 <body>
@@ -107,7 +107,7 @@
       <div class="t-where">
         <p class="t-label" data-i18n="venue">장소</p>
         <p class="t-venue" data-bind="venueMain">학생회관 소극장</p>
-        <p class="t-sub" data-bind="venueSub">경희대학교 서울캠퍼스</p>
+        <p class="t-sub" data-bind="venueSub">경희대학교 국제캠퍼스</p>
         <div class="t-maps" id="maps"></div>
       </div>
       <div class="t-stub">
@@ -138,15 +138,14 @@
     <a class="panel-close" href="#" aria-label="닫기" data-i18n-attr="aria-label:close">×</a>
     <h2 id="artists-title" class="sr-only" data-i18n="artistsTitle">아티스트 소개</h2>
     <header class="ig-head">
-      <div class="ig-avatar" aria-hidden="true"><span lang="en">RAP<br>IN</span></div>
+      <div class="ig-avatar"><span><img src="assets/img/rapin-logo.webp" alt="RAP-IN" width="675" height="331"></span></div>
       <div class="ig-meta">
-        <p class="ig-handle" lang="en">RAP-IN SAGGING 2026</p>
+        <p class="ig-handle" lang="en"><a href="https://www.instagram.com/rapin_khu/" target="_blank" rel="noopener">rapin_khu</a></p>
         <ul class="ig-stats">
           <li><b id="ig-n-artists">0</b><span data-i18n="igArtists">아티스트</span></li>
           <li><b id="ig-n-songs">0</b><span data-i18n="igSongs">곡</span></li>
           <li><b lang="en">12.03</b><span data-i18n="igShow">공연</span></li>
         </ul>
-        <p class="ig-bio" data-i18n="igBio">RAP-IN 26-2 정기공연 SAGGING 2026 무대에 서는 사람들</p>
       </div>
     </header>
     <div class="ig-tabs" aria-hidden="true"><span class="on">▦ POSTS</span></div>
@@ -183,6 +182,6 @@
 <!-- GSAP은 외부 CDN 대신 저장소 안에 같이 둬요 (공연장 와이파이가 불안정해도 동작하게) -->
 <script src="assets/vendor/gsap.min.js" defer></script>
 <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
-<script type="module" src="assets/js/main.js?v=11221551"></script>
+<script type="module" src="assets/js/main.js?v=11221600"></script>
 </body>
 </html>

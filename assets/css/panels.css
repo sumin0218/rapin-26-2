@@ -75,12 +75,12 @@
   background: repeating-conic-gradient(var(--caution) 0 15deg, #111 15deg 30deg);
   display: grid;
 }
-.ig-avatar span {
-  display: grid; place-items: center; border-radius: 50%; border: 3px solid #161616; background: #111;
-  font-family: "Bungee", var(--font); font-size: clamp(15px, 4vw, 24px); line-height: 1; color: #fff; text-align: center;
-}
+.ig-avatar span { display: grid; place-items: center; border-radius: 50%; border: 3px solid #161616; background: var(--bone); overflow: hidden; }
+.ig-avatar img { width: 88%; height: auto; max-width: none; transform: rotate(-4deg); }
 .ig-meta { min-width: 0; }
-.ig-handle { font-size: 20px; font-weight: 800; color: #fff; letter-spacing: -.01em; }
+.ig-handle { font-size: 20px; font-weight: 800; letter-spacing: -.01em; }
+.ig-handle a { color: #fff; text-decoration: none; }
+.ig-handle a:hover { text-decoration: underline; }
 .ig-stats { display: flex; gap: clamp(14px, 4vw, 34px); margin: 10px 0 8px; padding: 0; list-style: none; }
 .ig-stats li { display: flex; align-items: baseline; gap: 5px; font-size: 14px; color: rgba(233, 228, 214, .75); }
 .ig-stats b { font-family: "Anton", var(--font); font-weight: 400; font-size: 22px; color: #fff; }

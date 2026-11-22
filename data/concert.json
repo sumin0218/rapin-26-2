@@ -6,9 +6,9 @@
     "zh": "2026年12月3日（周四）19:00-21:00"
   },
   "venue": {
-    "ko": "경희대학교 학생회관 소극장",
-    "en": "Kyung Hee University Student Hall, Small Theater",
-    "zh": "庆熙大学 学生会馆 小剧场"
+    "ko": "경희대학교 국제캠퍼스 학생회관 소극장",
+    "en": "Kyung Hee University Global Campus, Student Hall Small Theater",
+    "zh": "庆熙大学 国际校区 学生会馆 小剧场"
   },
   "mapUrl": "",
   "admission": {
@@ -19,21 +19,21 @@
   "links": [
     {
       "label": {
-        "ko": "인스타그램",
-        "en": "Instagram",
-        "zh": "Instagram"
+        "ko": "인스타그램 @rapin_khu",
+        "en": "Instagram @rapin_khu",
+        "zh": "Instagram @rapin_khu"
       },
-      "url": "https://instagram.com/"
+      "url": "https://www.instagram.com/rapin_khu/"
     }
   ],
   "maps": [
     {
       "label": "mapNaver",
-      "url": "https://map.naver.com/p/search/%EA%B2%BD%ED%9D%AC%EB%8C%80%ED%95%99%EA%B5%90%20%ED%95%99%EC%83%9D%ED%9A%8C%EA%B4%80"
+      "url": "https://map.naver.com/p/search/%EA%B2%BD%ED%9D%AC%EB%8C%80%ED%95%99%EA%B5%90%20%EA%B5%AD%EC%A0%9C%EC%BA%A0%ED%8D%BC%EC%8A%A4%20%ED%95%99%EC%83%9D%ED%9A%8C%EA%B4%80"
     },
     {
       "label": "mapKakao",
-      "url": "https://map.kakao.com/?q=%EA%B2%BD%ED%9D%AC%EB%8C%80%ED%95%99%EA%B5%90%20%ED%95%99%EC%83%9D%ED%9A%8C%EA%B4%80"
+      "url": "https://map.kakao.com/?q=%EA%B2%BD%ED%9D%AC%EB%8C%80%ED%95%99%EA%B5%90%20%EA%B5%AD%EC%A0%9C%EC%BA%A0%ED%8D%BC%EC%8A%A4%20%ED%95%99%EC%83%9D%ED%9A%8C%EA%B4%80"
     }
   ],
   "dateBig": "12.03",

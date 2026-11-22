@@ -30,7 +30,6 @@
   "igArtists": "artists",
   "igSongs": "songs",
   "igShow": "show",
-  "igBio": "The people on stage at RAP-IN's 26-2 concert, SAGGING 2026",
   "igOnStage": "On stage this time",
   "igLike": "Like",
   "prev": "Previous",
@@ -40,7 +39,7 @@
   "mapNaver": "Naver Map",
   "mapKakao": "Kakao Map",
   "venueMain": "Student Hall Theater",
-  "venueSub": "Kyung Hee University, Seoul Campus",
+  "venueSub": "Kyung Hee University, Global Campus",
   "dow": "THU",
   "igOpen": "Open {n}'s profile"
 }
