@@ -8,7 +8,7 @@
 import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js";
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const LOGO_LIFT = 22; // SAGGING 2026 글자 높이 미세 조정 (+면 아래로)
+const LOGO_LIFT = 34; // SAGGING 2026 글자 높이 미세 조정 (+면 아래로)
 const $ = (s, r = document) => r.querySelector(s);
 
 function buildLayers(art) {
