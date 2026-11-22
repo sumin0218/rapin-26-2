@@ -10,10 +10,10 @@
 .band {
   flex: 1; min-width: 0; margin: 0;
   white-space: nowrap; overflow: hidden; text-overflow: clip;
-  font-size: clamp(11px, 1.4vw, 15px); letter-spacing: clamp(.12em, 1vw, .7em); line-height: 1.2;
+  font-size: clamp(13px, 1.5vw, 18px); font-weight: 600; letter-spacing: clamp(.12em, 1vw, .6em); line-height: 1.2;
 }
 :lang(en) .band, :lang(zh-CN) .band { letter-spacing: clamp(.06em, .6vw, .3em); }
-@media (max-width: 480px) { .band { font-size: 11px; letter-spacing: .02em; } :lang(en) .band, :lang(zh-CN) .band { letter-spacing: 0; font-size: 10.5px; } .lang button { padding: 4px 6px; font-size: 10.5px; } }
+@media (max-width: 480px) { .band { font-size: 15px; letter-spacing: 0; } :lang(en) .band, :lang(zh-CN) .band { letter-spacing: -.01em; } .lang button { padding: 4px 6px; font-size: 10.5px; } }
 
 .lang { display: flex; flex: none; }
 .lang button {
