@@ -6,7 +6,11 @@
         {
           "id": "s09",
           "title": "H2H FLOW",
-          "credit": "prod. 김유석",
+          "credit": {
+            "ko": "prod. 김유석",
+            "en": "prod. Kim Yu-seok",
+            "zh": "prod. Kim Yu-seok"
+          },
           "artists": [
             {
               "ko": "김유석",
@@ -29,7 +33,11 @@
         {
           "id": "s27",
           "title": "열애중",
-          "credit": "prod. 김규민",
+          "credit": {
+            "ko": "prod. 김규민",
+            "en": "prod. Kim Gyu-min",
+            "zh": "prod. Kim Gyu-min"
+          },
           "artists": [
             {
               "ko": "정상훈",
@@ -64,7 +72,11 @@
         {
           "id": "s06",
           "title": "X-MEN",
-          "credit": "prod. 김유석",
+          "credit": {
+            "ko": "prod. 김유석",
+            "en": "prod. Kim Yu-seok",
+            "zh": "prod. Kim Yu-seok"
+          },
           "artists": [
             {
               "ko": "조동민",
@@ -202,7 +214,11 @@
         {
           "id": "s14",
           "title": "Non-FICTION",
-          "credit": "prod. 이재윤",
+          "credit": {
+            "ko": "prod. 이재윤",
+            "en": "prod. Lee Jae-yoon",
+            "zh": "prod. Lee Jae-yoon"
+          },
           "artists": [
             {
               "ko": "이우찬",
@@ -320,7 +336,11 @@
         {
           "id": "s22",
           "title": "우주위에있는더큰세상",
-          "credit": "prod. 손수민",
+          "credit": {
+            "ko": "prod. 손수민",
+            "en": "prod. Son Su-min",
+            "zh": "prod. Son Su-min"
+          },
           "artists": [
             {
               "ko": "조동민",
@@ -338,7 +358,11 @@
         {
           "id": "s16",
           "title": "쿠쿠다스",
-          "credit": "prod. 손수민",
+          "credit": {
+            "ko": "prod. 손수민",
+            "en": "prod. Son Su-min",
+            "zh": "prod. Son Su-min"
+          },
           "artists": [
             {
               "ko": "곽동규",
@@ -356,7 +380,11 @@
         {
           "id": "s03",
           "title": "GS25",
-          "credit": "prod. 손수민",
+          "credit": {
+            "ko": "prod. 손수민",
+            "en": "prod. Son Su-min",
+            "zh": "prod. Son Su-min"
+          },
           "artists": [
             {
               "ko": "전정호",
@@ -384,7 +412,11 @@
         {
           "id": "s23",
           "title": "웰치스",
-          "credit": "prod. 김규민, 김유석",
+          "credit": {
+            "ko": "prod. 김규민, 김유석",
+            "en": "prod. Kim Gyu-min, Kim Yu-seok",
+            "zh": "prod. Kim Gyu-min, Kim Yu-seok"
+          },
           "artists": [
             {
               "ko": "곽동규",
@@ -493,7 +525,11 @@
         {
           "id": "s15",
           "title": "브로콜리2",
-          "credit": "prod. 손수민",
+          "credit": {
+            "ko": "prod. 손수민",
+            "en": "prod. Son Su-min",
+            "zh": "prod. Son Su-min"
+          },
           "artists": [
             {
               "ko": "조동민",

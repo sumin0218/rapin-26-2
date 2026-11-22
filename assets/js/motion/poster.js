@@ -5,7 +5,7 @@
 //     .Le        처음 등장 연출
 //     .Li (안쪽)  가만히 있을 때 살랑살랑
 //   스크롤 연출은 레이어들을 담은 .poster-cam 전체에 걸어요.
-import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11221456";
+import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11221505";
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 // SAGGING 2026 글자 높이 미세 조정 (+면 아래로). 휴대폰(좁은 화면)에서만 조금 더 내려요
@@ -210,7 +210,7 @@ function scrollAnim(gsap) {
     defaults: { ease: "none" },
     scrollTrigger: {
       trigger: ".poster.pin-wrap", start: "top top",
-      endTrigger: ".lineup", end: "top 85%",
+      endTrigger: ".pin-spacer-gap", end: "bottom bottom",
       scrub: 0.6, invalidateOnRefresh: true,
       // 조금이라도 내려가면 "내려서 입장하기" 숨김, 다 넘어가면 번개 시작
       onUpdate: (st) => {
@@ -233,9 +233,20 @@ function scrollAnim(gsap) {
     }, (1 - d) * 0.2);
   });
   tl.fromTo(".poster-bgs", { scale: 1, filter: "brightness(1) saturate(1)" },
-      { scale: 1.18, filter: "brightness(.8) saturate(1.05)", transformOrigin: "50% 50%", duration: 1, ease: "power1.inOut" }, 0)
+      { scale: 1.18, filter: "brightness(.58) saturate(1.05)", transformOrigin: "50% 50%", duration: 1, ease: "power1.inOut" }, 0)
     // 같은 자리의 번개 버전 하늘로 서서히 바뀜 (개선문은 그대로)
     .fromTo(".poster-bgs .storm", { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power1.inOut" }, 0.45);
+
+  // 셋리스트: 스크롤하는 동안 제자리에 머물도록 위치를 보정하고, 요소들이 다 빠져나간 뒤 서서히 나타나요
+  const gap = $(".pin-spacer-gap");
+  gsap.timeline({
+    defaults: { ease: "none" },
+    scrollTrigger: { trigger: ".poster.pin-wrap", start: "top top", endTrigger: gap, end: "bottom bottom", scrub: true, invalidateOnRefresh: true,
+      onUpdate: (st) => $(".lineup").classList.toggle("is-shown", st.progress > 0.8) },
+  })
+    .fromTo(".lineup", { y: () => -gap.offsetHeight }, { y: 0, duration: 1 }, 0)
+    .fromTo(".lineup", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.35, ease: "power1.out", immediateRender: false }, 0.65)
+    .fromTo(".lineup-inner", { scale: 0.96, filter: "blur(8px)" }, { scale: 1, filter: "blur(0px)", duration: 0.35, ease: "power2.out" }, 0.65);
   return tl;
 }
 
@@ -268,9 +279,8 @@ function scrollCue() {
   const btn = $(".scroll-cue");
   if (!btn) return;
   btn.addEventListener("click", () => {
-    const lineup = $(".lineup");
-    const band = $(".topbar")?.offsetHeight || 0;
-    const target = lineup.getBoundingClientRect().top + scrollY - band - 8;
+    const gap = $(".pin-spacer-gap");
+    const target = gap.getBoundingClientRect().bottom + scrollY - innerHeight;
     scrollTo({ top: target, behavior: reduced ? "auto" : "smooth" });
   });
 }

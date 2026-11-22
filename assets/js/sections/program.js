@@ -70,7 +70,7 @@ export function renderProgram(setlist, lang, t) {
     sec.setAttribute("aria-label", name);
 
     const head = el("div", "part-head");
-    head.append(el("span", "n", String(pi + 1).padStart(2, "0")), el("span", "t", name));
+    head.append(el("span", "t", name));
     sec.append(head);
 
     const list = el("ol", "cues");
@@ -81,7 +81,7 @@ export function renderProgram(setlist, lang, t) {
 
       const song = el("div", "song");
       song.append(el("b", "title", s.title));
-      if (s.credit) song.append(el("small", "credit", s.credit));
+      if (s.credit) song.append(el("small", "credit", typeof s.credit === "object" ? s.credit[lang] ?? s.credit.ko : s.credit));
       li.append(song);
 
       const names = (s.artists || []).map((a) => (typeof a === "object" ? a[lang] ?? a.ko : a));

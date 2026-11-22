@@ -4,7 +4,7 @@
 /* 구조: [고정 .stage 100vh] [빠져나가는 동안의 스크롤 거리] [셋리스트]
    .stage는 sticky라서 셋리스트를 다 내릴 때까지 배경으로 붙어 있어요 */
 .poster.pin-wrap { position: relative; }
-.pin-spacer-gap { height: calc(var(--vh) * 1.1); }
+.pin-spacer-gap { height: calc(var(--vh) * 1.2); }
 .poster .stage { position: sticky; top: 0; height: var(--vh); overflow: hidden; background: #8fb3dc; }
 
 .poster-cam { position: absolute; inset: 0; will-change: transform; }
@@ -129,3 +129,4 @@
 .panel .about .copy { margin-top: 18px; font-size: 12px; }
 .panel .soon { color: var(--sub); font-size: 16px; }
 .panel-open, .panel-open body { overflow: hidden; }
+.reduced .pin-spacer-gap, .no-gsap .pin-spacer-gap { display: none; }
