@@ -24,5 +24,7 @@
   "bgmOff": "Turn off music",
   "bandPre": "Kyung Hee Univ. Black Music Club RAP-IN Concert",
   "bandWhen": "Thu 12.03 19:00-21:00",
-  "bandVenue": "Student Hall Theater"
+  "bandVenue": "Student Hall Theater",
+  "preview": "Preview",
+  "songs": "{n} songs"
 }

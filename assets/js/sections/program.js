@@ -1,6 +1,6 @@
 // 셋리스트 그리기: data/setlist.json → #setlist
-// 한 줄 = 순서 | 제목 (크레딧) | 아티스트 | 20초 미리듣기
-// 미리듣기는 한 번에 한 곡만. 버튼 테두리에 진행 정도가 빙 둘러 그려져요.
+// 1차 리허설 큐시트처럼: 부마다 카드 한 장, 머리에 테이프 라벨
+// 한 줄 = 순서 | 제목, 크레딧, 아티스트 | 미리듣기 알약 버튼 (재생하면 안이 차올라요)
 const el = (tag, cls, text) => {
   const e = document.createElement(tag);
   if (cls) e.className = cls;
@@ -70,7 +70,7 @@ export function renderProgram(setlist, lang, t) {
     sec.setAttribute("aria-label", name);
 
     const head = el("div", "part-head");
-    head.append(el("span", "t", name));
+    head.append(el("b", "tape t" + pi, name), el("span", "cnt", t("songs").replace("{n}", part.songs.length)));
     sec.append(head);
 
     const list = el("ol", "cues");
@@ -82,10 +82,9 @@ export function renderProgram(setlist, lang, t) {
       const song = el("div", "song");
       song.append(el("b", "title", s.title));
       if (s.credit) song.append(el("small", "credit", typeof s.credit === "object" ? s.credit[lang] ?? s.credit.ko : s.credit));
-      li.append(song);
-
       const names = (s.artists || []).map((a) => (typeof a === "object" ? a[lang] ?? a.ko : a));
-      li.append(el("div", "artists", names.length ? names.join(", ") : t("tba")));
+      song.append(el("small", "artists", names.length ? names.join(", ") : t("tba")));
+      li.append(song);
 
       if (s.preview) {
         const b = el("button", "pv");
@@ -94,7 +93,8 @@ export function renderProgram(setlist, lang, t) {
         b.dataset.title = s.title;
         b.dataset.playLabel = t("previewPlay");
         b.dataset.stopLabel = t("previewStop");
-        b.innerHTML = '<svg viewBox="0 0 40 40" aria-hidden="true"><circle class="trk" cx="20" cy="20" r="18.2"/><circle class="bar" cx="20" cy="20" r="18.2"/></svg><span class="ic" aria-hidden="true"></span><span class="sec" aria-hidden="true">20s</span>';
+        b.innerHTML = '<span class="fill" aria-hidden="true"></span><span class="ic" aria-hidden="true"></span><span class="lb" aria-hidden="true"></span>';
+        b.querySelector(".lb").textContent = t("preview");
         b.addEventListener("click", () => toggle(b));
         li.append(b);
         setBtn(b, "idle");
