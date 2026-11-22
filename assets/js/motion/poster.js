@@ -5,11 +5,11 @@
 //     .Le        처음 등장 연출
 //     .Li (안쪽)  가만히 있을 때 살랑살랑
 //   스크롤 연출은 레이어들을 담은 .poster-cam 전체에 걸어요.
-import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11221437";
+import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11221439";
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 // SAGGING 2026 글자 높이 미세 조정 (+면 아래로). 휴대폰(좁은 화면)에서만 조금 더 내려요
-const LOGO_LIFT_PC = 34, LOGO_LIFT_MOBILE = 40;
+const LOGO_LIFT_PC = 34, LOGO_LIFT_MOBILE = 50;
 const $ = (s, r = document) => r.querySelector(s);
 
 function buildLayers(art) {
