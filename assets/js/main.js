@@ -4,6 +4,7 @@ import { initI18n, t, getLang, onLangChange } from "./i18n.js";
 import { renderInfo } from "./sections/info.js";
 import { renderProgram } from "./sections/program.js";
 import { initPoster } from "./motion/poster.js";
+import { initPanels } from "./sections/panels.js";
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 if (reduced) document.documentElement.classList.add("reduced");
@@ -25,6 +26,7 @@ async function start() {
 
   // GSAP은 defer로 불러와서, 모듈이 실행될 때 이미 준비돼 있어요
   initPoster();
+  initPanels();
 }
 
 start().catch((err) => {

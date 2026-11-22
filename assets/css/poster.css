@@ -1,7 +1,7 @@
 /* 모션 포스터 (SAGGING 2026)
    - 화면 가득: 포스터 높이를 화면 높이에 맞추고, 가로는 화면 비율에 따라 레이어 간격을 좁히거나 넓혀요 (poster.js의 fit)
    - 스크롤: .stage가 화면에 붙어 있는 동안 학관소극장 쪽으로 빨려 들어가고, 그 안에서 공연 정보가 나와요 */
-.poster.pin-wrap { position: relative; height: calc(var(--vh) * 3.2); }
+.poster.pin-wrap { position: relative; height: calc(var(--vh) * 2.6); }
 .poster .stage { position: sticky; top: 0; height: var(--vh); overflow: hidden; background: #8fb3dc; }
 
 .poster-cam { position: absolute; inset: 0; will-change: transform; }
@@ -65,25 +65,65 @@
 .poster-bgs, .poster-fg { position: absolute; inset: 0; will-change: transform; }
 
 /* 빨려 들어간 뒤 나오는 공연 정보 */
-.info-reveal {
-  position: absolute; left: 0; right: 0; bottom: calc(28px + env(safe-area-inset-bottom)); z-index: 5;
-  display: flex; justify-content: center; pointer-events: none;
+/* 마지막 화면 메뉴: 화면 가운데보다 조금 아래, 투명한 네모 버튼 3개를 세로로 */
+.menu {
+  position: absolute; left: 0; right: 0; top: 56%; z-index: 5;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  padding: 0 var(--pad);
   opacity: 0; visibility: hidden;
 }
-/* 입장 안내: 크롬 스티커 느낌 */
-.info-pill {
-  margin: 0; padding: 10px 20px; border-radius: 999px; color: #111;
-  font-size: 15px; font-weight: 800; letter-spacing: .08em;
-  background: linear-gradient(180deg, #ffffff 0%, #dfe3ea 45%, #9aa3b2 55%, #f4f6fa 100%);
-  border: 1.5px solid rgba(255, 255, 255, .9);
-  box-shadow: 0 2px 0 #6c7484, 0 10px 24px rgba(0, 0, 0, .35), inset 0 1px 0 #fff;
+.menu-btn {
+  width: min(300px, 74vw); padding: 15px 18px; text-align: center; text-decoration: none;
+  font-size: 16px; font-weight: 800; letter-spacing: .08em; color: #fff;
+  background: rgba(255, 255, 255, .14);
+  -webkit-backdrop-filter: blur(10px) saturate(1.2); backdrop-filter: blur(10px) saturate(1.2);
+  border: 1.5px solid rgba(255, 255, 255, .85);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, .5);
+  transition: background .2s, color .2s, text-shadow .2s;
 }
+.menu-btn:hover, .menu-btn:focus-visible { background: rgba(255, 255, 255, .92); color: #0d0d0d; text-shadow: none; }
 
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
 /* 애니메이션을 줄이거나 GSAP을 못 불러오면: 고정 없이 포스터 한 화면 + 아래에 공연 정보 */
 .reduced .poster.pin-wrap, .no-gsap .poster.pin-wrap { height: auto; }
-.reduced .poster .stage, .no-gsap .poster .stage { position: relative; height: auto; overflow: visible; background: none; }
-.reduced .poster-cam, .no-gsap .poster-cam { position: relative; height: var(--vh); overflow: hidden; }
-.reduced .info-reveal, .no-gsap .info-reveal { position: relative; bottom: auto; opacity: 1; visibility: visible; padding: 40px var(--pad); }
+.reduced .poster .stage, .no-gsap .poster .stage { position: relative; }
+.reduced .menu, .no-gsap .menu { opacity: 1; visibility: visible; top: auto; bottom: 90px; }
 .reduced .sparkles, .no-gsap .sparkles, .reduced .scroll-cue, .no-gsap .scroll-cue { display: none; }
+
+/* 메뉴 패널 */
+.panel {
+  position: fixed; inset: 0; z-index: 60;
+  background: rgba(10, 12, 18, .55);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  display: flex; align-items: flex-end; justify-content: center;
+  opacity: 0; transition: opacity .3s ease;
+}
+.panel[hidden] { display: none; }
+.panel.open { opacity: 1; }
+.panel-body {
+  position: relative; width: min(720px, 100%); max-height: calc(100svh - 48px); overflow-y: auto; overscroll-behavior: contain;
+  background: var(--bg); color: var(--fg);
+  border-radius: 22px 22px 0 0;
+  padding: 56px var(--pad) max(40px, env(safe-area-inset-bottom));
+  transform: translateY(40px); transition: transform .35s cubic-bezier(.2, .9, .3, 1);
+}
+.panel.open .panel-body { transform: none; }
+@media (min-width: 760px) {
+  .panel { align-items: center; }
+  .panel-body { border-radius: 22px; max-height: calc(100svh - 120px); }
+}
+.panel h2 { font-size: clamp(30px, 7vw, 48px); font-weight: 900; letter-spacing: -.03em; line-height: 1; margin-bottom: 28px; }
+.panel-close {
+  position: absolute; top: 14px; right: 14px; width: 40px; height: 40px;
+  display: grid; place-items: center; text-decoration: none;
+  font-size: 26px; line-height: 1; border: 1.5px solid var(--line); border-radius: 50%;
+}
+.panel .about { margin-top: 44px; padding-top: 24px; border-top: 1px solid var(--line); }
+.panel .about h3 { font-size: 18px; font-weight: 900; margin-bottom: 6px; }
+.panel .about p { color: var(--sub); font-size: 15px; max-width: none; }
+.panel .about .links { margin-top: 14px; }
+.panel .about .copy { margin-top: 18px; font-size: 12px; }
+.panel .soon { color: var(--sub); font-size: 16px; }
+.panel-open, .panel-open body { overflow: hidden; }

@@ -36,9 +36,9 @@
 </header>
 
 <main id="top">
-  <!-- 1. 모션 포스터: pin-wrap 높이만큼 스크롤하는 동안 .stage가 화면에 고정되고 애니메이션이 진행돼요 -->
-  <!-- 1. 모션 포스터 + 공연 정보
-       화면 가득 포스터 → 스크롤하면 학관소극장 쪽으로 빨려 들어가고 → 그 안에서 공연 정보가 나와요.
+  <!-- 모션 포스터
+       화면 가득 포스터 → 스크롤하면 학관소극장 타일이 위쪽으로 다가와 서고 → 그 아래 메뉴 버튼 3개가 나와요.
+       스크롤은 여기서 끝나고, 나머지 내용은 버튼을 눌러 패널로 열어요.
        포스터 레이어는 assets/js/motion/poster-layers.js 에서 만들어요. -->
   <section class="poster pin-wrap" id="poster" aria-labelledby="poster-title">
     <div class="stage">
@@ -46,37 +46,55 @@
         <div class="poster-art" role="img" aria-label="SAGGING 2026 포스터" data-i18n-attr="aria-label:posterAlt"></div>
       </div>
       <h1 id="poster-title" class="sr-only" data-i18n="title">RAP-IN 26-2 정기공연 SAGGING 2026</h1>
-      <button type="button" class="scroll-cue" aria-controls="info">
+      <button type="button" class="scroll-cue">
         <span class="cue-text" data-i18n="scrollHint">내려서 입장하기</span>
         <span class="cue-arrows" aria-hidden="true"><i></i><i></i><i></i></span>
       </button>
 
-      <!-- 학관소극장 타일에 장소와 시간이 이미 있어서, 빨려 들어간 뒤에는 입장 안내만 덧붙여요 -->
-      <div class="info-reveal" id="info">
-        <h2 class="sr-only" data-i18n="infoTitle">공연 정보</h2>
-        <p class="sr-only"><span data-bind="dateText"></span> <span data-bind="venue"></span></p>
-        <p class="info-pill"><span data-bind="admission"></span></p>
-      </div>
+      <nav class="menu" aria-label="메뉴" data-i18n-attr="aria-label:menu">
+        <a class="menu-btn" href="#info" data-i18n="infoTitle">공연 정보</a>
+        <a class="menu-btn" href="#setlist" data-i18n="programTitle">셋리스트</a>
+        <a class="menu-btn" href="#artists" data-i18n="artistsTitle">아티스트 소개</a>
+      </nav>
     </div>
-  </section>
-
-  <!-- 3. 순서표 -->
-  <section class="program section" id="program" aria-labelledby="program-title">
-    <h2 id="program-title" data-i18n="programTitle">순서표</h2>
-    <div id="setlist" class="setlist" aria-live="polite"></div>
-  </section>
-
-  <!-- 4. 동아리 소개 -->
-  <section class="about section" id="about" aria-labelledby="about-title">
-    <h2 id="about-title" data-i18n="aboutTitle">RAP-IN</h2>
-    <p data-i18n="aboutText">경희대학교 힙합 동아리 RAP-IN입니다.</p>
-    <ul class="links" id="links"></ul>
   </section>
 </main>
 
-<footer class="footer">
-  <p>© <span data-bind="year"></span> RAP-IN</p>
-</footer>
+<!-- 메뉴 버튼으로 여는 패널. 주소 끝의 #info, #setlist, #artists 로 열리고 뒤로가기로 닫혀요 -->
+<div class="panel" id="info" role="dialog" aria-modal="true" aria-labelledby="info-title" hidden>
+  <div class="panel-body">
+    <a class="panel-close" href="#" aria-label="닫기" data-i18n-attr="aria-label:close">×</a>
+    <h2 id="info-title" data-i18n="infoTitle">공연 정보</h2>
+    <dl class="info-list">
+      <div><dt data-i18n="date">일시</dt><dd data-bind="dateText"></dd></div>
+      <div><dt data-i18n="venue">장소</dt><dd><a data-bind="venue" data-bind-href="mapUrl" target="_blank" rel="noopener"></a></dd></div>
+      <div><dt data-i18n="admission">입장</dt><dd data-bind="admission"></dd></div>
+    </dl>
+    <!-- 동아리 소개 (간단히) -->
+    <div class="about">
+      <h3 data-i18n="aboutTitle">RAP-IN</h3>
+      <p data-i18n="aboutText">경희대학교 힙합 동아리 RAP-IN입니다.</p>
+      <ul class="links" id="links"></ul>
+      <p class="copy">© <span data-bind="year"></span> RAP-IN</p>
+    </div>
+  </div>
+</div>
+
+<div class="panel" id="setlist-panel" role="dialog" aria-modal="true" aria-labelledby="program-title" hidden>
+  <div class="panel-body">
+    <a class="panel-close" href="#" aria-label="닫기" data-i18n-attr="aria-label:close">×</a>
+    <h2 id="program-title" data-i18n="programTitle">셋리스트</h2>
+    <div id="setlist" class="setlist"></div>
+  </div>
+</div>
+
+<div class="panel" id="artists" role="dialog" aria-modal="true" aria-labelledby="artists-title" hidden>
+  <div class="panel-body">
+    <a class="panel-close" href="#" aria-label="닫기" data-i18n-attr="aria-label:close">×</a>
+    <h2 id="artists-title" data-i18n="artistsTitle">아티스트 소개</h2>
+    <p class="soon" data-i18n="artistsSoon">아티스트 소개는 곧 공개돼요.</p>
+  </div>
+</div>
 
 <!-- GSAP은 외부 CDN 대신 저장소 안에 같이 둬요 (공연장 와이파이가 불안정해도 동작하게) -->
 <script src="assets/vendor/gsap.min.js" defer></script>

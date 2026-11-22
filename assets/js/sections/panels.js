@@ -1,0 +1,65 @@
+// 메뉴 패널: 주소 끝 #info / #setlist / #artists 에 맞춰 패널을 열고 닫아요.
+// 뒤로가기로 닫히고, 링크를 공유하면 그 패널이 열린 채로 들어와요.
+const MAP = { info: "info", setlist: "setlist-panel", artists: "artists" };
+let current = null;
+let lastFocus = null;
+
+function panelFor(hash) {
+  const id = MAP[(hash || "").replace("#", "")];
+  return id ? document.getElementById(id) : null;
+}
+
+function show(panel) {
+  if (current === panel) return;
+  if (current) hide(current, false);
+  lastFocus = document.activeElement;
+  panel.hidden = false;
+  requestAnimationFrame(() => panel.classList.add("open"));
+  document.documentElement.classList.add("panel-open");
+  current = panel;
+  panel.querySelector(".panel-body").scrollTop = 0;
+  panel.querySelector(".panel-close").focus({ preventScroll: true });
+}
+
+function hide(panel, restore = true) {
+  panel.classList.remove("open");
+  const done = () => { if (!panel.classList.contains("open")) panel.hidden = true; };
+  panel.addEventListener("transitionend", done, { once: true });
+  setTimeout(done, 400);
+  if (current === panel) current = null;
+  if (!current) document.documentElement.classList.remove("panel-open");
+  if (restore && lastFocus) lastFocus.focus({ preventScroll: true });
+}
+
+function sync() {
+  const p = panelFor(location.hash);
+  if (p) show(p);
+  else if (current) hide(current);
+}
+
+export function initPanels() {
+  // 링크 클릭: 브라우저 기본 앵커 이동(스크롤 점프) 대신 주소만 바꿔요
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const hash = a.getAttribute("href");
+    if (hash !== "#" && !panelFor(hash)) return;
+    e.preventDefault();
+    if (hash === "#") {
+      if (history.state && history.state.panel) history.back();
+      else history.replaceState(null, "", location.pathname + location.search), sync();
+    } else {
+      history.pushState({ panel: true }, "", hash);
+      sync();
+    }
+  });
+  addEventListener("popstate", sync);
+  addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && current) current.querySelector(".panel-close").click();
+  });
+  // 패널 바깥(어두운 부분)을 누르면 닫기
+  document.querySelectorAll(".panel").forEach((p) => {
+    p.addEventListener("click", (e) => { if (e.target === p) p.querySelector(".panel-close").click(); });
+  });
+  sync();
+}

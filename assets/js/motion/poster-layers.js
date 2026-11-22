@@ -7,6 +7,7 @@
 //   depth: 스크롤할 때 얼마나 크게 움직일지 (0 = 거의 안 움직임)
 //   enter: 처음 등장 방식, idle: 가만히 있을 때 움직임
 //   kind:  "bg" = 화면 전체를 덮는 배경, "logo" = 좁은 화면에서 통째로 줄이는 타이틀
+//   dy:    피그마 위치에서 위아래로 더 옮길 양(px, +면 아래)
 //   focus: 스크롤하면 이 레이어 쪽으로 빨려 들어가요
 const A = "assets/img/poster/";
 
@@ -22,7 +23,7 @@ export const LAYERS = [
   { id: "logo-a",       src: A + "logo.webp", box: [-3, -218, 602, 802], kind: "logo", depth: 0.9, enter: "drop", group: "logo" },
   { id: "logo-b",       src: A + "logo.webp", box: [-3, -218, 602, 802], kind: "logo", depth: 0.9, enter: "drop", group: "logo" },
   { id: "logo-c",       src: A + "logo.webp", box: [-3, -217, 602, 802], kind: "logo", depth: 0.9, enter: "drop", group: "logo" },
-  { id: "heli",         src: A + "heli.webp", box: [-38, -37, 183, 145], depth: 1.2, enter: "fly-in", idle: "hover" },
+  { id: "heli",         src: A + "heli.webp", box: [-38, -37, 183, 145], dy: 22, depth: 1.2, enter: "fly-in", idle: "hover" },
   { id: "jimen2",       src: A + "jimen2.webp", box: [258, 283, 325, 435], flip: true, depth: 0.6, enter: "stick", idle: "sway", origin: "50% 100%" },
   { id: "giraffe",      src: A + "giraffe.webp", fit: "fill", box: [395, 106, 239, 449], depth: 0.7, enter: "rise", idle: "nod", origin: "60% 100%" },
   { id: "mrdongmen",    src: A + "mrdongmen.webp", box: [223, 283, 451, 652], flip: true, shadow: "11px 4px 4px rgba(0,0,0,.25)",

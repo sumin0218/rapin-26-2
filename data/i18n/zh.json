@@ -8,11 +8,15 @@
   "date": "时间",
   "venue": "地点",
   "admission": "入场",
-  "programTitle": "节目单",
+  "programTitle": "曲目",
   "part": "第{n}部分",
   "tba": "待公布",
   "aboutTitle": "RAP-IN",
   "aboutText": "RAP-IN 是庆熙大学的嘻哈社团。",
   "band": "RAP-IN 定期公演 12.03 19:00 学生会馆小剧场",
-  "posterAlt": "SAGGING 2026 海报"
+  "posterAlt": "SAGGING 2026 海报",
+  "artistsTitle": "艺人介绍",
+  "artistsSoon": "艺人介绍即将公开。",
+  "close": "关闭",
+  "menu": "菜单"
 }

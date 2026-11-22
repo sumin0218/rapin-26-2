@@ -8,7 +8,7 @@
 import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js";
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const LOGO_LIFT = 4; // SAGGING 2026 글자 높이 미세 조정 (+면 아래로)
+const LOGO_LIFT = 22; // SAGGING 2026 글자 높이 미세 조정 (+면 아래로)
 const $ = (s, r = document) => r.querySelector(s);
 
 function buildLayers(art) {
@@ -94,7 +94,7 @@ function fit(stage, art) {
 
     const ncx = cx + (x + w / 2 - cx) * k;
     el.style.left = ox + ncx - w / 2 + "px";
-    el.style.top = y + (L.kind === "logo" ? LOGO_LIFT : 0) + "px";
+    el.style.top = y + (L.kind === "logo" ? LOGO_LIFT : 0) + (L.dy || 0) + "px";
 
     let rs = 1, origin = "50% 50%";
     if (L.kind === "logo") { rs = Math.min(k, 1); origin = "50% 27%"; }
@@ -204,7 +204,7 @@ function scrollAnim(gsap) {
   const zoom = () => {
     const [iw, ih] = focusLayer.inner;
     const s = artScale();
-    return Math.min((cam.clientWidth * 0.82) / (iw * s), (cam.clientHeight * 0.5) / (ih * s));
+    return Math.min((cam.clientWidth * 0.74) / (iw * s), (cam.clientHeight * 0.34) / (ih * s));
   };
   const sel = (fn) => LAYERS.filter(fn).map((L) => `.L[data-id="${L.id}"]`);
 
@@ -217,7 +217,7 @@ function scrollAnim(gsap) {
       { x: 0, y: 0, scale: 1, rotation: 0 },
       {
         x: () => cam.clientWidth / 2 / artScale() - fp().x,
-        y: () => (cam.clientHeight * 0.46) / artScale() - fp().y,
+        y: () => (cam.clientHeight * 0.31) / artScale() - fp().y,
         scale: zoom, rotation: -(focusLayer.rot || 0),
         transformOrigin: () => { const p = fp(); return `${p.x}px ${p.y}px`; },
         ease: "power2.inOut", duration: 0.6,
@@ -232,10 +232,9 @@ function scrollAnim(gsap) {
     .fromTo(".poster-bgs", { scale: 1, filter: "brightness(1) saturate(1)" },
       { scale: 1.12, filter: "brightness(.8) saturate(1.05)", transformOrigin: "50% 45%", duration: 0.6, ease: "power1.inOut" }, 0)
     .to(".scroll-cue", { autoAlpha: 0, y: 20, duration: 0.08 }, 0)
-    // 타일이 자리 잡으면 입장 안내가 톡
-    .fromTo(".info-reveal", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.12, ease: "back.out(2)" }, 0.6)
-    // 잠깐 머물렀다가 다음 섹션으로
-    .to({}, { duration: 0.28 }, 0.72);
+    // 타일이 자리 잡으면 메뉴 버튼 3개가 차례로 (여기서 스크롤 끝)
+    .fromTo(".menu", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.05 }, 0.58)
+    .fromTo(".menu-btn", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.14, stagger: 0.06, ease: "back.out(1.8)" }, 0.58);
   return tl;
 }
 
@@ -245,7 +244,7 @@ function scrollCue() {
   if (!btn) return;
   btn.addEventListener("click", () => {
     const wrap = $(".poster.pin-wrap");
-    const target = wrap.offsetTop + (wrap.offsetHeight - innerHeight) * 0.75;
+    const target = wrap.offsetTop + wrap.offsetHeight - innerHeight;
     scrollTo({ top: target, behavior: reduced ? "auto" : "smooth" });
   });
 }

@@ -8,11 +8,15 @@
   "date": "일시",
   "venue": "장소",
   "admission": "입장",
-  "programTitle": "순서표",
+  "programTitle": "셋리스트",
   "part": "{n}부",
   "tba": "추후 공개",
   "aboutTitle": "RAP-IN",
   "aboutText": "경희대학교 힙합 동아리 RAP-IN입니다.",
   "band": "래빈 정기공연 12.03.19:00 학생회관 소극장",
-  "posterAlt": "SAGGING 2026 포스터"
+  "posterAlt": "SAGGING 2026 포스터",
+  "artistsTitle": "아티스트 소개",
+  "artistsSoon": "아티스트 소개는 곧 공개돼요.",
+  "close": "닫기",
+  "menu": "메뉴"
 }
