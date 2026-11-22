@@ -5,7 +5,7 @@
 //     .Le        처음 등장 연출
 //     .Li (안쪽)  가만히 있을 때 살랑살랑
 //   스크롤 연출은 레이어들을 담은 .poster-cam 전체에 걸어요.
-import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js";
+import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11221415";
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const LOGO_LIFT = 34; // SAGGING 2026 글자 높이 미세 조정 (+면 아래로)
