@@ -14,7 +14,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="RAP-IN 26-2 정기공연 SAGGING 2026">
 <meta property="og:description" content="12월 3일(목) 19:00 경희대 국제캠퍼스 학생회관 소극장. 셋리스트는 11/27(금) 22:00 공개">
-<meta property="og:image" content="https://sagging2026.vercel.app/assets/img/og/og-image.jpg?v=11221645">
+<meta property="og:image" content="https://sagging2026.vercel.app/assets/img/og/og-image.jpg?v=11231321">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="SAGGING 2026, 12.03 목 19:00 학생회관 소극장">
@@ -23,16 +23,16 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="RAP-IN 26-2 정기공연 SAGGING 2026">
 <meta name="twitter:description" content="12월 3일(목) 19:00 경희대 국제캠퍼스 학생회관 소극장. 셋리스트는 11/27(금) 22:00 공개">
-<meta name="twitter:image" content="https://sagging2026.vercel.app/assets/img/og/og-image.jpg?v=11221645">
+<meta name="twitter:image" content="https://sagging2026.vercel.app/assets/img/og/og-image.jpg?v=11231321">
 
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/PretendardVariable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/audio/bgm.mp3" as="audio" type="audio/mpeg">
-<link rel="stylesheet" href="assets/css/base.css?v=11221645">
-<link rel="stylesheet" href="assets/css/layout.css?v=11221645">
-<link rel="stylesheet" href="assets/css/poster.css?v=11221645">
-<link rel="stylesheet" href="assets/css/program.css?v=11221645">
-<link rel="stylesheet" href="assets/css/panels.css?v=11221645">
+<link rel="stylesheet" href="assets/css/base.css?v=11231321">
+<link rel="stylesheet" href="assets/css/layout.css?v=11231321">
+<link rel="stylesheet" href="assets/css/poster.css?v=11231321">
+<link rel="stylesheet" href="assets/css/program.css?v=11231321">
+<link rel="stylesheet" href="assets/css/panels.css?v=11231321">
 <script>document.documentElement.classList.replace("no-js","js");</script>
 </head>
 <body>
@@ -142,49 +142,26 @@
   </div>
 </div>
 
-<!-- 아티스트 소개: 인스타그램 프로필처럼 사진 피드, 누르면 게시물처럼 소개가 떠요 -->
-<div class="panel hood wide" id="artists" role="dialog" aria-modal="true" aria-labelledby="artists-title" hidden>
-  <div class="panel-body">
-    <a class="panel-close" href="#" aria-label="닫기" data-i18n-attr="aria-label:close">×</a>
-    <h2 id="artists-title" class="sr-only" data-i18n="artistsTitle">아티스트 소개</h2>
-    <header class="ig-head">
-      <div class="ig-avatar"><span><img src="assets/img/rapin-logo.webp" alt="RAP-IN" width="675" height="331"></span></div>
-      <div class="ig-meta">
-        <p class="ig-handle" lang="en"><a href="https://www.instagram.com/rapin_khu/" target="_blank" rel="noopener">rapin_khu</a></p>
-        <ul class="ig-stats">
-          <li><b id="ig-n-artists">0</b><span data-i18n="igArtists">아티스트</span></li>
-          <li><b id="ig-n-songs">0</b><span data-i18n="igSongs">곡</span></li>
-          <li><b lang="en">12.03</b><span data-i18n="igShow">공연</span></li>
-        </ul>
-      </div>
-    </header>
-    <div class="ig-tabs" aria-hidden="true"><span class="on">▦ POSTS</span></div>
-    <ul class="ig-grid" id="ig-grid"></ul>
+<!-- 아티스트 소개: 공터 벽에 오려 붙인 사진 콜라주. 사진을 누르면 그 사람 정보가 떠요 -->
+<div class="panel wall" id="artists" role="dialog" aria-modal="true" aria-labelledby="artists-title" hidden>
+  <a class="panel-close wall-close" href="#" aria-label="닫기" data-i18n-attr="aria-label:close">×</a>
+  <div class="wall-scroll">
+    <h2 id="artists-title" class="wall-title"><span data-i18n="artistsTitle">아티스트 소개</span></h2>
+    <ul class="wall-board" id="wall-board"></ul>
+    <p class="wall-more" data-i18n="artistsMore">아티스트는 계속 추가돼요</p>
   </div>
 </div>
 
-<!-- 아티스트 게시물 보기 (피드에서 사진을 누르면) -->
-<div class="ig-post" id="ig-post" role="dialog" aria-modal="true" aria-labelledby="ig-post-name" hidden>
-  <div class="ig-card">
-    <button type="button" class="ig-x" aria-label="닫기" data-i18n-attr="aria-label:close">×</button>
-    <div class="ig-photo" id="ig-photo"></div>
-    <div class="ig-side">
-      <div class="ig-who">
-        <span class="ig-mini" aria-hidden="true"></span>
-        <div><b id="ig-post-name"></b><small id="ig-post-handle"></small></div>
-      </div>
-      <p class="ig-caption" id="ig-caption"></p>
-      <p class="ig-label" data-i18n="igOnStage">이번 공연 무대</p>
-      <ol class="ig-songs" id="ig-songs"></ol>
-      <div class="ig-actions">
-        <button type="button" class="ig-like" id="ig-like" aria-pressed="false" aria-label="좋아요" data-i18n-attr="aria-label:igLike">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.3-9.2C1.4 8 3.4 4.5 7 4.5c2.1 0 3.6 1.2 5 3 1.4-1.8 2.9-3 5-3 3.6 0 5.6 3.5 4.3 6.8-1.8 4.6-9.3 9.2-9.3 9.2z"/></svg>
-        </button>
-        <span class="ig-nav">
-          <button type="button" id="ig-prev" aria-label="이전" data-i18n-attr="aria-label:prev">‹</button>
-          <button type="button" id="ig-next" aria-label="다음" data-i18n-attr="aria-label:next">›</button>
-        </span>
-      </div>
+<!-- 아티스트 정보 카드 -->
+<div class="artist-card" id="artist-card" role="dialog" aria-modal="true" aria-labelledby="ac-name" hidden>
+  <div class="ac-paper">
+    <button type="button" class="ac-x" aria-label="닫기" data-i18n-attr="aria-label:close">×</button>
+    <div class="ac-photo"><img id="ac-img" alt=""></div>
+    <div class="ac-info">
+      <p class="ac-dept" id="ac-dept"></p>
+      <h3 class="ac-name" id="ac-name"></h3>
+      <a class="ac-ig" id="ac-ig" target="_blank" rel="noopener"></a>
+      <p class="ac-bio" id="ac-bio"></p>
     </div>
   </div>
 </div>
@@ -192,6 +169,6 @@
 <!-- GSAP은 외부 CDN 대신 저장소 안에 같이 둬요 (공연장 와이파이가 불안정해도 동작하게) -->
 <script src="assets/vendor/gsap.min.js" defer></script>
 <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
-<script type="module" src="assets/js/main.js?v=11221645"></script>
+<script type="module" src="assets/js/main.js?v=11231321"></script>
 </body>
 </html>

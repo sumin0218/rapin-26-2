@@ -17,7 +17,8 @@ function show(panel) {
   requestAnimationFrame(() => panel.classList.add("open"));
   document.documentElement.classList.add("panel-open");
   current = panel;
-  panel.querySelector(".panel-body").scrollTop = 0;
+  const body = panel.querySelector(".panel-body, .wall-scroll");
+  if (body) body.scrollTop = 0;
   panel.querySelector(".panel-close").focus({ preventScroll: true });
 }
 

@@ -1,4 +1,33 @@
 {
-  "_note": "아티스트 소개. 이름은 셋리스트(data/setlist.json)의 아티스트 이름(ko)과 똑같이 써야 참여곡이 자동으로 이어져요. photo 에 사진 경로(assets/img/artists/파일.webp), bio 에 소개 글({ko,en,zh}), instagram 에 아이디를 넣으면 돼요. 공개 전에 본인 동의를 꼭 받아 주세요.",
-  "artists": []
+  "_note": "아티스트 소개. photo: 누끼(오린 종이) 사진 경로, instagram: 아이디(소문자, @ 없이), dept: 부서, bio: 한줄소개. 공개 전에 본인 동의를 꼭 받아 주세요.",
+  "artists": [
+    {
+      "id": "minseong",
+      "name": {
+        "ko": "김민성",
+        "en": "Kim Minseong",
+        "zh": "金旻成"
+      },
+      "instagram": "peace_4_1210",
+      "dept": "MC",
+      "bio": {
+        "ko": "새로운 시대 에 두고 왔다"
+      },
+      "photo": "assets/img/artists/minseong.webp"
+    },
+    {
+      "id": "heeseok",
+      "name": {
+        "ko": "문희석",
+        "en": "Moon Heeseok",
+        "zh": "文熙锡"
+      },
+      "instagram": "dilution_moon",
+      "dept": "MC",
+      "bio": {
+        "ko": "20세기출생들은이제좀"
+      },
+      "photo": "assets/img/artists/heeseok.webp"
+    }
+  ]
 }
