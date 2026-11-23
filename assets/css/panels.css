@@ -210,3 +210,4 @@ html:not([lang="en"]) .ac-dept { font-family: "Pretendard Variable", var(--font)
   .cut-btn { padding-bottom: 22px; }
 }
 .ac-bio { white-space: pre-line; }
+.ac-bio[hidden], .ac-dept[hidden] { display: none; }

@@ -37,7 +37,10 @@ function openCard(a, tile) {
   const ig = document.getElementById("ac-ig");
   ig.hidden = !a.instagram;
   if (a.instagram) { const id = a.instagram.toLowerCase(); ig.textContent = "@" + id; ig.href = "https://www.instagram.com/" + id + "/"; }
-  document.getElementById("ac-bio").textContent = pick(a.bio, LANG) || "";
+  const bio = document.getElementById("ac-bio");
+  bio.textContent = pick(a.bio, LANG) || "";
+  bio.hidden = !bio.textContent;
+  document.getElementById("ac-dept").hidden = !a.dept;
   c.hidden = false;
   requestAnimationFrame(() => c.classList.add("open"));
   c.querySelector(".ac-x").focus({ preventScroll: true });
