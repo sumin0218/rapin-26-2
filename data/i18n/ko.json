@@ -49,5 +49,6 @@
   "cdM": "분",
   "cdS": "초",
   "soonOpen": "공개",
-  "artistsMore": "아티스트는 계속 추가돼요"
+  "artistsMore": "아티스트는 계속 추가돼요",
+  "yearFmt": "{n}학번"
 }

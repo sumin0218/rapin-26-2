@@ -1,5 +1,5 @@
 {
-  "_note": "아티스트 소개. photo: 누끼(오린 종이) 사진 경로, instagram: 아이디(소문자, @ 없이), dept: 부서, bio: 한줄소개, crown: 임원진 왕관(silver=회장단, bronze=부장). 공개 전에 본인 동의를 꼭 받아 주세요.",
+  "_note": "아티스트 소개. photo: 누끼(오린 종이) 사진 경로, instagram: 아이디(소문자, @ 없이), dept: 부서, bio: 한줄소개, major: 학과, year: 학번(예 21), crown: 임원진 왕관(silver=회장단, bronze=부장). 공개 전에 본인 동의를 꼭 받아 주세요.",
   "artists": [
     {
       "id": "sumin",
@@ -14,7 +14,9 @@
       "bio": {
         "ko": "카레먹고싶다"
       },
-      "photo": "assets/img/artists/sumin.webp"
+      "photo": "assets/img/artists/sumin.webp",
+      "major": "컴퓨터공학과",
+      "year": "21"
     },
     {
       "id": "minseong",
@@ -29,7 +31,9 @@
         "ko": "새로운 시대 에 두고 왔다"
       },
       "photo": "assets/img/artists/minseong.webp",
-      "crown": "bronze"
+      "crown": "bronze",
+      "major": "산업경영공학과",
+      "year": "21"
     },
     {
       "id": "heeseok",
@@ -44,6 +48,38 @@
         "ko": "20세기출생들은이제좀"
       },
       "photo": "assets/img/artists/heeseok.webp"
+    },
+    {
+      "id": "dongu",
+      "name": {
+        "ko": "곽동규",
+        "en": "Kwak Donggyu",
+        "zh": "Kwak Donggyu"
+      },
+      "instagram": "lil_dongu",
+      "dept": "MC",
+      "major": "디지털콘텐츠학과",
+      "year": "22",
+      "bio": {
+        "ko": "I'm korean lil uzi vert"
+      },
+      "photo": "assets/img/artists/dongu.webp"
+    },
+    {
+      "id": "sanghun",
+      "name": {
+        "ko": "정상훈",
+        "en": "Jung Sanghun",
+        "zh": "Jung Sanghun"
+      },
+      "instagram": "nkmr_ssang",
+      "dept": "MC",
+      "major": "기계공학과",
+      "year": "23",
+      "bio": {
+        "ko": "등록금 flexing"
+      },
+      "photo": "assets/img/artists/sanghun.webp"
     }
   ]
 }

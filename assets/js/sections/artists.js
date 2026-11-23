@@ -16,7 +16,7 @@ function seeded(str) {
   return () => { h ^= h << 13; h ^= h >>> 17; h ^= h << 5; return ((h >>> 0) % 10000) / 10000; };
 }
 
-let list = [], LANG = "ko", lastTile = null;
+let list = [], LANG = "ko", lastTile = null, T = (k) => k;
 
 // 왕관 (색은 CSS 의 --c1(밝은 면) --c2(어두운 면) 로)
 const CROWN = '<svg viewBox="0 0 64 44"><path d="M4 38 L2 10 L18 22 L32 2 L46 22 L62 10 L60 38 Z" fill="var(--c1)" stroke="#111" stroke-width="3" stroke-linejoin="round"/><path d="M32 2 L46 22 L62 10 L60 38 L32 38 Z" fill="var(--c2)" opacity=".55"/><rect x="4" y="34" width="56" height="8" rx="1.5" fill="var(--c2)" stroke="#111" stroke-width="3"/><circle cx="2.5" cy="10" r="3.6" fill="var(--c1)" stroke="#111" stroke-width="2.4"/><circle cx="32" cy="3" r="3.6" fill="var(--c1)" stroke="#111" stroke-width="2.4"/><circle cx="61.5" cy="10" r="3.6" fill="var(--c1)" stroke="#111" stroke-width="2.4"/><path d="M12 30 L16 26 L20 30 L16 34 Z M28 30 L32 26 L36 30 L32 34 Z M44 30 L48 26 L52 30 L48 34 Z" fill="#c8281e" stroke="#111" stroke-width="1.6"/><path d="M8 14 L10 32" stroke="#fff" stroke-width="2.2" opacity=".7" stroke-linecap="round"/></svg>';
@@ -28,6 +28,12 @@ function openCard(a, tile) {
   document.getElementById("ac-img").src = a.photo;
   document.getElementById("ac-name").textContent = pick(a.name, LANG);
   document.getElementById("ac-dept").textContent = a.dept || "";
+  // 이름 옆: 학과 (줄바꿈) 학번
+  const school = document.getElementById("ac-school");
+  school.textContent = "";
+  if (a.major) school.append(el("span", null, a.major));
+  if (a.year) school.append(el("span", null, T("yearFmt").replace("{n}", a.year)));
+  school.hidden = !a.major && !a.year;
   const ig = document.getElementById("ac-ig");
   ig.hidden = !a.instagram;
   if (a.instagram) { const id = a.instagram.toLowerCase(); ig.textContent = "@" + id; ig.href = "https://www.instagram.com/" + id + "/"; }
@@ -56,8 +62,8 @@ function wire() {
   addEventListener("popstate", closeCard);
 }
 
-export function renderArtists(data, _setlist, lang) {
-  LANG = lang;
+export function renderArtists(data, _setlist, lang, t) {
+  LANG = lang; if (t) T = t;
   list = data.artists || [];
   const board = document.getElementById("wall-board");
   board.textContent = "";
@@ -65,12 +71,13 @@ export function renderArtists(data, _setlist, lang) {
     const r = seeded(a.id || pick(a.name, "ko"));
     const li = el("li", "cut");
     // 콜라주처럼: 기울기 -7~7도, 위아래 엇갈림, 크기 조금씩 다르게
-    li.style.setProperty("--rot", ((r() - 0.5) * 14).toFixed(1) + "deg");
-    li.style.setProperty("--dy", Math.round((r() - 0.3) * 70 + (i % 2) * 40) + "px");
-    li.style.setProperty("--dx", Math.round((r() - 0.5) * 40) + "px");
-    li.style.setProperty("--sz", (0.88 + r() * 0.24).toFixed(2));
-    li.style.setProperty("--tag-rot", ((r() - 0.5) * 12).toFixed(1) + "deg");
-    li.style.setProperty("--tag-dx", Math.round((r() - 0.5) * 50) + "px");
+    // 콜라주처럼 흐트러뜨리되, 칸 안에서만 움직여서 옆 사람과 겹치지 않게
+    li.style.setProperty("--rot", ((r() - 0.5) * 10).toFixed(1) + "deg");
+    li.style.setProperty("--dy", Math.round((r() - 0.5) * 24 + (i % 2) * 18) + "px");
+    li.style.setProperty("--dx", Math.round((r() - 0.5) * 14) + "px");
+    li.style.setProperty("--sz", (0.92 + r() * 0.1).toFixed(2));
+    li.style.setProperty("--tag-rot", ((r() - 0.5) * 10).toFixed(1) + "deg");
+    li.style.setProperty("--tag-dx", Math.round((r() - 0.5) * 24) + "px");
     li.style.zIndex = String(1 + Math.floor(r() * 5));
 
     const b = el("button", "cut-btn");

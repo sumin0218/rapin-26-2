@@ -49,5 +49,6 @@
   "cdM": "min",
   "cdS": "sec",
   "soonOpen": "DROPS",
-  "artistsMore": "More artists coming soon"
+  "artistsMore": "More artists coming soon",
+  "yearFmt": "Class of '{n}"
 }
