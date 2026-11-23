@@ -209,3 +209,4 @@ html:not([lang="en"]) .ac-dept { font-family: "Pretendard Variable", var(--font)
   .wall-board > .cut { width: 44vw; }
   .cut-btn { padding-bottom: 22px; }
 }
+.ac-bio { white-space: pre-line; }

@@ -36,6 +36,23 @@
       "year": "21"
     },
     {
+      "id": "jimin",
+      "name": {
+        "ko": "심지민",
+        "en": "Shim Jimin",
+        "zh": "Shim Jimin"
+      },
+      "instagram": "._o0mini",
+      "dept": "SD부장",
+      "crown": "bronze",
+      "major": "글로벌커뮤니케이션학부",
+      "year": "26",
+      "bio": {
+        "ko": "댄서 mc찡찡입니다\n파입 식 세븐 에잇~쿠쿠쿠쿠"
+      },
+      "photo": "assets/img/artists/jimin.webp"
+    },
+    {
       "id": "heeseok",
       "name": {
         "ko": "문희석",
