@@ -114,7 +114,7 @@ html[lang="en"] .wall-title span { font-family: "Bungee", var(--font); font-weig
 }
 /* 칸 하나 = 사진 + 이름표. 사진은 높이로 맞춰서 전신/상반신 사진이 비슷한 크기로 보이게 */
 .wall-board > .cut { width: clamp(136px, 40vw, 220px); }
-.cut-btn img { width: auto !important; max-width: 100%; max-height: clamp(180px, 48vw, 270px); margin: 0 auto; }
+.cut-btn img { width: auto !important; max-width: 86%; max-height: clamp(180px, 48vw, 270px); margin: 0 auto; }
 @media (min-width: 900px) { .wall-board { padding-top: 40px; max-width: 1080px; } }
 .cut { position: relative; transform: translate(var(--dx, 0), var(--dy, 0)) rotate(var(--rot, 0)) scale(var(--sz, 1)); transform-origin: 50% 40%; }
 .cut-btn {
@@ -204,3 +204,4 @@ html:not([lang="en"]) .ac-dept { font-family: "Pretendard Variable", var(--font)
 .ac-school { display: flex; flex-direction: column; gap: 2px; padding-left: 12px; border-left: 3px solid #111; font-weight: 800; font-size: 14px; line-height: 1.3; color: #333; }
 .ac-school[hidden] { display: none; }
 @media (max-width: 640px) { .ac-nameline { justify-content: center; } .ac-school { text-align: left; } }
+.wall-board .cut-btn img { max-width: 84%; }

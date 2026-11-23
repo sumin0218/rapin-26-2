@@ -47,7 +47,9 @@
       "bio": {
         "ko": "20세기출생들은이제좀"
       },
-      "photo": "assets/img/artists/heeseok.webp"
+      "photo": "assets/img/artists/heeseok.webp",
+      "major": "산업경영공학과 박사과정",
+      "year": "25"
     },
     {
       "id": "dongu",
@@ -80,6 +82,70 @@
         "ko": "등록금 flexing"
       },
       "photo": "assets/img/artists/sanghun.webp"
+    },
+    {
+      "id": "siheon",
+      "name": {
+        "ko": "이시헌",
+        "en": "Lee Siheon",
+        "zh": "Lee Siheon"
+      },
+      "instagram": "2dangryu",
+      "dept": "MC",
+      "major": "자유전공학부",
+      "year": "26",
+      "bio": {
+        "ko": "낭만있는 당류입니다"
+      },
+      "photo": "assets/img/artists/siheon.webp"
+    },
+    {
+      "id": "jaeyun",
+      "name": {
+        "ko": "이재윤",
+        "en": "Lee Jaeyun",
+        "zh": "Lee Jaeyun"
+      },
+      "instagram": "lovemelovver",
+      "dept": "MC",
+      "major": "디지털콘텐츠학과",
+      "year": "23",
+      "bio": {
+        "ko": "랩네임 Demian Lovv로 활동(예정)중인 화석 이재윤이라고합니다 이 늙다리도 이쁘게 봐주세용"
+      },
+      "photo": "assets/img/artists/jaeyun.webp"
+    },
+    {
+      "id": "yongbeom",
+      "name": {
+        "ko": "권용범",
+        "en": "Kwon Yongbeom",
+        "zh": "Kwon Yongbeom"
+      },
+      "instagram": "kwonsw777",
+      "dept": "MC",
+      "major": "전자공학과",
+      "year": "22",
+      "bio": {
+        "ko": "여친구함"
+      },
+      "photo": "assets/img/artists/yongbeom.webp"
+    },
+    {
+      "id": "taeyoung",
+      "name": {
+        "ko": "강태영",
+        "en": "Kang Taeyoung",
+        "zh": "Kang Taeyoung"
+      },
+      "instagram": "young___x96",
+      "dept": "Management",
+      "major": "컴퓨터공학과",
+      "year": "22",
+      "bio": {
+        "ko": "워쓰 래빈 따거"
+      },
+      "photo": "assets/img/artists/taeyoung.webp"
     }
   ]
 }
