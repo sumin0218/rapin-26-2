@@ -16,7 +16,16 @@
   transform-origin: 0 0;
 }
 /* 이미지가 준비되기 전에는 숨겨 두기 (반쯤 그려진 포스터가 보이지 않게) */
-.js .poster .stage:not(.ready) .poster-art { visibility: hidden; }
+/* 사진이 다 오기 전에는 검은 화면에 LOADING만 (스크롤 버튼 혼자 떠 있지 않게) */
+.js .poster .stage:not(.ready) .poster-art, .js .poster .stage:not(.ready) .scroll-cue { visibility: hidden; }
+.js .poster .stage:not(.ready) { background-image: none; }
+.js .poster .stage:not(.ready)::after {
+  content: "LOADING"; position: absolute; inset: 0; display: grid; place-items: center;
+  font-family: "Bungee", sans-serif; font-size: 22px; letter-spacing: .08em; color: #fff;
+  -webkit-text-stroke: 3px #000; paint-order: stroke fill; text-shadow: 3px 3px 0 #000;
+  animation: load-blink 1s steps(2, jump-none) infinite;
+}
+@keyframes load-blink { 50% { opacity: .25; } }
 .reduced .poster .stage .poster-art, .no-gsap .poster .stage .poster-art { visibility: visible; }
 
 .L, .Lr, .Le, .Li, .Lh { position: absolute; }
