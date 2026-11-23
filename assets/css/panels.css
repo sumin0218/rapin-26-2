@@ -74,20 +74,18 @@ html:not([lang="en"]) .t-adm { font-family: var(--font); font-weight: 900; }
 html:not([lang="en"]) .t-adm { font-size: 24px; }
 
 /* ───── 아티스트 소개: 공터 벽 콜라주 ───── */
-/* 배경: 누런 종이 한 장 (종이 섬유, 접힌 자국, 바랜 가장자리) */
+/* 배경: 누런 종이 한 장 (고운 입자, 섬유 가닥, 얼룩, 바랜 가장자리) */
 .panel.wall {
   --bone: #efe9da; --caution: #f2c200; --brick: #c8281e;
   padding: 0; display: block; overflow: hidden;
-  background-color: #e2d8c3;
+  background-color: #e3d9c4;
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .24 0 0 0 0 .15 0 0 0 .2 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.12 .6' numOctaves='2' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .28 0 0 0 0 .18 0 0 0 .55 -.36'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .28 0 0 0 0 .22 0 0 0 0 .13 0 0 0 .32 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='turbulence' baseFrequency='.012 .09' numOctaves='3' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .32 0 0 0 0 .2 0 0 0 1.6 -1.05'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='w'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.05' numOctaves='4' seed='12' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .98 0 0 0 0 .92 0 0 0 1.1 -.72'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)'/%3E%3C/svg%3E"),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.004' numOctaves='3' seed='9'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .38 0 0 0 0 .2 0 0 0 -1.4 .62'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)'/%3E%3C/svg%3E"),
-    linear-gradient(90deg, transparent calc(50% - 1px), rgba(90,70,40,.18) 50%, rgba(255,255,255,.35) calc(50% + 1.5px), transparent calc(50% + 3px)),
-    linear-gradient(transparent calc(38% - 1px), rgba(90,70,40,.14) 38%, rgba(255,255,255,.3) calc(38% + 1.5px), transparent calc(38% + 3px)),
     radial-gradient(140% 110% at 50% 45%, transparent 55%, rgba(110,80,40,.35));
-  background-size: 260px 260px, 400px 400px, 900px 900px, 100% 100%, 100% 100%, 100% 100%;
-  background-attachment: local, local, local, scroll, scroll, scroll;
+  background-size: 240px 240px, 360px 360px, 300px 300px, 900px 900px, 100% 100%;
 }
 .panel.wall::before { content: none; }
 .wall-scroll { position: relative; height: 100%; overflow-y: auto; overscroll-behavior: contain; padding: calc(var(--band-h, 32px) + 22px) var(--pad) 60px; }
@@ -205,3 +203,9 @@ html:not([lang="en"]) .ac-dept { font-family: "Pretendard Variable", var(--font)
 .ac-school[hidden] { display: none; }
 @media (max-width: 640px) { .ac-nameline { justify-content: center; } .ac-school { text-align: left; } }
 .wall-board .cut-btn img { max-width: 84%; }
+
+@media (max-width: 640px) {
+  .wall-board { gap: 18px 6px; padding-top: 18px; }
+  .wall-board > .cut { width: 44vw; }
+  .cut-btn { padding-bottom: 22px; }
+}

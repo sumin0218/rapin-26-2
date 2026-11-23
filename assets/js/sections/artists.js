@@ -73,7 +73,8 @@ export function renderArtists(data, _setlist, lang, t) {
     // 콜라주처럼: 기울기 -7~7도, 위아래 엇갈림, 크기 조금씩 다르게
     // 콜라주처럼 흐트러뜨리되, 칸 안에서만 움직여서 옆 사람과 겹치지 않게
     li.style.setProperty("--rot", ((r() - 0.5) * 10).toFixed(1) + "deg");
-    li.style.setProperty("--dy", Math.round((r() - 0.5) * 24 + (i % 2) * 18) + "px");
+    const small = matchMedia("(max-width: 640px)").matches;
+    li.style.setProperty("--dy", Math.round((r() - 0.5) * (small ? 10 : 24) + (i % 2) * (small ? 8 : 18)) + "px");
     li.style.setProperty("--dx", Math.round((r() - 0.5) * 14) + "px");
     li.style.setProperty("--sz", (0.92 + r() * 0.1).toFixed(2));
     li.style.setProperty("--tag-rot", ((r() - 0.5) * 10).toFixed(1) + "deg");
