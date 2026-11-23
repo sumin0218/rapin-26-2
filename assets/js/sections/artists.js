@@ -17,6 +17,9 @@ function seeded(str) {
 }
 
 let list = [], LANG = "ko", lastTile = null;
+
+// 왕관 (색은 CSS 의 --c1(밝은 면) --c2(어두운 면) 로)
+const CROWN = '<svg viewBox="0 0 64 44"><path d="M4 38 L2 10 L18 22 L32 2 L46 22 L62 10 L60 38 Z" fill="var(--c1)" stroke="#111" stroke-width="3" stroke-linejoin="round"/><path d="M32 2 L46 22 L62 10 L60 38 L32 38 Z" fill="var(--c2)" opacity=".55"/><rect x="4" y="34" width="56" height="8" rx="1.5" fill="var(--c2)" stroke="#111" stroke-width="3"/><circle cx="2.5" cy="10" r="3.6" fill="var(--c1)" stroke="#111" stroke-width="2.4"/><circle cx="32" cy="3" r="3.6" fill="var(--c1)" stroke="#111" stroke-width="2.4"/><circle cx="61.5" cy="10" r="3.6" fill="var(--c1)" stroke="#111" stroke-width="2.4"/><path d="M12 30 L16 26 L20 30 L16 34 Z M28 30 L32 26 L36 30 L32 34 Z M44 30 L48 26 L52 30 L48 34 Z" fill="#c8281e" stroke="#111" stroke-width="1.6"/><path d="M8 14 L10 32" stroke="#fff" stroke-width="2.2" opacity=".7" stroke-linecap="round"/></svg>';
 const card = () => document.getElementById("artist-card");
 
 function openCard(a, tile) {
@@ -75,7 +78,16 @@ export function renderArtists(data, _setlist, lang) {
     b.setAttribute("aria-label", pick(a.name, lang));
     const img = el("img");
     img.src = a.photo; img.alt = ""; img.loading = "lazy"; img.decoding = "async";
-    b.append(img, el("span", "cut-tag", pick(a.name, lang)));
+    const tag = el("span", "cut-tag", pick(a.name, lang));
+    // 임원진은 이름표에 왕관 (회장단 은색, 부장 동색)
+    if (a.crown) {
+      tag.classList.add("crowned");
+      const c = el("i", "crown crown-" + a.crown);
+      c.setAttribute("aria-hidden", "true");
+      c.innerHTML = CROWN;
+      tag.prepend(c);
+    }
+    b.append(img, tag);
     b.addEventListener("click", () => openCard(a, b));
     li.append(b);
     board.append(li);
