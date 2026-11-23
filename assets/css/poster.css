@@ -5,7 +5,9 @@
    .stage는 sticky라서 셋리스트를 다 내릴 때까지 배경으로 붙어 있어요 */
 .poster.pin-wrap { position: relative; }
 .pin-spacer-gap { height: calc(var(--vh) * 2.3); }
-.poster .stage { position: sticky; top: 0; height: var(--vh); overflow: hidden; background: #8fb3dc; }
+.poster .stage { position: sticky; top: 0; height: var(--vh); overflow: hidden;
+  /* iOS 26 사파리는 고정·sticky 요소의 background-color로 주소창을 칠해요: 색은 사이트 검정, 하늘색은 이미지로만 깔아요 */
+  background-color: #0d0d0d; background-image: linear-gradient(#8fb3dc, #8fb3dc); }
 
 .poster-cam { position: absolute; inset: 0; will-change: transform; }
 .poster-art {
