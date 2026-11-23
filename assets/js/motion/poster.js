@@ -5,7 +5,7 @@
 //     .Le        처음 등장 연출
 //     .Li (안쪽)  가만히 있을 때 살랑살랑
 //   스크롤 연출은 레이어들을 담은 .poster-cam 전체에 걸어요.
-import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11231320";
+import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11232213";
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 // SAGGING 2026 글자 높이 미세 조정 (+면 아래로). 휴대폰(좁은 화면)에서만 조금 더 내려요
@@ -289,6 +289,27 @@ function scrollCue() {
   });
 }
 
+// 맛보기: 들어와서 가만히 있으면 포스터가 스크롤한 것처럼 살짝 빨려 들어갔다 돌아와요 (최대 2번)
+function teaser(gsap, flyTl) {
+  let stopped = false, timer = 0, count = 0, tw = null;
+  const evs = ["wheel", "touchstart", "keydown", "pointerdown", "scroll"];
+  const stop = () => {
+    if (stopped) return;
+    stopped = true; clearTimeout(timer);
+    evs.forEach((e) => removeEventListener(e, stop));
+    if (tw) { tw.kill(); tw = null; flyTl.progress(0); flyTl.scrollTrigger?.enable(); }
+  };
+  evs.forEach((e) => addEventListener(e, stop, { passive: true }));
+  const play = () => {
+    if (stopped || scrollY > 5) return stop();
+    const st = flyTl.scrollTrigger; st?.disable(false);          // 스크롤 연동을 잠깐 떼고 직접 움직여요
+    tw = gsap.timeline({ onComplete: () => { tw = null; st?.enable(); count++; if (count < 2 && !stopped) timer = setTimeout(play, 4500); else stop(); } })
+      .to(flyTl, { progress: 0.17, duration: 0.5, ease: "sine.inOut" })
+      .to(flyTl, { progress: 0, duration: 0.7, ease: "power3.out" });
+  };
+  timer = setTimeout(play, 3000);
+}
+
 export function initPoster() {
   const stage = $(".poster .stage");
   const art = $(".poster-art", stage);
@@ -315,8 +336,8 @@ export function initPoster() {
     new Promise((r) => setTimeout(r, 2500)),
   ]).then(() => {
     stage.classList.add("ready");
-    enterAnim(gsap).eventCallback("onComplete", () => idleAnim(gsap));
-    scrollAnim(gsap);
+    const flyTl = scrollAnim(gsap);
+    enterAnim(gsap).eventCallback("onComplete", () => { idleAnim(gsap); teaser(gsap, flyTl); });
     addEventListener("orientationchange", () => ScrollTrigger.refresh());
   });
 }
