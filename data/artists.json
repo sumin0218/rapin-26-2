@@ -192,6 +192,22 @@
         "ko": "지~멘~~"
       },
       "photo": "assets/img/artists/kjimin.webp?v=2"
+    },
+    {
+      "id": "beomchan",
+      "name": {
+        "ko": "김범찬",
+        "en": "Kim Beomchan",
+        "zh": "Kim Beomchan"
+      },
+      "instagram": "072_bk",
+      "dept": "MC",
+      "major": "건축공학과",
+      "year": "21",
+      "bio": {
+        "ko": "안녕하세요범찬입니다잘부탁드립니다"
+      },
+      "photo": "assets/img/artists/beomchan.webp"
     }
   ]
 }
