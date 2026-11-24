@@ -211,3 +211,24 @@ html:not([lang="en"]) .ac-dept { font-family: "Pretendard Variable", var(--font)
 }
 .ac-bio { white-space: pre-line; }
 .ac-bio[hidden], .ac-dept[hidden] { display: none; }
+
+/* 상세 카드 넘기기: 양옆 삼각형 버튼(모바일은 아래), 좌우 방향키, 옆으로 끌기 */
+.ac-wrap { position: relative; display: grid; grid-template-columns: 60px minmax(0, 760px) 60px; grid-template-areas: "prev paper next" ". count ."; align-items: center; justify-content: center; gap: 10px 14px; width: 100%; }
+.ac-wrap .ac-paper { grid-area: paper; touch-action: pan-y; }
+.ac-prev { grid-area: prev; } .ac-next { grid-area: next; }
+.ac-nav { width: 56px; height: 56px; display: grid; place-items: center; cursor: pointer; padding: 0;
+  background: #efe9da; color: #111; border: 3px solid #111; box-shadow: 4px 4px 0 #000; transition: transform .12s; }
+.ac-nav svg { width: 24px; height: 24px; fill: currentColor; }
+.ac-nav:hover { background: #f2c200; }
+.ac-nav:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #000; }
+.ac-nav:focus-visible { outline: 3px solid #f2c200; outline-offset: 3px; }
+.ac-count { grid-area: count; margin: 0; text-align: center; color: #efe9da; font-family: "Anton", var(--font); font-size: 16px; letter-spacing: .12em; }
+.ac-paper.dragging { transition: none; }
+@media (max-width: 900px) {
+  .ac-wrap { grid-template-columns: 56px minmax(0, 1fr) 56px; grid-template-areas: "paper paper paper" "prev count next"; gap: 12px 10px; }
+  .ac-nav { width: 52px; height: 52px; }
+  .ac-wrap .ac-paper { max-height: calc(100svh - 110px); }
+}
+.ac-paper { -webkit-user-select: none; user-select: none; }
+.ac-paper img { -webkit-user-drag: none; }
+.ac-paper .ac-ig, .ac-paper .ac-bio { -webkit-user-select: text; user-select: text; }

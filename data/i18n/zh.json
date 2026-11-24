@@ -50,5 +50,7 @@
   "cdS": "秒",
   "soonOpen": "公开",
   "artistsMore": "更多艺人陆续更新",
-  "yearFmt": "{n}级"
+  "yearFmt": "{n}级",
+  "prevArtist": "上一位艺人",
+  "nextArtist": "下一位艺人"
 }

@@ -50,5 +50,7 @@
   "cdS": "sec",
   "soonOpen": "DROPS",
   "artistsMore": "More artists coming soon",
-  "yearFmt": "Class of '{n}"
+  "yearFmt": "Class of '{n}",
+  "prevArtist": "Previous artist",
+  "nextArtist": "Next artist"
 }
