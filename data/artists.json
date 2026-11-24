@@ -67,6 +67,20 @@
       "crown": "bronze"
     },
     {
+      "id": "jinwoo",
+      "name": {
+        "ko": "손진우",
+        "en": "Son Jinwoo",
+        "zh": "Son Jinwoo"
+      },
+      "instagram": "jws_0709",
+      "dept": "Management부장",
+      "crown": "bronze",
+      "major": "응용수학과",
+      "year": "23",
+      "photo": "assets/img/artists/jinwoo.webp"
+    },
+    {
       "id": "heeseok",
       "name": {
         "ko": "문희석",
