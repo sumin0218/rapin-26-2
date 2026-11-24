@@ -270,6 +270,38 @@
         "ko": "난 진지해"
       },
       "photo": "assets/img/artists/woosung.webp"
+    },
+    {
+      "id": "seongmo",
+      "name": {
+        "ko": "박성모",
+        "en": "Park Seongmo",
+        "zh": "Park Seongmo"
+      },
+      "instagram": "",
+      "dept": "MC",
+      "major": "중국어학과",
+      "year": "26",
+      "bio": {
+        "ko": "조금 아픈 애"
+      },
+      "photo": "assets/img/artists/seongmo.webp"
+    },
+    {
+      "id": "youngchae",
+      "name": {
+        "ko": "전영채",
+        "en": "Jeon Youngchae",
+        "zh": "Jeon Youngchae"
+      },
+      "instagram": "spicnspanj",
+      "dept": "R&B",
+      "major": "컴퓨터공학과",
+      "year": "23",
+      "bio": {
+        "ko": "래빈 유일무이 여성 알앤비 보컬입니다~"
+      },
+      "photo": "assets/img/artists/youngchae.webp"
     }
   ]
 }
