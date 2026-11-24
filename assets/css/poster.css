@@ -15,17 +15,36 @@
   height: 842px; /* 너비와 배율은 poster.js가 정해요 */
   transform-origin: 0 0;
 }
-/* 이미지가 준비되기 전에는 숨겨 두기 (반쯤 그려진 포스터가 보이지 않게) */
-/* 사진이 다 오기 전에는 검은 화면에 LOADING만 (스크롤 버튼 혼자 떠 있지 않게) */
+/* 가짜 로딩창: 검은 화면에 LOADING + 로딩바. 바가 다 차야 포스터가 시작돼요 */
 .js .poster .stage:not(.ready) .poster-art, .js .poster .stage:not(.ready) .scroll-cue { visibility: hidden; }
 .js .poster .stage:not(.ready) { background-image: none; }
-.js .poster .stage:not(.ready)::after {
-  content: "LOADING"; position: absolute; inset: 0; display: grid; place-items: center;
-  font-family: "Bungee", sans-serif; font-size: 22px; letter-spacing: .08em; color: #fff;
-  -webkit-text-stroke: 3px #000; paint-order: stroke fill; text-shadow: 3px 3px 0 #000;
+html.loading { overflow: hidden; }
+html.loading .side-tabs { opacity: 0; pointer-events: none; }
+.side-tabs { transition: opacity .4s; }
+.loader { display: none; }
+.js .loader {
+  position: absolute; inset: 0; z-index: 20; background: #0d0d0d;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+}
+.loader .ld-word {
+  font-family: "Bungee", sans-serif; font-size: clamp(26px, 7vw, 40px); letter-spacing: .08em; color: #fff;
+  -webkit-text-stroke: 4px #000; paint-order: stroke fill; text-shadow: 4px 4px 0 #000;
   animation: load-blink 1s steps(2, jump-none) infinite;
 }
+.loader .ld-bar {
+  width: min(64vw, 300px); height: 22px; padding: 3px; background: #000;
+  border: 3px solid #fff; box-shadow: 4px 4px 0 #444; transform: rotate(-1.5deg);
+}
+.loader .ld-bar i {
+  display: block; height: 100%; width: 0%;
+  background: repeating-linear-gradient(-45deg, #f2c200 0 10px, #111 10px 20px);
+  animation: ld-tape .6s linear infinite;
+}
+.loader .ld-pct { font-family: "Anton", sans-serif; font-size: 20px; letter-spacing: .06em; color: #f2f1ec; font-variant-numeric: tabular-nums; }
+.loader.done .ld-word { animation: none; }
 @keyframes load-blink { 50% { opacity: .25; } }
+@keyframes ld-tape { to { background-position: 28px 0; } }
+.reduced .loader, .no-gsap .loader { display: none; }
 .reduced .poster .stage .poster-art, .no-gsap .poster .stage .poster-art { visibility: visible; }
 
 .L, .Lr, .Le, .Li, .Lh { position: absolute; }

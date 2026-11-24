@@ -5,7 +5,7 @@
 //     .Le        처음 등장 연출
 //     .Li (안쪽)  가만히 있을 때 살랑살랑
 //   스크롤 연출은 레이어들을 담은 .poster-cam 전체에 걸어요.
-import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11232213";
+import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11241358";
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 // SAGGING 2026 글자 높이 미세 조정 (+면 아래로). 휴대폰(좁은 화면)에서만 조금 더 내려요
@@ -289,6 +289,33 @@ function scrollCue() {
   });
 }
 
+// 가짜 로딩창: 바가 툭툭 끊기며 차오르고, 사진이 아직이면 97%에서 버텨요. 100% 찍으면 화면이 위로 빠져요
+function fakeLoad(gsap, loaded) {
+  const box = $(".loader");
+  if (!box) return loaded;
+  const bar = $(".ld-bar i", box), pct = $(".ld-pct", box);
+  const st = { p: 0 };
+  const draw = () => { bar.style.width = st.p + "%"; pct.textContent = Math.round(st.p) + "%"; };
+  let ready = false; loaded.then(() => { ready = true; });
+  return new Promise((done) => {
+    const tl = gsap.timeline({ onUpdate: draw })
+      .to(st, { p: 23, duration: 0.35, ease: "power1.out" })
+      .to(st, { p: 41, duration: 0.25, ease: "none" }, "+=0.18")
+      .to(st, { p: 68, duration: 0.3, ease: "power2.out" }, "+=0.28")
+      .to(st, { p: 89, duration: 0.25, ease: "none" }, "+=0.12")
+      .to(st, { p: 97, duration: 0.4, ease: "power1.out" }, "+=0.2")
+      .add(() => {
+        const finish = () => gsap.timeline({ onUpdate: draw })
+          .to(st, { p: 100, duration: 0.15, ease: "none" })
+          .add(() => box.classList.add("done"))
+          .to(box, { yPercent: -100, duration: 0.55, ease: "power3.inOut", delay: 0.3 })
+          .add(() => { box.remove(); document.documentElement.classList.remove("loading"); })
+          .add(done, "-=0.5");
+        ready ? finish() : (tl.pause(), loaded.then(finish));
+      });
+  });
+}
+
 // 맛보기: 들어와서 가만히 있으면 포스터가 스크롤한 것처럼 살짝 빨려 들어갔다 돌아와요 (최대 2번)
 function teaser(gsap, flyTl) {
   let stopped = false, timer = 0, count = 0, tw = null;
@@ -323,6 +350,7 @@ export function initPoster() {
 
   const { gsap, ScrollTrigger } = window;
   if (reduced || !gsap || !ScrollTrigger) {
+    document.documentElement.classList.remove("loading");
     document.documentElement.classList.add(reduced ? "reduced" : "no-gsap");
     stage.classList.add("ready");
     return;
@@ -331,10 +359,11 @@ export function initPoster() {
 
   // 이미지가 다 준비된 뒤에 등장 (중간에 뚝뚝 끊겨 보이지 않게)
   const imgs = [...art.querySelectorAll("img")];
-  Promise.race([
+  const loaded = Promise.race([
     Promise.all(imgs.map((i) => (i.complete ? 1 : new Promise((r) => { i.onload = i.onerror = r; })))),
-    new Promise((r) => setTimeout(r, 2500)),
-  ]).then(() => {
+    new Promise((r) => setTimeout(r, 6000)),
+  ]);
+  fakeLoad(gsap, loaded).then(() => {
     stage.classList.add("ready");
     const flyTl = scrollAnim(gsap);
     enterAnim(gsap).eventCallback("onComplete", () => { idleAnim(gsap); teaser(gsap, flyTl); });
