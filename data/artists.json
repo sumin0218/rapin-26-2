@@ -254,6 +254,22 @@
         "ko": "I’m from the future."
       },
       "photo": "assets/img/artists/hongseong.webp"
+    },
+    {
+      "id": "woosung",
+      "name": {
+        "ko": "인우성",
+        "en": "In Woosung",
+        "zh": "In Woosung"
+      },
+      "instagram": "inxsmile",
+      "dept": "MC",
+      "major": "시각디자인학과",
+      "year": "26",
+      "bio": {
+        "ko": "난 진지해"
+      },
+      "photo": "assets/img/artists/woosung.webp"
     }
   ]
 }
