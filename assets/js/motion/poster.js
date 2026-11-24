@@ -5,7 +5,7 @@
 //     .Le        처음 등장 연출
 //     .Li (안쪽)  가만히 있을 때 살랑살랑
 //   스크롤 연출은 레이어들을 담은 .poster-cam 전체에 걸어요.
-import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11241359";
+import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11241400";
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 // SAGGING 2026 글자 높이 미세 조정 (+면 아래로). 휴대폰(좁은 화면)에서만 조금 더 내려요
@@ -353,6 +353,7 @@ export function initPoster() {
     document.documentElement.classList.remove("loading");
     document.documentElement.classList.add(reduced ? "reduced" : "no-gsap");
     stage.classList.add("ready");
+    dispatchEvent(new Event("poster:show"));
     return;
   }
   gsap.registerPlugin(ScrollTrigger);
@@ -365,6 +366,7 @@ export function initPoster() {
   ]);
   fakeLoad(gsap, loaded).then(() => {
     stage.classList.add("ready");
+    dispatchEvent(new Event("poster:show"));   // 포스터 등장과 동시에 배경음악
     const flyTl = scrollAnim(gsap);
     enterAnim(gsap).eventCallback("onComplete", () => { idleAnim(gsap); teaser(gsap, flyTl); });
     addEventListener("orientationchange", () => ScrollTrigger.refresh());

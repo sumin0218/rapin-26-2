@@ -37,8 +37,10 @@ export function initBgm() {
     sync();
   });
 
-  // 1) 들어오자마자 바로 재생을 시도해요. 브라우저가 허락하면(자주 방문한 사이트 등) 바로 나와요.
-  if (want) audio.play().then(() => { off(); sync(); }).catch(() => {});
+  // 1) 로딩창이 걷히고 포스터가 등장하는 순간 재생을 시도해요. 브라우저가 허락하면(자주 방문한 사이트 등) 바로 나와요.
+  const tryStart = () => { if (want && !ducked && audio.paused) audio.play().then(() => { off(); sync(); }).catch(() => {}); };
+  if (document.querySelector(".poster .stage.ready")) tryStart();
+  else addEventListener("poster:show", tryStart, { once: true });
   // 2) 막혔으면 첫 사용자 동작에서 시작 (스크롤만으로는 브라우저가 소리를 허락하지 않아요)
   const first = (e) => {
     if (e.target.closest && e.target.closest("#bgm-btn")) { off(); return; }
