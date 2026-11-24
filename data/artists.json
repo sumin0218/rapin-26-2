@@ -208,6 +208,22 @@
         "ko": "안녕하세요범찬입니다잘부탁드립니다"
       },
       "photo": "assets/img/artists/beomchan.webp"
+    },
+    {
+      "id": "dogyun",
+      "name": {
+        "ko": "김도균",
+        "en": "Kim Dogyun",
+        "zh": "Kim Dogyun"
+      },
+      "instagram": "rand3nvuz",
+      "dept": "MC",
+      "major": "우주과학과",
+      "year": "25",
+      "bio": {
+        "ko": "진짜"
+      },
+      "photo": "assets/img/artists/dogyun.webp"
     }
   ]
 }
