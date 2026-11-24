@@ -53,6 +53,20 @@
       "photo": "assets/img/artists/jimin.webp"
     },
     {
+      "id": "gyumin",
+      "name": {
+        "ko": "김규민",
+        "en": "Kim Gyumin",
+        "zh": "Kim Gyumin"
+      },
+      "instagram": "gim.99min",
+      "dept": "MIDI부장",
+      "major": "컴퓨터공학과",
+      "year": "25",
+      "photo": "assets/img/artists/gyumin.webp",
+      "crown": "bronze"
+    },
+    {
       "id": "heeseok",
       "name": {
         "ko": "문희석",
