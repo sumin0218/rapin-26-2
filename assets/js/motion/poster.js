@@ -5,7 +5,7 @@
 //     .Le        처음 등장 연출
 //     .Li (안쪽)  가만히 있을 때 살랑살랑
 //   스크롤 연출은 레이어들을 담은 .poster-cam 전체에 걸어요.
-import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11260033";
+import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11260043";
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 // SAGGING 2026 글자 높이 미세 조정 (+면 아래로). 휴대폰(좁은 화면)에서만 조금 더 내려요
@@ -20,6 +20,7 @@ function buildLayers(art) {
   fg.className = "poster-fg";
   art.append(bgs, fg);
   LAYERS.forEach((L) => {
+    if (L.on) return;
     const [, , w, h] = L.box;
     const outer = document.createElement("div");
     outer.className = "L";
@@ -71,6 +72,17 @@ function buildLayers(art) {
     outer.append(resp);
     (L.kind === "bg" ? bgs : fg).append(outer);
   });
+  // 다른 레이어에 붙는 조각: 그 레이어 안에 넣어서 위치·크기·흔들림·스크롤을 그대로 따라가요
+  LAYERS.filter((L) => L.on).forEach((L) => {
+    const host = LAYERS.find((H) => H.id === L.on);
+    const box = art.querySelector(`.L[data-id="${L.on}"] .Lh`);
+    if (!host || !box) return;
+    const [x, y, w, h] = L.box, [hx, hy] = host.box;
+    const img = document.createElement("img");
+    img.className = "Lon"; img.src = L.src; img.alt = ""; img.decoding = "async"; img.draggable = false;
+    img.style.cssText = `position:absolute;left:${x - hx}px;top:${y - hy}px;width:${w}px;height:${h}px;max-width:none;z-index:1`;
+    box.append(img);
+  });
 }
 
 // 화면 가득 채우기
@@ -91,6 +103,7 @@ function fit(stage, art) {
   art.style.transform = `scale(${s})`;
 
   LAYERS.forEach((L) => {
+    if (L.on) return;
     const el = art.querySelector(`.L[data-id="${L.id}"]`);
     const r = el.firstChild;
     const G = wide && L.pc ? { ...L, ...L.pc } : L;   // PC는 피그마 최신 위치, 모바일은 원래 위치
@@ -149,7 +162,7 @@ function sparkles() {
 
 function enterAnim(gsap) {
   const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-  const by = (kind) => LAYERS.filter((L) => L.enter === kind).map((L) => `.L[data-id="${L.id}"] .Le`);
+  const by = (kind) => LAYERS.filter((L) => !L.on && L.enter === kind).map((L) => `.L[data-id="${L.id}"] .Le`);
 
   tl.from(by("fade"), { opacity: 0, scale: 1.08, duration: 1.0, ease: "power2.out" }, 0)
     .from(by("slide-up"), { yPercent: 40, opacity: 0, duration: 0.7, stagger: 0.08 }, 0.25)
@@ -232,7 +245,7 @@ function scrollAnim(gsap) {
     },
   });
   LAYERS.forEach((L) => {
-    if (L.kind === "bg") return;
+    if (L.kind === "bg" || L.on) return;
     const [x, y, w, h] = L.box;
     const dx = x + w / 2 - cx, dy = y + h / 2 - cy;
     const d = L.depth ?? 0.5;

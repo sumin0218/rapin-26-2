@@ -9,6 +9,7 @@
 //   kind:  "bg" = 화면 전체를 덮는 배경, "logo" = 좁은 화면에서 통째로 줄이는 타이틀
 //   dy:    피그마 위치에서 위아래로 더 옮길 양(px, +면 아래)
 //   focus: 스크롤하면 이 레이어 쪽으로 빨려 들어가요
+//   on:    다른 레이어에 붙여서 같이 움직여요 (예: 정장 3인방 위쪽 얼굴을 가리는 비버 얼굴)
 //   pc:    넓은 화면(PC)에서만 쓰는 위치. 피그마 최신(A3 인쇄본) 배치예요. 모바일은 원래 위치 그대로
 const A = "assets/img/poster/";
 
@@ -49,8 +50,8 @@ export const LAYERS = [
                         depth: 1.05, enter: "stick", idle: "sway", origin: "50% 100%" },
   { id: "rapinisready", src: A + "rapinisready.webp", box: [358, 463, 111.59, 91.513], inner: [105, 83], rot: -4.81,
                         depth: 1.15, enter: "slap", idle: "wobble" },
-  { id: "bieber",       src: A + "bieber.webp", box: [89, 519, 111.491, 130.748], depth: 1.1, enter: "pop", idle: "wobble" },
   { id: "outofmind",    src: A + "outofmind.webp", fit: "fill", box: [258, 530, 328.937, 109.646], shadow: "0 -5px 4px rgba(255,255,255,.15)",
                         depth: 1.1, enter: "write" },
   { id: "business",     src: A + "business.webp", box: [26, 484, 204, 68], depth: 1.2, enter: "slap" },
+  { id: "bieber",       src: A + "bieber.webp", box: [89, 519, 111.491, 130.748], on: "baksa" },
 ];
