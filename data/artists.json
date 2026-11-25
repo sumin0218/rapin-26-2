@@ -348,6 +348,19 @@
         "ko": "무릎 관절 나이 80세"
       },
       "photo": "assets/img/artists/eunseo.webp"
+    },
+    {
+      "id": "alex",
+      "name": {
+        "ko": "Alex",
+        "en": "Alex",
+        "zh": "Alex"
+      },
+      "instagram": "smetan_nik",
+      "dept": "SD",
+      "major": "국제학과",
+      "year": "24",
+      "photo": "assets/img/artists/alex.webp"
     }
   ]
 }
