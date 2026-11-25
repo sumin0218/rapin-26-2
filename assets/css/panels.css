@@ -235,3 +235,4 @@ html:not([lang="en"]) .ac-dept { font-family: "Pretendard Variable", var(--font)
 .ac-school span { white-space: nowrap; word-break: keep-all; }
 .ac-nameline { min-width: 0; }
 .ac-nameline .ac-name { min-width: 0; }
+.crown-gold { --c1: #ffd84a; --c2: #b8860b; }
