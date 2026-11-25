@@ -5,7 +5,7 @@
 //     .Le        처음 등장 연출
 //     .Li (안쪽)  가만히 있을 때 살랑살랑
 //   스크롤 연출은 레이어들을 담은 .poster-cam 전체에 걸어요.
-import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11251755";
+import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11252352";
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 // SAGGING 2026 글자 높이 미세 조정 (+면 아래로). 휴대폰(좁은 화면)에서만 조금 더 내려요
@@ -82,7 +82,8 @@ function fit(stage, art) {
   const s = H / POSTER_H;
   const VW = W / s;                         // 포스터 좌표 기준 화면 너비
   const ox = (VW - POSTER_W) / 2;           // 포스터 원래 가운데를 화면 가운데로
-  const k = Math.min(1.45, Math.max(0.62, VW / POSTER_W));
+  // PC처럼 화면이 넓어도 사람들을 벌리지 않고 인쇄 포스터(A3) 배치 그대로 가운데에 둬요. 남는 양옆은 배경이 채워요
+  const k = Math.min(1, Math.max(0.62, VW / POSTER_W));
   const cx = POSTER_W / 2;
 
   art.style.width = VW + "px";

@@ -1,6 +1,6 @@
 // 언어: 한국어 / English / 中文
 // 문구는 data/i18n/{ko,en,zh}.json 에 있어요. HTML에는 data-i18n="키"만 달면 돼요.
-import { loadJSON } from "./data.js?v=11251755";
+import { loadJSON } from "./data.js?v=11252352";
 
 const LANGS = ["ko", "en", "zh"];
 const KEY = "rapin262-lang";
