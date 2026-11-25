@@ -494,6 +494,26 @@
         "ko": "Bringing in the American style"
       },
       "photo": "assets/img/artists/daira.webp"
+    },
+    {
+      "id": "dongmin",
+      "name": {
+        "ko": "조동민",
+        "en": "Cho Dongmin",
+        "zh": "Cho Dongmin"
+      },
+      "instagram": "dongmen8lildongu",
+      "dept": "MC",
+      "major": {
+        "ko": "시각디자인학과",
+        "en": "Visual Design",
+        "zh": "Visual Design"
+      },
+      "year": "25",
+      "bio": {
+        "ko": "We Are Serious About What We Do. Make No Mistake, We Mean Business. This Is No Game."
+      },
+      "photo": "assets/img/artists/dongmin.webp"
     }
   ]
 }
