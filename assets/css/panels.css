@@ -262,3 +262,4 @@ html[lang="en"] .ac-school span:first-child, html[lang^="zh"] .ac-school span:fi
   .wall-board .cut-btn { padding-bottom: 18px; }
   .wall-board .crown { width: 26px; height: 18px; left: -9px; top: -17px; }
 }
+.ac-ig[hidden] { display: none !important; }

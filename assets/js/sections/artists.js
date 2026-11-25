@@ -124,11 +124,16 @@ function wire() {
 
 export function renderArtists(data, _setlist, lang, t) {
   LANG = lang; if (t) T = t;
-  // 임원진(왕관)은 맨 앞에 정해진 순서대로, 나머지는 들어올 때마다 무작위로 섞어요
+  // 임원진(왕관)은 맨 앞에 정해진 순서대로, 나머지는 이름순 (영어 이름 먼저 A~Z, 그다음 한글 가나다)
   const all = data.artists || [];
   if (!shuffled || shuffled.length !== all.length) {
-    const rest = all.filter((a) => !a.crown);
-    for (let i = rest.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [rest[i], rest[j]] = [rest[j], rest[i]]; }
+    const key = (a) => pick(a.name, "ko") || "";
+    const latin = (t) => /^[A-Za-z]/.test(t);
+    const rest = all.filter((a) => !a.crown).sort((x, y) => {
+      const a = key(x), b = key(y);
+      if (latin(a) !== latin(b)) return latin(a) ? -1 : 1;
+      return latin(a) ? a.localeCompare(b, "en", { sensitivity: "base" }) : a.localeCompare(b, "ko");
+    });
     shuffled = [...all.filter((a) => a.crown), ...rest];
   }
   list = shuffled.map((a) => all.find((b) => b.id === a.id) || a);
