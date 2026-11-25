@@ -263,3 +263,6 @@ html[lang="en"] .ac-school span:first-child, html[lang^="zh"] .ac-school span:fi
   .wall-board .crown { width: 26px; height: 18px; left: -9px; top: -17px; }
 }
 .ac-ig[hidden] { display: none !important; }
+/* 작아진 이름표에 맞춰 테이프도 작게 */
+.wall-board .cut-tag::before { width: 30px; height: 10px; top: -6px; }
+@media (max-width: 640px) { .wall-board .cut-tag::before { width: 24px; height: 8px; top: -5px; } }
