@@ -11,7 +11,11 @@
       "instagram": "jungho_taba",
       "dept": "회장",
       "crown": "gold",
-      "major": "사회기반시스템공학과",
+      "major": {
+        "ko": "사회기반시스템공학과",
+        "en": "Civil Engineering",
+        "zh": "Civil Engineering"
+      },
       "year": "21",
       "bio": {
         "ko": "라스트? 댄스"
@@ -32,7 +36,11 @@
         "ko": "카레먹고싶다"
       },
       "photo": "assets/img/artists/sumin.webp",
-      "major": "컴퓨터공학과",
+      "major": {
+        "ko": "컴퓨터공학과",
+        "en": "Computer Science and Engineering",
+        "zh": "Computer Science and Engineering"
+      },
       "year": "21"
     },
     {
@@ -49,7 +57,11 @@
       },
       "photo": "assets/img/artists/minseong.webp",
       "crown": "bronze",
-      "major": "산업경영공학과",
+      "major": {
+        "ko": "산업경영공학과",
+        "en": "Industrial and Management Systems Engineering",
+        "zh": "Industrial and Management Systems Engineering"
+      },
       "year": "21"
     },
     {
@@ -62,7 +74,11 @@
       "instagram": "._o0mini",
       "dept": "StreetDance부장",
       "crown": "bronze",
-      "major": "글로벌커뮤니케이션학부",
+      "major": {
+        "ko": "글로벌커뮤니케이션학부",
+        "en": "Global Communication",
+        "zh": "Global Communication"
+      },
       "year": "26",
       "bio": {
         "ko": "댄서 mc찡찡입니다\n파입 식 세븐 에잇~쿠쿠쿠쿠"
@@ -78,7 +94,11 @@
       },
       "instagram": "gim.99min",
       "dept": "MIDI부장",
-      "major": "컴퓨터공학과",
+      "major": {
+        "ko": "컴퓨터공학과",
+        "en": "Computer Science and Engineering",
+        "zh": "Computer Science and Engineering"
+      },
       "year": "25",
       "photo": "assets/img/artists/gyumin.webp",
       "crown": "bronze"
@@ -93,7 +113,11 @@
       "instagram": "jws_0709",
       "dept": "Management부장",
       "crown": "bronze",
-      "major": "응용수학과",
+      "major": {
+        "ko": "응용수학과",
+        "en": "Applied Mathematics",
+        "zh": "Applied Mathematics"
+      },
       "year": "23",
       "photo": "assets/img/artists/jinwoo.webp"
     },
@@ -110,7 +134,11 @@
         "ko": "20세기출생들은이제좀"
       },
       "photo": "assets/img/artists/heeseok.webp",
-      "major": "산업경영공학과 박사과정",
+      "major": {
+        "ko": "산업경영공학과 박사과정",
+        "en": "Industrial and Management Systems Engineering (Ph.D.)",
+        "zh": "Industrial and Management Systems Engineering (Ph.D.)"
+      },
       "year": "25"
     },
     {
@@ -122,7 +150,11 @@
       },
       "instagram": "lil_dongu",
       "dept": "MC",
-      "major": "디지털콘텐츠학과",
+      "major": {
+        "ko": "디지털콘텐츠학과",
+        "en": "Digital Contents",
+        "zh": "Digital Contents"
+      },
       "year": "22",
       "bio": {
         "ko": "I'm korean lil uzi vert"
@@ -138,7 +170,11 @@
       },
       "instagram": "nkmr_ssang",
       "dept": "MC",
-      "major": "기계공학과",
+      "major": {
+        "ko": "기계공학과",
+        "en": "Mechanical Engineering",
+        "zh": "Mechanical Engineering"
+      },
       "year": "23",
       "bio": {
         "ko": "등록금 flexing"
@@ -154,7 +190,11 @@
       },
       "instagram": "2dangryu",
       "dept": "MC",
-      "major": "자유전공학부",
+      "major": {
+        "ko": "자유전공학부",
+        "en": "Undeclared Major",
+        "zh": "Undeclared Major"
+      },
       "year": "26",
       "bio": {
         "ko": "낭만있는 당류입니다"
@@ -170,7 +210,11 @@
       },
       "instagram": "lovemelovver",
       "dept": "MC",
-      "major": "디지털콘텐츠학과",
+      "major": {
+        "ko": "디지털콘텐츠학과",
+        "en": "Digital Contents",
+        "zh": "Digital Contents"
+      },
       "year": "23",
       "bio": {
         "ko": "랩네임 Demian Lovv로 활동(예정)중인 화석 이재윤이라고합니다 이 늙다리도 이쁘게 봐주세용"
@@ -186,7 +230,11 @@
       },
       "instagram": "kwonsw777",
       "dept": "MC",
-      "major": "전자공학과",
+      "major": {
+        "ko": "전자공학과",
+        "en": "Electronic Engineering",
+        "zh": "Electronic Engineering"
+      },
       "year": "22",
       "bio": {
         "ko": "여친구함"
@@ -202,7 +250,11 @@
       },
       "instagram": "young___x96",
       "dept": "Management",
-      "major": "컴퓨터공학과",
+      "major": {
+        "ko": "컴퓨터공학과",
+        "en": "Computer Science and Engineering",
+        "zh": "Computer Science and Engineering"
+      },
       "year": "22",
       "bio": {
         "ko": "워쓰 래빈 따거"
@@ -217,7 +269,11 @@
         "zh": "Kim Yuseok"
       },
       "instagram": "yusokuuu",
-      "major": "컴퓨터공학과",
+      "major": {
+        "ko": "컴퓨터공학과",
+        "en": "Computer Science and Engineering",
+        "zh": "Computer Science and Engineering"
+      },
       "year": "23",
       "photo": "assets/img/artists/yuseok.webp?v=2",
       "dept": "MIDI"
@@ -231,7 +287,11 @@
       },
       "instagram": "ixxmnk",
       "dept": "MC",
-      "major": "시각디자인학과",
+      "major": {
+        "ko": "시각디자인학과",
+        "en": "Visual Design",
+        "zh": "Visual Design"
+      },
       "year": "26",
       "bio": {
         "ko": "지~멘~~"
@@ -247,7 +307,11 @@
       },
       "instagram": "072_bk",
       "dept": "MC",
-      "major": "건축공학과",
+      "major": {
+        "ko": "건축공학과",
+        "en": "Architectural Engineering",
+        "zh": "Architectural Engineering"
+      },
       "year": "21",
       "bio": {
         "ko": "안녕하세요범찬입니다잘부탁드립니다"
@@ -263,7 +327,11 @@
       },
       "instagram": "rand3nvuz",
       "dept": "MC",
-      "major": "우주과학과",
+      "major": {
+        "ko": "우주과학과",
+        "en": "Astronomy and Space Science",
+        "zh": "Astronomy and Space Science"
+      },
       "year": "25",
       "bio": {
         "ko": "진짜"
@@ -279,7 +347,11 @@
       },
       "instagram": "0nchan_ho0",
       "dept": "MC",
-      "major": "포스트모던음악학과",
+      "major": {
+        "ko": "포스트모던음악학과",
+        "en": "Post-Modern Music",
+        "zh": "Post-Modern Music"
+      },
       "year": "23",
       "bio": {
         "ko": "I’m from the future."
@@ -295,7 +367,11 @@
       },
       "instagram": "inxsmile",
       "dept": "MC",
-      "major": "시각디자인학과",
+      "major": {
+        "ko": "시각디자인학과",
+        "en": "Visual Design",
+        "zh": "Visual Design"
+      },
       "year": "26",
       "bio": {
         "ko": "난 진지해"
@@ -311,7 +387,11 @@
       },
       "instagram": "",
       "dept": "MC",
-      "major": "중국어학과",
+      "major": {
+        "ko": "중국어학과",
+        "en": "Chinese",
+        "zh": "Chinese"
+      },
       "year": "26",
       "bio": {
         "ko": "조금 아픈 애"
@@ -327,7 +407,11 @@
       },
       "instagram": "spicnspanj",
       "dept": "R&B",
-      "major": "컴퓨터공학과",
+      "major": {
+        "ko": "컴퓨터공학과",
+        "en": "Computer Science and Engineering",
+        "zh": "Computer Science and Engineering"
+      },
       "year": "23",
       "bio": {
         "ko": "래빈 유일무이 여성 알앤비 보컬입니다~"
@@ -343,7 +427,11 @@
       },
       "instagram": "for.roche",
       "dept": "Street Dance",
-      "major": "우주과학과",
+      "major": {
+        "ko": "우주과학과",
+        "en": "Astronomy and Space Science",
+        "zh": "Astronomy and Space Science"
+      },
       "year": "23",
       "bio": {
         "ko": "87세 최여진 할머니의 최후의 끌어치기"
@@ -359,7 +447,11 @@
       },
       "instagram": "longeunseo",
       "dept": "Street Dance",
-      "major": "소프트웨어융합학과",
+      "major": {
+        "ko": "소프트웨어융합학과",
+        "en": "Software Convergence",
+        "zh": "Software Convergence"
+      },
       "year": "23",
       "bio": {
         "ko": "무릎 관절 나이 80세"
@@ -375,7 +467,11 @@
       },
       "instagram": "smetan_nik",
       "dept": "Street Dance",
-      "major": "국제학과",
+      "major": {
+        "ko": "국제학과",
+        "en": "International Studies",
+        "zh": "International Studies"
+      },
       "year": "24",
       "photo": "assets/img/artists/alex.webp"
     },
@@ -388,7 +484,11 @@
       },
       "instagram": "jellyluvr202",
       "dept": "Street Dance",
-      "major": "국제학과",
+      "major": {
+        "ko": "국제학과",
+        "en": "International Studies",
+        "zh": "International Studies"
+      },
       "year": "26",
       "bio": {
         "ko": "Bringing in the American style"

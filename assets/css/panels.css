@@ -236,3 +236,13 @@ html:not([lang="en"]) .ac-dept { font-family: "Pretendard Variable", var(--font)
 .ac-nameline { min-width: 0; }
 .ac-nameline .ac-name { min-width: 0; }
 .crown-gold { --c1: #ffd84a; --c2: #b8860b; }
+html[lang="en"] .ac-school span:first-child, html[lang^="zh"] .ac-school span:first-child { white-space: normal; max-width: 15em; }
+@media (max-width: 640px) {
+  html[lang="en"] .ac-nameline, html[lang^="zh"] .ac-nameline { flex-direction: column; gap: 8px; }
+  html[lang="en"] .ac-school, html[lang^="zh"] .ac-school { border-left: 0; padding-left: 0; border-top: 3px solid #111; padding-top: 6px; text-align: center; align-items: center; }
+  html[lang="en"] .ac-school span:first-child, html[lang^="zh"] .ac-school span:first-child { max-width: none; }
+}
+html[lang="en"] .ac-nameline, html[lang^="zh"] .ac-nameline { flex-direction: column; align-items: flex-start; gap: 8px; }
+html[lang="en"] .ac-school, html[lang^="zh"] .ac-school { border-left: 0; padding-left: 0; border-top: 3px solid #111; padding-top: 6px; }
+html[lang="en"] .ac-school span:first-child, html[lang^="zh"] .ac-school span:first-child { max-width: none; }
+@media (max-width: 640px) { html[lang="en"] .ac-nameline, html[lang^="zh"] .ac-nameline { align-items: center; } html[lang="en"] .ac-school, html[lang^="zh"] .ac-school { text-align: center; align-items: center; } }

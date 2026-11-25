@@ -29,7 +29,7 @@ function fillCard(a) {
   // 이름 옆: 학과 (줄바꿈) 학번
   const school = document.getElementById("ac-school");
   school.textContent = "";
-  if (a.major) school.append(el("span", null, a.major));
+  if (a.major) school.append(el("span", null, pick(a.major, LANG)));
   if (a.year) school.append(el("span", null, T("yearFmt").replace("{n}", a.year)));
   school.hidden = !a.major && !a.year;
   const ig = document.getElementById("ac-ig");
