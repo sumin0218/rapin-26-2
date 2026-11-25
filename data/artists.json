@@ -361,6 +361,22 @@
       "major": "국제학과",
       "year": "24",
       "photo": "assets/img/artists/alex.webp"
+    },
+    {
+      "id": "daira",
+      "name": {
+        "ko": "D’aira Barnes",
+        "en": "D’aira Barnes",
+        "zh": "D’aira Barnes"
+      },
+      "instagram": "jellyluvr202",
+      "dept": "Street Dance",
+      "major": "국제학과",
+      "year": "26",
+      "bio": {
+        "ko": "Bringing in the American style"
+      },
+      "photo": "assets/img/artists/daira.webp"
     }
   ]
 }
