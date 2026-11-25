@@ -5,7 +5,7 @@
 //     .Le        처음 등장 연출
 //     .Li (안쪽)  가만히 있을 때 살랑살랑
 //   스크롤 연출은 레이어들을 담은 .poster-cam 전체에 걸어요.
-import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11252352";
+import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11260011";
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 // SAGGING 2026 글자 높이 미세 조정 (+면 아래로). 휴대폰(좁은 화면)에서만 조금 더 내려요
@@ -85,6 +85,7 @@ function fit(stage, art) {
   // PC처럼 화면이 넓어도 사람들을 벌리지 않고 인쇄 포스터(A3) 배치 그대로 가운데에 둬요. 남는 양옆은 배경이 채워요
   const k = Math.min(1, Math.max(0.62, VW / POSTER_W));
   const cx = POSTER_W / 2;
+  const wide = VW >= POSTER_W;
 
   art.style.width = VW + "px";
   art.style.transform = `scale(${s})`;
@@ -92,7 +93,17 @@ function fit(stage, art) {
   LAYERS.forEach((L) => {
     const el = art.querySelector(`.L[data-id="${L.id}"]`);
     const r = el.firstChild;
-    const [x, y, w, h] = L.box;
+    const G = wide && L.pc ? { ...L, ...L.pc } : L;   // PC는 피그마 최신 위치, 모바일은 원래 위치
+    const [x, y, w, h] = G.box;
+    if (L.pc) {
+      el.style.width = w + "px"; el.style.height = h + "px";
+      const hold = el.querySelector(".Lh");
+      if (G.inner && hold) {
+        const [iw, ih] = G.inner;
+        Object.assign(hold.style, { width: iw + "px", height: ih + "px", left: (w - iw) / 2 + "px", top: (h - ih) / 2 + "px",
+          transform: `rotate(${G.rot}deg)` + (L.flip ? " scaleX(-1)" : "") });
+      }
+    }
 
     if (L.kind === "bg") {
       const c = Math.max(1, VW / w, POSTER_H / h);

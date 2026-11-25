@@ -9,6 +9,7 @@
 //   kind:  "bg" = 화면 전체를 덮는 배경, "logo" = 좁은 화면에서 통째로 줄이는 타이틀
 //   dy:    피그마 위치에서 위아래로 더 옮길 양(px, +면 아래)
 //   focus: 스크롤하면 이 레이어 쪽으로 빨려 들어가요
+//   pc:    넓은 화면(PC)에서만 쓰는 위치. 피그마 최신(A3 인쇄본) 배치예요. 모바일은 원래 위치 그대로
 const A = "assets/img/poster/";
 
 export const POSTER_W = 595;
@@ -20,22 +21,23 @@ export const LAYERS = [
                         storm: A + "bg-storm.webp", bolts: A + "lightning.webp" },
   { id: "tile",         src: A + "tile.webp",         box: [72.09, 277.31, 382.172, 309.23], inner: [334.875, 233.995], rot: -14.25, radius: 9,
                         shadow: "8px 5px 8.3px rgba(140,130,63,.26)", depth: 0.4, enter: "slide-up" },
+  { id: "hongseong",    src: A + "hongseong-tingjun.webp", box: [111, 306, 234, 271], shadow: "9px -3px 4px rgba(0,0,0,.31)",
+                        depth: 0.55, enter: "stick", idle: "sway", origin: "50% 100%", alt: "" },
   { id: "logo-a",       src: A + "logo.webp", box: [-3, -218, 602, 802], kind: "logo", depth: 0.9, enter: "drop", group: "logo" },
   { id: "logo-b",       src: A + "logo.webp", box: [-3, -218, 602, 802], kind: "logo", depth: 0.9, enter: "drop", group: "logo" },
   { id: "logo-c",       src: A + "logo.webp", box: [-3, -217, 602, 802], kind: "logo", depth: 0.9, enter: "drop", group: "logo" },
-  { id: "panda",        src: A + "panda.webp", box: [-35, 252, 122, 249], depth: 0.85, enter: "stick", idle: "sway", origin: "50% 100%" },
-  { id: "hongseong",    src: A + "hongseong-tingjun.webp", box: [111, 306, 234, 271], shadow: "9px -3px 4px rgba(0,0,0,.31)",
-                        depth: 0.55, enter: "stick", idle: "sway", origin: "50% 100%", alt: "" },
-  { id: "heli",         src: A + "heli.webp", box: [-50, -36, 183, 145], dy: 22, depth: 1.2, enter: "fly-in", idle: "hover" },
+  { id: "panda",        src: A + "panda.webp", box: [0, 252, 87, 249], depth: 0.85, enter: "stick", idle: "sway", origin: "50% 100%" },
+  { id: "heli",         src: A + "heli.webp", box: [-38, -37, 183, 145], pc: { box: [-50, -36, 183, 145] }, dy: 22, depth: 1.2, enter: "fly-in", idle: "hover" },
   { id: "jimen2",       src: A + "jimen2.webp", box: [258, 283, 325, 435], flip: true, depth: 0.6, enter: "stick", idle: "sway", origin: "50% 100%" },
-  { id: "giraffe",      src: A + "giraffe.webp", fit: "fill", box: [400, 106, 239, 449], depth: 0.7, enter: "rise", idle: "nod", origin: "60% 100%" },
+  { id: "giraffe",      src: A + "giraffe.webp", fit: "fill", box: [395, 106, 239, 449], pc: { box: [400, 106, 239, 449] }, depth: 0.7, enter: "rise", idle: "nod", origin: "60% 100%" },
   { id: "mrdongmen",    src: A + "mrdongmen.webp", box: [223, 283, 451, 652], flip: true, shadow: "11px 4px 4px rgba(0,0,0,.25)",
                         depth: 0.75, enter: "stick", idle: "sway", origin: "50% 100%" },
-  { id: "chicken",      src: A + "chicken.webp", box: [398, 620, 159, 159], depth: 0.85, enter: "pop", idle: "peck", origin: "50% 90%" },
+  { id: "chicken",      src: A + "chicken.webp", box: [409, 626, 159, 159], pc: { box: [398, 620, 159, 159] }, depth: 0.85, enter: "pop", idle: "peck", origin: "50% 90%" },
   { id: "bodo",         src: A + "tile.webp", box: [344.4, 657, 341.494, 298.898], inner: [292.905, 233.995], rot: -14.25, radius: 9,
                         shadow: "0 -12px 8.3px rgba(140,130,63,.5)", depth: 0.5, enter: "slide-up" },
-  { id: "pizza",        src: A + "pizza.webp", box: [-211, 484, 370.667, 373.916], depth: 0.6, enter: "slide-up" },
-  { id: "hakgwan",      src: A + "hakgwan.webp", fit: "fill", focus: true, box: [388.21, 646.04, 230.261, 215.805], inner: [192.123, 171.596], rot: -15.13,
+  { id: "pizza",        src: A + "pizza.webp", box: [-4, 484, 164.25, 374.75], depth: 0.6, enter: "slide-up" },
+  { id: "hakgwan",      src: A + "hakgwan.webp", fit: "fill", focus: true, box: [409, 657, 208.265, 199.285], inner: [173.689, 161.227], rot: -14.37,
+                        pc: { box: [388.21, 646.04, 230.261, 215.805], inner: [192.123, 171.596], rot: -15.13 },
                         shadow: "-3px 1px 4px rgba(0,0,0,.73)", depth: 0.95, enter: "stamp", idle: "tilt" },
   { id: "lildonggyu",   src: A + "lildonggyu.webp", box: [-111, 306, 285, 623], flip: true, shadow: "7px 1px 4px rgba(0,0,0,.25)",
                         depth: 0.9, enter: "stick", idle: "sway", origin: "50% 100%" },
@@ -43,7 +45,7 @@ export const LAYERS = [
                         depth: 0.8, enter: "stick", idle: "sway", origin: "50% 100%" },
   { id: "baksa",        src: A + "baksa-hannam.webp", box: [-62, 530, 407, 329], shadow: "-9px 1px 4px rgba(0,0,0,.25)",
                         depth: 1.0, enter: "stick", idle: "sway", origin: "50% 100%" },
-  { id: "police",       src: A + "police.webp", fit: "fill", box: [230, 633, 226, 209], shadow: "15px 1px 4px rgba(0,0,0,.25)",
+  { id: "police",       src: A + "police.webp", fit: "fill", box: [239, 633, 226, 209], pc: { box: [230, 633, 226, 209] }, shadow: "15px 1px 4px rgba(0,0,0,.25)",
                         depth: 1.05, enter: "stick", idle: "sway", origin: "50% 100%" },
   { id: "rapinisready", src: A + "rapinisready.webp", box: [358, 463, 111.59, 91.513], inner: [105, 83], rot: -4.81,
                         depth: 1.15, enter: "slap", idle: "wobble" },
