@@ -232,3 +232,6 @@ html:not([lang="en"]) .ac-dept { font-family: "Pretendard Variable", var(--font)
 .ac-paper { -webkit-user-select: none; user-select: none; }
 .ac-paper img { -webkit-user-drag: none; }
 .ac-paper .ac-ig, .ac-paper .ac-bio { -webkit-user-select: text; user-select: text; }
+.ac-school span { white-space: nowrap; word-break: keep-all; }
+.ac-nameline { min-width: 0; }
+.ac-nameline .ac-name { min-width: 0; }

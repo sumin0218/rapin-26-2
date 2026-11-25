@@ -332,6 +332,22 @@
         "ko": "87세 최여진 할머니의 최후의 끌어치기"
       },
       "photo": "assets/img/artists/yeojin.webp?v=2"
+    },
+    {
+      "id": "eunseo",
+      "name": {
+        "ko": "장은서",
+        "en": "Jang Eunseo",
+        "zh": "Jang Eunseo"
+      },
+      "instagram": "longeunseo",
+      "dept": "SD",
+      "major": "소프트웨어융합학과",
+      "year": "23",
+      "bio": {
+        "ko": "무릎 관절 나이 80세"
+      },
+      "photo": "assets/img/artists/eunseo.webp"
     }
   ]
 }
