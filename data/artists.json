@@ -571,6 +571,23 @@
         "ko": "365"
       },
       "photo": "assets/img/artists/hojin.webp"
+    },
+    {
+      "id": "ahyeon",
+      "name": {
+        "ko": "도아현",
+        "en": "Do Ahyeon",
+        "zh": "Do Ahyeon"
+      },
+      "instagram": "oa__yeah",
+      "dept": "Street Dance",
+      "major": {
+        "ko": "체육학과",
+        "en": "Physical Education",
+        "zh": "Physical Education"
+      },
+      "year": "26",
+      "photo": "assets/img/artists/ahyeon.webp"
     }
   ]
 }
