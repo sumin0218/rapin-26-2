@@ -514,6 +514,63 @@
         "ko": "We Are Serious About What We Do. Make No Mistake, We Mean Business. This Is No Game."
       },
       "photo": "assets/img/artists/dongmin.webp"
+    },
+    {
+      "id": "jeongbin",
+      "name": {
+        "ko": "양정빈",
+        "en": "Yang Jeongbin",
+        "zh": "Yang Jeongbin"
+      },
+      "instagram": "wjdqls_56",
+      "dept": "MC",
+      "major": {
+        "ko": "컴퓨터공학과",
+        "en": "Computer Science and Engineering",
+        "zh": "Computer Science and Engineering"
+      },
+      "year": "24",
+      "bio": {
+        "ko": "정빈냥이"
+      },
+      "photo": "assets/img/artists/jeongbin.webp"
+    },
+    {
+      "id": "woochan",
+      "name": {
+        "ko": "이우찬",
+        "en": "Lee Woochan",
+        "zh": "Lee Woochan"
+      },
+      "instagram": "wvchn_ll",
+      "dept": "MC",
+      "major": {
+        "ko": "건축학과",
+        "en": "Architecture",
+        "zh": "Architecture"
+      },
+      "year": "24",
+      "photo": "assets/img/artists/woochan.webp"
+    },
+    {
+      "id": "hojin",
+      "name": {
+        "ko": "배호진",
+        "en": "Bae Hojin",
+        "zh": "Bae Hojin"
+      },
+      "instagram": "ldh_ho_jinn",
+      "dept": "MC",
+      "major": {
+        "ko": "건축공학과",
+        "en": "Architectural Engineering",
+        "zh": "Architectural Engineering"
+      },
+      "year": "23",
+      "bio": {
+        "ko": "365"
+      },
+      "photo": "assets/img/artists/hojin.webp"
     }
   ]
 }
