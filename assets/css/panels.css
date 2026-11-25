@@ -246,3 +246,19 @@ html[lang="en"] .ac-nameline, html[lang^="zh"] .ac-nameline { flex-direction: co
 html[lang="en"] .ac-school, html[lang^="zh"] .ac-school { border-left: 0; padding-left: 0; border-top: 3px solid #111; padding-top: 6px; }
 html[lang="en"] .ac-school span:first-child, html[lang^="zh"] .ac-school span:first-child { max-width: none; }
 @media (max-width: 640px) { html[lang="en"] .ac-nameline, html[lang^="zh"] .ac-nameline { align-items: center; } html[lang="en"] .ac-school, html[lang^="zh"] .ac-school { text-align: center; align-items: center; } }
+
+/* 촘촘하게: 사진과 이름표를 작게, 간격도 좁게 (PC 6~7명, 모바일 3명씩) */
+.wall-board { gap: 30px clamp(8px, 2vw, 22px); max-width: 1180px; }
+.wall-board > .cut { width: clamp(104px, 15vw, 156px); }
+.wall-board .cut-btn img { max-height: clamp(120px, 17vw, 190px); }
+.wall-board .cut-tag { font-size: 12.5px; padding: 4px 9px; }
+.wall-board .cut-btn { padding-bottom: 24px; }
+.wall-board .crown { width: 30px; height: 20px; left: -10px; top: -19px; }
+@media (max-width: 640px) {
+  .wall-board { gap: 14px 2px; padding-top: 14px; }
+  .wall-board > .cut { width: calc((100% - 6px) / 3); }
+  .wall-board .cut-btn img { max-height: 34vw; }
+  .wall-board .cut-tag { font-size: 11px; padding: 3px 7px; letter-spacing: -.01em; }
+  .wall-board .cut-btn { padding-bottom: 18px; }
+  .wall-board .crown { width: 26px; height: 18px; left: -9px; top: -17px; }
+}

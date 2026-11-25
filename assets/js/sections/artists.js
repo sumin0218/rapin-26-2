@@ -16,7 +16,7 @@ function seeded(str) {
   return () => { h ^= h << 13; h ^= h >>> 17; h ^= h << 5; return ((h >>> 0) % 10000) / 10000; };
 }
 
-let list = [], LANG = "ko", lastTile = null, T = (k) => k, cur = -1, tiles = [];
+let shuffled = null, list = [], LANG = "ko", lastTile = null, T = (k) => k, cur = -1, tiles = [];
 
 // 왕관 (색은 CSS 의 --c1(밝은 면) --c2(어두운 면) 로)
 const CROWN = '<svg viewBox="0 0 64 44"><path d="M4 38 L2 10 L18 22 L32 2 L46 22 L62 10 L60 38 Z" fill="var(--c1)" stroke="#111" stroke-width="3" stroke-linejoin="round"/><path d="M32 2 L46 22 L62 10 L60 38 L32 38 Z" fill="var(--c2)" opacity=".55"/><rect x="4" y="34" width="56" height="8" rx="1.5" fill="var(--c2)" stroke="#111" stroke-width="3"/><circle cx="2.5" cy="10" r="3.6" fill="var(--c1)" stroke="#111" stroke-width="2.4"/><circle cx="32" cy="3" r="3.6" fill="var(--c1)" stroke="#111" stroke-width="2.4"/><circle cx="61.5" cy="10" r="3.6" fill="var(--c1)" stroke="#111" stroke-width="2.4"/><path d="M12 30 L16 26 L20 30 L16 34 Z M28 30 L32 26 L36 30 L32 34 Z M44 30 L48 26 L52 30 L48 34 Z" fill="#c8281e" stroke="#111" stroke-width="1.6"/><path d="M8 14 L10 32" stroke="#fff" stroke-width="2.2" opacity=".7" stroke-linecap="round"/></svg>';
@@ -124,7 +124,14 @@ function wire() {
 
 export function renderArtists(data, _setlist, lang, t) {
   LANG = lang; if (t) T = t;
-  list = data.artists || [];
+  // 임원진(왕관)은 맨 앞에 정해진 순서대로, 나머지는 들어올 때마다 무작위로 섞어요
+  const all = data.artists || [];
+  if (!shuffled || shuffled.length !== all.length) {
+    const rest = all.filter((a) => !a.crown);
+    for (let i = rest.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [rest[i], rest[j]] = [rest[j], rest[i]]; }
+    shuffled = [...all.filter((a) => a.crown), ...rest];
+  }
+  list = shuffled.map((a) => all.find((b) => b.id === a.id) || a);
   const board = document.getElementById("wall-board");
   board.textContent = "";
   tiles = [];
@@ -139,7 +146,7 @@ export function renderArtists(data, _setlist, lang, t) {
     li.style.setProperty("--dx", Math.round((r() - 0.5) * 14) + "px");
     li.style.setProperty("--sz", (0.92 + r() * 0.1).toFixed(2));
     li.style.setProperty("--tag-rot", ((r() - 0.5) * 10).toFixed(1) + "deg");
-    li.style.setProperty("--tag-dx", Math.round((r() - 0.5) * 24) + "px");
+    li.style.setProperty("--tag-dx", Math.round((r() - 0.5) * (small ? 8 : 14)) + "px");
     li.style.zIndex = String(1 + Math.floor(r() * 5));
 
     const b = el("button", "cut-btn");
