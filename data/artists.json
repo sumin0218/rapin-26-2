@@ -604,7 +604,27 @@
         "zh": "Physical Education"
       },
       "year": "26",
-      "photo": "assets/img/artists/dayeon.webp"
+      "photo": "assets/img/artists/dayeon.webp?v=2"
+    },
+    {
+      "id": "jinhyeop",
+      "name": {
+        "ko": "이진협",
+        "en": "Lee Jinhyeop",
+        "zh": "Lee Jinhyeop"
+      },
+      "instagram": "ijinhyeob82",
+      "dept": "MIDI",
+      "major": {
+        "ko": "신소재공학과",
+        "en": "Advanced Materials Engineering",
+        "zh": "Advanced Materials Engineering"
+      },
+      "year": "22",
+      "bio": {
+        "ko": "'Mosa'"
+      },
+      "photo": "assets/img/artists/jinhyeop.webp"
     }
   ]
 }
