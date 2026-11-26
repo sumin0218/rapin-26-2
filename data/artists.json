@@ -588,6 +588,23 @@
       },
       "year": "26",
       "photo": "assets/img/artists/ahyeon.webp"
+    },
+    {
+      "id": "dayeon",
+      "name": {
+        "ko": "곽다연",
+        "en": "Kwak Dayeon",
+        "zh": "Kwak Dayeon"
+      },
+      "instagram": "dayeon_jigonji",
+      "dept": "Street Dance",
+      "major": {
+        "ko": "체육학과",
+        "en": "Physical Education",
+        "zh": "Physical Education"
+      },
+      "year": "26",
+      "photo": "assets/img/artists/dayeon.webp"
     }
   ]
 }
