@@ -31,7 +31,7 @@
 
 /* ───── 공연 정보: 입장권 ───── */
 .ticket {
-  display: grid; grid-template-columns: 1.25fr 1fr .8fr; color: #111;
+  display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) minmax(min-content, .8fr); color: #111;
   background: var(--bone); border: 3px solid #000; box-shadow: 7px 7px 0 #000;
   position: relative;
 }
@@ -53,7 +53,7 @@
 }
 .t-map:active { transform: translate(2px, 2px); box-shadow: none; }
 .t-stub { background: var(--caution); display: flex; flex-direction: column; }
-.t-adm { margin-top: 6px; font-family: "Bungee", "Pretendard Variable", var(--font); font-size: clamp(16px, 1.9vw, 21px); line-height: 1.15; overflow-wrap: anywhere; }
+.t-adm { margin-top: 6px; font-family: "Bungee", "Pretendard Variable", var(--font); font-size: clamp(16px, 1.9vw, 21px); line-height: 1.15; overflow-wrap: normal; word-break: keep-all; }
 .t-no { margin-top: auto; padding-top: 14px; font-family: "Anton", var(--font); font-size: 15px; letter-spacing: .08em; opacity: .7; }
 @media (max-width: 640px) {
   .ticket { grid-template-columns: 1fr; }
