@@ -625,6 +625,26 @@
         "ko": "'Mosa'"
       },
       "photo": "assets/img/artists/jinhyeop.webp"
+    },
+    {
+      "id": "seyoung",
+      "name": {
+        "ko": "이세영",
+        "en": "Lee Seyoung",
+        "zh": "Lee Seyoung"
+      },
+      "instagram": "se_yxgn",
+      "dept": "MC",
+      "major": {
+        "ko": "스페인어학과",
+        "en": "Spanish",
+        "zh": "Spanish"
+      },
+      "year": "26",
+      "bio": {
+        "ko": "같이 테이크원 콘서트 갈사람 구함"
+      },
+      "photo": "assets/img/artists/seyoung.webp"
     }
   ]
 }
