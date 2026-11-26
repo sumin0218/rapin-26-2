@@ -92,8 +92,31 @@ function initEgg(audio, start) {
     if (taps.length < 3) return;
     taps = [];
     alt = !alt;
-    audio.src = SRC[alt ? 1 : 0] + "?v=11261242";
+    if (alt) pepperRing(); else document.querySelector(".pep-ring")?.remove();
+    audio.src = SRC[alt ? 1 : 0] + "?v=11261247";
     audio.currentTime = 0;
     start();
   }, true);
+}
+
+// 닥터 페퍼 캔 여러 개가 화면 가운데를 중심으로 원을 그리며 돌다가 사라져요
+function pepperRing() {
+  document.querySelector(".pep-ring")?.remove();
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const w = innerWidth, h = innerHeight;
+  const cw = Math.round(Math.max(38, Math.min(78, Math.min(w, h) * 0.11)));
+  const r = Math.min(w, h) / 2 - cw * 0.55;              // 화면 가장자리를 따라 감싸는 원
+  const n = Math.max(10, Math.min(18, Math.round((2 * Math.PI * r) / (cw * 1.9))));
+  const ring = document.createElement("div");
+  ring.className = "pep-ring"; ring.setAttribute("aria-hidden", "true");
+  ring.style.cssText = `--cw:${cw}px;--r:${r}px`;
+  const spin = document.createElement("div"); spin.className = "pr-spin";
+  for (let i = 0; i < n; i++) {
+    const c = document.createElement("div"); c.className = "pr-can";
+    c.style.cssText = `--a:${(360 / n) * i}deg;--d:${(i * 0.06).toFixed(2)}s`;
+    const img = document.createElement("img"); img.src = "assets/img/drpepper.webp"; img.alt = ""; img.decoding = "async";
+    c.append(img); spin.append(c);
+  }
+  ring.append(spin); document.body.append(ring);
+  setTimeout(() => { ring.classList.add("out"); setTimeout(() => ring.remove(), 650); }, 7000);
 }
