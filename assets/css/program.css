@@ -166,7 +166,8 @@ html[lang="en"] .soon-when .side small { font-family: "Bungee", var(--font); fon
 /* 새로고침 직후 애니메이션이 준비되기 전에 Setlist 글자나 카드가 잠깐 보였다 사라지지 않게,
    처음부터 숨겨 두고 poster.js 가 차례에 맞춰 보여줘요 (움직임 줄이기 / GSAP 실패 때는 그냥 보임) */
 html:not(.reduced):not(.no-gsap) .lineup-title,
-html:not(.reduced):not(.no-gsap) .setlist { visibility: hidden; }
+html:not(.reduced):not(.no-gsap) .setlist,
+html:not(.reduced):not(.no-gsap) .site-credit { visibility: hidden; }
 
 /* 셋리스트 맨 끝: 웹페이지 푸터처럼 만든 사람 표시 */
 .site-credit { margin: 56px 0 8px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.18);
