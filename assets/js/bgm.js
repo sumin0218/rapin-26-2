@@ -85,7 +85,9 @@ function initEgg(audio, start) {
     } catch (e) { return true; }
   };
   addEventListener("pointerdown", (e) => {
-    const hh = hitDonggyu(e.clientX, e.clientY);
+    // 포스터를 직접 누른 경우만 (공연 정보·아티스트 소개 같은 창이 위에 떠 있을 땐 무시)
+    const onPoster = e.target.closest && e.target.closest("#poster") && !e.target.closest(".lineup.is-shown, a, button");
+    const hh = onPoster && !document.querySelector(".panel:not([hidden]), .artist-card:not([hidden])") && hitDonggyu(e.clientX, e.clientY);
     if (!hh) { taps = []; return; }
     const now = performance.now();
     taps = taps.filter((t) => now - t < 2000); taps.push(now);
@@ -94,7 +96,7 @@ function initEgg(audio, start) {
     document.querySelector(".egg-bubble")?.remove();
     alt = !alt;
     if (alt) pepperRing(); else document.querySelector(".pep-ring")?.remove();
-    audio.src = SRC[alt ? 1 : 0] + "?v=11261251";
+    audio.src = SRC[alt ? 1 : 0] + "?v=11261332";
     audio.currentTime = 0;
     start();
   }, true);
