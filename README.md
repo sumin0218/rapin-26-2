@@ -1,85 +1,155 @@
-# RAP-IN 26-2 정기공연 페이지
+<p align="center">
+  <img src="docs/readme/poster-desktop.jpg" alt="SAGGING 2026 모션 포스터 (PC 화면)" width="100%">
+</p>
 
-정기공연 관객용 공식 페이지예요. 맨 앞에 포스터 기반 2D 모션 포스터가 있고, 그 아래로 공연 정보, 순서표, 동아리 소개가 이어져요.
-빌드 과정 없이 GitHub Pages에 그대로 올리는 정적 사이트예요.
+<h1 align="center">SAGGING 2026</h1>
+
+<p align="center">
+  경희대학교 흑인음악 동아리 <b>RAP-IN</b> 26-2 정기공연 관객용 페이지<br>
+  2026. 12. 3 (목) 19:00–21:00 · 국제캠퍼스 학생회관 소극장 · 무료 입장
+</p>
+
+<p align="center">
+  <a href="https://khu-rapin-26-2.vercel.app/"><b>khu-rapin-26-2.vercel.app</b></a>
+  &nbsp;·&nbsp;
+  <a href="https://www.instagram.com/rapin_khu/">Instagram @rapin_khu</a>
+</p>
+
+<br>
+
+인쇄용 포스터를 레이어별로 잘라 웹에서 다시 조립한 페이지예요. 스크롤하면 포스터 속 인물과 소품이 화면 밖으로 흩어지고, 그 자리에 셋리스트가 올라와요. 공연 정보와 아티스트 소개는 화면 오른쪽 탭으로 열어요.
+
+빌드 도구 없이 HTML, CSS, 바닐라 JS(ES 모듈)로만 만들었어요.
+
+## 화면
+
+<table>
+  <tr>
+    <td align="center" width="33%"><img src="docs/readme/poster-mobile.jpg" alt="모바일 포스터"></td>
+    <td align="center" width="33%"><img src="docs/readme/scroll-mobile.jpg" alt="스크롤 중간: 레이어가 빠져나간 배경"></td>
+    <td align="center" width="33%"><img src="docs/readme/setlist-mobile.jpg" alt="셋리스트 공개 전 카운트다운"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>모션 포스터</sub></td>
+    <td align="center"><sub>스크롤하면 레이어가 빠져나가요</sub></td>
+    <td align="center"><sub>셋리스트 (공개 전엔 카운트다운)</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/readme/info-mobile.jpg" alt="공연 정보 창"></td>
+    <td align="center"><img src="docs/readme/artist-card.jpg" alt="아티스트 카드"></td>
+    <td align="center"><img src="docs/readme/egg-ring.jpg" alt="이스터 에그 발동 화면"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>공연 정보</sub></td>
+    <td align="center"><sub>아티스트 카드</sub></td>
+    <td align="center"><sub>이스터 에그</sub></td>
+  </tr>
+</table>
+
+<p align="center">
+  <img src="docs/readme/artists-desktop.jpg" alt="아티스트 소개 콜라주 (PC 화면)" width="100%"><br>
+  <sub>아티스트 소개 콜라주 (PC)</sub>
+</p>
+
+## 구현한 것
+
+**모션 포스터**
+- 피그마 포스터에서 뽑은 레이어 23장을 `assets/js/motion/poster-layers.js`에 좌표(포스터 기준 박스)로 적어 두고, 화면 크기에 맞춰 배치해요.
+- 모바일은 원래 포스터 구도를 그대로 쓰고, PC는 A4 인쇄 레이아웃에 맞춘 `pc` 좌표를 따로 덮어써요.
+- 레이어마다 천천히 흔들리는 움직임이 있고, 스크롤 구간은 GSAP ScrollTrigger로 고정(pin)해서 레이어가 하나씩 화면 밖으로 빠져나가요.
+- 배경음악을 켜면 킥 드럼에 맞춰 SAGGING 2026 로고가 살짝 커졌다 돌아와요. 실시간 오디오 분석은 아이폰에서 음악이 끊겨서, `bgm.mp3`의 킥 위치를 미리 뽑아 둔 `data/bgm-kicks.json`을 재생 시간에 맞춰 읽어요.
+
+**셋리스트**
+- `data/setlist.json`의 `revealAt`(11/27 22:00) 전에는 카운트다운만 보이고, 시간이 지나면 1·2·3부 순서표가 열려요.
+
+**공연 정보 / 아티스트 소개**
+- 화면 오른쪽 탭으로 여는 창이에요. 주소 끝에 `#info`, `#artists`를 붙이면 바로 열려요.
+- 아티스트 32명은 사진을 누끼 따서 종이 오린 테두리를 둘러 콜라주로 붙였어요.
+- 임원진은 왕관(회장 금, 부회장 은, 부장 동)과 함께 맨 앞에 오고, 나머지는 이름순(영문 이름 먼저, 그다음 가나다)으로 정렬해요. 언어를 바꿔도 순서는 같아요.
+- 사진을 누르면 카드가 열려요. 화살표 키, ◀ ▶ 버튼, 스와이프로 넘길 수 있어요.
+- 공개 페이지라 학번 전체, 나이, 국적은 싣지 않고 학과와 입학 연도만 보여줘요.
+
+**다국어**
+- 한국어 / English / 中文. 문구는 `data/i18n/{ko,en,zh}.json`에 있고, HTML에는 `data-i18n="키"`만 달아요. 학과명 영문 표기는 경희대 공식 표기를 따라요.
+
+**이스터 에그**
+- 포스터의 lil donggyu를 세 번 누르면 배경음악이 바뀌고 닥터페퍼 캔이 화면을 둘러싸고 돌아요. 누를 때마다 말풍선으로 몇 번 남았는지 알려줘요.
+- 레이어가 겹쳐 있어서, 누른 좌표가 실제로 그 이미지의 불투명한 픽셀 위인지 캔버스로 확인해요.
+
+**그 밖에**
+- `prefers-reduced-motion`을 켠 기기에서는 애니메이션 없이 정적인 화면을 보여줘요.
+- 이미지와 스크립트 주소 끝의 `?v=` 값으로 캐시를 갈아끼워서, 수정한 내용이 바로 반영돼요.
+- 방문자 정보는 수집하지 않아요. 입력 폼, 로그인, 분석 도구, 광고 쿠키가 없고 언어·소리 설정만 브라우저에 저장해요.
 
 ## 폴더 구조
 
 ```
 rapin-26-2/
-├─ index.html              페이지 뼈대 (섹션 순서: 포스터 → 공연 정보 → 순서표 → 소개)
-├─ 404.html                없는 주소로 들어왔을 때
-├─ .nojekyll               GitHub Pages가 파일을 가공하지 않게
+├─ index.html                 페이지 뼈대
+├─ 404.html
 ├─ assets/
 │  ├─ css/
-│  │  ├─ base.css          글꼴, 색(:root 변수), 리셋
-│  │  ├─ layout.css        상단 바, 섹션, 푸터
-│  │  ├─ poster.css        모션 포스터 (스크롤 고정 구간)
-│  │  └─ program.css       순서표
+│  │  ├─ base.css             글꼴, 색 변수, 리셋
+│  │  ├─ layout.css           상단 바, 섹션
+│  │  ├─ poster.css           모션 포스터
+│  │  ├─ panels.css           공연 정보 / 아티스트 창, 콜라주, 카드
+│  │  └─ program.css          셋리스트, 푸터, 이스터 에그
 │  ├─ js/
-│  │  ├─ main.js           진입점
-│  │  ├─ data.js           JSON 불러오기
-│  │  ├─ i18n.js           한국어 / EN / 中文
-│  │  ├─ sections/
-│  │  │  ├─ info.js        공연 정보 채우기
-│  │  │  └─ program.js     순서표 그리기
-│  │  └─ motion/
-│  │     └─ poster.js      스크롤 고정 + 스크롤 연동 애니메이션 (GSAP ScrollTrigger)
-│  ├─ fonts/               Pretendard (SIL OFL 1.1)
-│  ├─ img/
-│  │  ├─ poster/           포스터 레이어 이미지 자리
-│  │  ├─ og/               공유 미리보기 이미지 (1200×630)
-│  │  └─ favicon.svg
-│  └─ vendor/              GSAP, ScrollTrigger (CDN 없이 저장소에 포함)
-├─ docs/
-│  └─ REQUIREMENTS.md  요구사항
-└─ data/
-   ├─ concert.json         날짜, 장소, 입장, 링크
-   ├─ setlist.json         순서표
-   └─ i18n/                언어별 문구 (ko, en, zh)
+│  │  ├─ main.js              진입점
+│  │  ├─ data.js              JSON 불러오기
+│  │  ├─ i18n.js              언어 전환
+│  │  ├─ bgm.js               배경음악, 이스터 에그
+│  │  ├─ sections/            info.js, artists.js, panels.js, program.js
+│  │  └─ motion/              poster.js, poster-layers.js, beat.js
+│  ├─ img/                    poster/ (레이어), artists/ (누끼 사진), og/ (공유 미리보기)
+│  ├─ audio/                  배경음악
+│  ├─ fonts/                  Pretendard, Bungee, Anton
+│  └─ vendor/                 GSAP, ScrollTrigger (CDN 없이 포함)
+├─ data/
+│  ├─ concert.json            날짜, 장소, 지도 링크
+│  ├─ setlist.json            셋리스트, 공개 시각
+│  ├─ artists.json            아티스트 이름, 학과, 인스타, 한 줄 소개
+│  ├─ bgm-kicks.json          배경음악 킥 위치
+│  └─ i18n/                   ko.json, en.json, zh.json
+└─ docs/
+   ├─ REQUIREMENTS.md
+   └─ readme/                 이 문서의 스크린샷
 ```
 
 ## 내용 바꾸기
 
-- **공연 정보:** `data/concert.json`
-- **순서표:** `data/setlist.json` (부 → 곡 순서대로. 아티스트는 공개해도 되는 활동명으로)
-- **문구:** `data/i18n/ko.json`, `en.json`, `zh.json` (HTML에는 `data-i18n="키"`만 달아요)
-- **색:** `assets/css/base.css`의 `:root` 변수
-- **포스터 모션:** `assets/js/motion/poster.js`의 타임라인
+| 바꿀 것 | 파일 |
+|---|---|
+| 날짜, 장소, 링크 | `data/concert.json` |
+| 셋리스트, 공개 시각 | `data/setlist.json` |
+| 아티스트 | `data/artists.json` + `assets/img/artists/{id}.webp` |
+| 화면 문구 | `data/i18n/*.json` |
+| 포스터 레이어 위치 | `assets/js/motion/poster-layers.js` |
 
-## 내 컴퓨터에서 미리 보기
+이미지나 JS를 바꾼 뒤에는 해당 주소의 `?v=` 값을 올려야 방문자 브라우저에 새 파일이 들어가요.
 
-JSON을 불러오기 때문에 파일을 더블클릭해서 열면 안 되고, 간단한 서버로 열어야 해요.
+## 로컬에서 보기
+
+JSON을 `fetch`로 불러오기 때문에 파일을 더블클릭해서 열면 안 되고, 간단한 서버로 열어야 해요.
 
 ```bash
-cd rapin-26-2
 python -m http.server 8000
-# 브라우저에서 http://localhost:8000
+# http://localhost:8000
 ```
 
-## GitHub Pages에 올리기
+## 배포
 
-1. GitHub에서 새 저장소를 만들어요 (예: `rapin-26-2`, Public).
-2. 이 폴더를 올려요.
-   ```bash
-   git init -b main
-   git add .
-   git commit -m "Initial structure"
-   git remote add origin https://github.com/sumin0218/rapin-26-2.git
-   git push -u origin main
-   ```
-3. 저장소 **Settings → Pages**에서 Source를 `Deploy from a branch`, Branch를 `main` / `/ (root)`로 저장해요.
-4. 1~2분 뒤 `https://sumin0218.github.io/rapin-26-2/`에서 열려요.
-5. 배포 주소가 정해지면 `index.html`의 `og:url`, `og:image`를 절대 주소로 바꿔 주세요 (카카오톡 미리보기용).
+`main` 브랜치에 푸시하면 Vercel이 자동으로 배포해요. 빌드 단계는 없고 저장소 파일을 그대로 올려요.
 
-## 공개 페이지 체크리스트
+## 만든 사람
 
-- [ ] 아티스트 표기는 본인 동의를 받은 활동명으로
-- [ ] 내부 자료(임원진 피드백, 리허설 영상, 전체 음원)는 넣지 않기
-- [ ] 포스터 글꼴의 웹 사용 라이선스 확인
-- [ ] 공유 미리보기 이미지(`assets/img/og/og-image.png`) 교체
+- 개발 [@sohnsvmin](https://www.instagram.com/sohnsvmin/)
+- 디자인 [@dongmen8lildongu](https://www.instagram.com/dongmen8lildongu/)
+
+아티스트 정보 수정이나 삭제 요청은 [@rapin_khu](https://www.instagram.com/rapin_khu/)로 보내 주세요.
 
 ## 라이선스
 
-- Pretendard: SIL Open Font License 1.1 (`assets/fonts/OFL.txt`)
-- GSAP: GreenSock Standard License, 무료 사용 가능 (`assets/vendor/README.md`)
+- Pretendard, Bungee, Anton: SIL Open Font License 1.1 (`assets/fonts/`)
+- GSAP: GreenSock Standard License (`assets/vendor/README.md`)
+- 포스터 이미지, 아티스트 사진, 음원의 권리는 RAP-IN과 각 아티스트에게 있어요.
