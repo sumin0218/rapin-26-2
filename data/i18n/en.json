@@ -52,5 +52,7 @@
   "artistsMore": "More artists coming soon",
   "yearFmt": "Class of '{n}",
   "prevArtist": "Previous artist",
-  "nextArtist": "Next artist"
+  "nextArtist": "Next artist",
+  "privacyNote": "This site does not collect any personal information from visitors.",
+  "privacyReq": "To edit or remove artist info, contact"
 }

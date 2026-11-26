@@ -52,5 +52,7 @@
   "artistsMore": "아티스트는 계속 추가돼요",
   "yearFmt": "{n}학번",
   "prevArtist": "이전 아티스트",
-  "nextArtist": "다음 아티스트"
+  "nextArtist": "다음 아티스트",
+  "privacyNote": "이 사이트는 방문자의 개인정보를 수집하지 않습니다.",
+  "privacyReq": "아티스트 정보 수정·삭제 요청:"
 }
