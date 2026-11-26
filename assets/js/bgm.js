@@ -88,12 +88,13 @@ function initEgg(audio, start) {
     const hh = hitDonggyu(e.clientX, e.clientY);
     if (!hh) { taps = []; return; }
     const now = performance.now();
-    taps = taps.filter((t) => now - t < 900); taps.push(now);
-    if (taps.length < 3) return;
+    taps = taps.filter((t) => now - t < 2000); taps.push(now);
+    if (taps.length < 3) { bubble(e.clientX, e.clientY, 3 - taps.length, alt); return; }
     taps = [];
+    document.querySelector(".egg-bubble")?.remove();
     alt = !alt;
     if (alt) pepperRing(); else document.querySelector(".pep-ring")?.remove();
-    audio.src = SRC[alt ? 1 : 0] + "?v=11261247";
+    audio.src = SRC[alt ? 1 : 0] + "?v=11261251";
     audio.currentTime = 0;
     start();
   }, true);
@@ -119,4 +120,25 @@ function pepperRing() {
   }
   ring.append(spin); document.body.append(ring);
   setTimeout(() => { ring.classList.add("out"); setTimeout(() => ring.remove(), 650); }, 7000);
+}
+
+// 동규를 누르면 말풍선으로 몇 번 더 누르라고 알려줘요
+function bubble(x, y, left, alt) {
+  const lang = (document.documentElement.lang || "ko").slice(0, 2);
+  const T = {
+    ko: [left === 2 ? "나 눌렀어? 2번 더 눌러봐" : "1번 더!!", "원래 노래로? 1번 더"],
+    en: [left === 2 ? "Psst… tap me 2 more times" : "1 more!!", "Back to normal? 1 more"],
+    zh: [left === 2 ? "点到我了？再点2下" : "再点1下!!", "换回原曲？再点1下"],
+  }[lang] || [];
+  const text = alt && left === 1 ? T[1] : T[0];
+  let b = document.querySelector(".egg-bubble");
+  if (!b) { b = document.createElement("div"); b.className = "egg-bubble"; b.setAttribute("role", "status"); document.body.append(b); }
+  b.textContent = text;
+  const w = Math.min(220, innerWidth - 24);
+  b.style.left = Math.max(12, Math.min(innerWidth - w - 12, x - w / 2)) + "px";
+  b.style.top = Math.max(50, y - 70) + "px";
+  b.style.maxWidth = w + "px";
+  b.style.setProperty("--tx", (x - Math.max(12, Math.min(innerWidth - w - 12, x - w / 2))) + "px");
+  b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop");
+  clearTimeout(b._t); b._t = setTimeout(() => b.remove(), 2000);
 }
