@@ -62,5 +62,38 @@ export function initBgm() {
   audio.addEventListener("play", sync);
   audio.addEventListener("pause", sync);
   sync();
+  initEgg(audio, () => { want = true; ducked = false; play(); });
   return audio;
+}
+
+// 이스터 에그: 메인 포스터의 lil donggyu를 빠르게 세 번 누르면 BGM이 바뀌어요 (한 번 더 세 번 누르면 원래대로)
+// 포스터 레이어들이 겹쳐 있어서, 누른 자리가 실제로 동규 그림(투명하지 않은 픽셀) 위인지 직접 확인해요.
+function initEgg(audio, start) {
+  const SRC = ["assets/audio/bgm.mp3", "assets/audio/pepper.mp3"];
+  let alt = false, taps = [], cv = null, ctx = null;
+  const hitDonggyu = (x, y) => {
+    const img = document.querySelector('.L[data-id="lildonggyu"] .Lh img');
+    if (!img || !img.complete || !img.naturalWidth) return false;
+    const r = img.getBoundingClientRect();
+    if (x < r.left || x > r.right || y < r.top || y > r.bottom || !r.width) return false;
+    let u = (x - r.left) / r.width; const v = (y - r.top) / r.height;
+    if (getComputedStyle(img.parentElement).transform.startsWith("matrix(-")) u = 1 - u;   // 좌우 뒤집힘
+    try {
+      if (!cv) { cv = document.createElement("canvas"); cv.width = img.naturalWidth; cv.height = img.naturalHeight;
+        ctx = cv.getContext("2d", { willReadFrequently: true }); ctx.drawImage(img, 0, 0); }
+      return ctx.getImageData(Math.floor(u * (cv.width - 1)), Math.floor(v * (cv.height - 1)), 1, 1).data[3] > 40;
+    } catch (e) { return true; }
+  };
+  addEventListener("pointerdown", (e) => {
+    const hh = hitDonggyu(e.clientX, e.clientY);
+    if (!hh) { taps = []; return; }
+    const now = performance.now();
+    taps = taps.filter((t) => now - t < 900); taps.push(now);
+    if (taps.length < 3) return;
+    taps = [];
+    alt = !alt;
+    audio.src = SRC[alt ? 1 : 0] + "?v=11261242";
+    audio.currentTime = 0;
+    start();
+  }, true);
 }
