@@ -266,3 +266,19 @@ html[lang="en"] .ac-school span:first-child, html[lang^="zh"] .ac-school span:fi
 /* 작아진 이름표에 맞춰 테이프도 작게 */
 .wall-board .cut-tag::before { width: 30px; height: 10px; top: -6px; }
 @media (max-width: 640px) { .wall-board .cut-tag::before { width: 24px; height: 8px; top: -5px; } }
+
+/* 넘기기 버튼·번호는 카드 크기와 상관없이 화면에 고정 */
+.ac-wrap .ac-nav { position: fixed; top: 50%; margin-top: -28px; z-index: 2; }
+.ac-wrap .ac-prev { left: max(12px, calc(50% - 380px - 74px)); }
+.ac-wrap .ac-next { right: max(12px, calc(50% - 380px - 74px)); }
+.ac-wrap .ac-count { position: fixed; left: 0; right: 0; bottom: max(14px, env(safe-area-inset-bottom)); }
+@media (max-width: 900px) {
+  /* 폰: 화면 맨 아래 한 줄에 ◀ 번호 ▶, 카드는 그 위 공간 가운데 */
+  .artist-card { padding-bottom: calc(88px + env(safe-area-inset-bottom)); }
+  .ac-wrap { grid-template-columns: minmax(0, 1fr); grid-template-areas: "paper"; }
+  .ac-wrap .ac-paper { max-height: calc(100svh - 124px - env(safe-area-inset-bottom)); }
+  .ac-wrap .ac-nav { top: auto; margin-top: 0; bottom: calc(16px + env(safe-area-inset-bottom)); }
+  .ac-wrap .ac-prev { left: calc(50% - 110px); }
+  .ac-wrap .ac-next { right: calc(50% - 110px); }
+  .ac-wrap .ac-count { bottom: calc(30px + env(safe-area-inset-bottom)); }
+}

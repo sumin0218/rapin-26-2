@@ -5,12 +5,16 @@
 //     .Le        처음 등장 연출
 //     .Li (안쪽)  가만히 있을 때 살랑살랑
 //   스크롤 연출은 레이어들을 담은 .poster-cam 전체에 걸어요.
-import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11271339";
+import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11271354";
 
 const reduced = (window.RAPIN_LITE || matchMedia("(prefers-reduced-motion: reduce)").matches);
 // SAGGING 2026 글자 높이 미세 조정 (+면 아래로). 휴대폰(좁은 화면)에서만 조금 더 내려요
 const LOGO_LIFT_PC = 34, LOGO_LIFT_MOBILE = 50;
 const $ = (s, r = document) => r.querySelector(s);
+
+// 폰: 화면 크기에 맞춰 줄인 그림(assets/img/poster/m/)을 써서 메모리 아끼기
+const PHONE = innerWidth < 700;
+const src = (p) => (PHONE ? p.replace("/poster/", "/poster/m/") : p);
 
 function buildLayers(art) {
   // 배경(개선문)과 앞쪽 레이어를 나눠 담아요. 스크롤하면 앞쪽만 빨려 들어가고 배경은 남아요.
@@ -48,7 +52,7 @@ function buildLayers(art) {
     if (L.shadow) holder.style.filter = `drop-shadow(${L.shadow})`;
 
     const img = document.createElement("img");
-    img.src = L.src;
+    img.src = src(L.src);
     img.alt = "";
     img.decoding = "async";
     img.draggable = false;
@@ -59,12 +63,16 @@ function buildLayers(art) {
     // 번개 버전 배경 (원래 배경과 똑같은 자리에 겹쳐 둬서 개선문이 움직이지 않아요)
     if (L.storm) {
       const st = document.createElement("img");
-      st.className = "storm"; st.src = L.storm; st.alt = ""; st.decoding = "async";
-      const bo = document.createElement("img");
-      bo.className = "bolts"; bo.src = L.bolts; bo.alt = ""; bo.decoding = "async";
+      st.className = "storm"; st.src = src(L.storm); st.alt = ""; st.decoding = "async";
       const fl = document.createElement("div");
       fl.className = "sky-flash";
-      holder.append(st, fl, bo);
+      holder.append(st, fl);
+      // 번개 줄기 그림은 번쩍임을 쓰는 PC에서만 불러와요
+      if (!LITE) {
+        const bo = document.createElement("img");
+        bo.className = "bolts"; bo.src = L.bolts; bo.alt = ""; bo.decoding = "async";
+        holder.append(bo);
+      }
     }
     idle.append(holder);
     enter.append(idle);
@@ -79,7 +87,7 @@ function buildLayers(art) {
     if (!host || !box) return;
     const [x, y, w, h] = L.box, [hx, hy] = host.box;
     const img = document.createElement("img");
-    img.className = "Lon"; img.src = L.src; img.alt = ""; img.decoding = "async"; img.draggable = false;
+    img.className = "Lon"; img.src = src(L.src); img.alt = ""; img.decoding = "async"; img.draggable = false;
     img.style.cssText = `position:absolute;left:${x - hx}px;top:${y - hy}px;width:${w}px;height:${h}px;max-width:none;z-index:1`;
     box.append(img);
   });
@@ -366,9 +374,30 @@ function teaser(gsap, flyTl) {
   timer = setTimeout(play, 3000);
 }
 
+// 가벼운 모드: 레이어 20여 장 대신 미리 합쳐 둔 포스터 그림 한 장 (화면 비율에 가장 가까운 것)
+const FLATS = [40, 46, 52, 57, 66, 75, 90, 120, 150, 180];
+function flatPoster(stage, art) {
+  const a = (stage.clientWidth / Math.max(1, stage.clientHeight)) * 100;
+  const pick = FLATS.reduce((b, x) => (Math.abs(x - a) < Math.abs(b - a) ? x : b), FLATS[0]);
+  const img = document.createElement("img");
+  img.className = "poster-flat"; img.alt = ""; img.decoding = "async"; img.draggable = false;
+  img.src = `assets/img/poster/flat/p${pick}.webp?v=1`;
+  art.classList.add("flat");
+  art.append(img);
+}
+
 export function initPoster() {
   const stage = $(".poster .stage");
   const art = $(".poster-art", stage);
+  if (window.RAPIN_LITE) {
+    flatPoster(stage, art);
+    scrollCue();
+    document.documentElement.classList.remove("loading");
+    document.documentElement.classList.add("reduced");
+    stage.classList.add("ready");
+    dispatchEvent(new Event("poster:show"));
+    return;
+  }
   buildLayers(art);
   sparkles();
 

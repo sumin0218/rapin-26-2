@@ -13,7 +13,8 @@ export function initBgm() {
   place(); addEventListener("resize", place);
   const audio = new Audio("assets/audio/bgm.mp3");
   audio.loop = true;
-  audio.preload = "auto";   // 들어오자마자 미리 받아 둬서 누르는 순간 바로 나오게
+  // PC는 미리 받아 두고, 폰은 재생할 때 받기 (메모리·데이터 아끼기)
+  audio.preload = matchMedia("(hover: none), (max-width: 1099px)").matches ? "none" : "auto";
   audio.volume = VOLUME;
 
   let want = true;
@@ -96,7 +97,7 @@ function initEgg(audio, start) {
     document.querySelector(".egg-bubble")?.remove();
     alt = !alt;
     if (alt) pepperRing(); else document.querySelector(".pep-ring")?.remove();
-    audio.src = SRC[alt ? 1 : 0] + "?v=11271339";
+    audio.src = SRC[alt ? 1 : 0] + "?v=11271354";
     audio.currentTime = 0;
     start();
   }, true);

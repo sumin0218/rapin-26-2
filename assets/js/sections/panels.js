@@ -3,6 +3,7 @@
 const MAP = { info: "info", artists: "artists" };
 let current = null;
 let lastFocus = null;
+const PHONE = matchMedia("(hover: none), (max-width: 1099px)").matches;
 
 function panelFor(hash) {
   const id = MAP[(hash || "").replace("#", "")];
@@ -14,6 +15,8 @@ function show(panel) {
   if (current) hide(current, false);
   lastFocus = document.activeElement;
   panel.hidden = false;
+  // 닫을 때 비워 둔 사진 다시 채우기
+  panel.querySelectorAll("img[data-src]").forEach((i) => { i.src = i.dataset.src; i.removeAttribute("data-src"); });
   requestAnimationFrame(() => panel.classList.add("open"));
   document.documentElement.classList.add("panel-open");
   current = panel;
@@ -24,7 +27,12 @@ function show(panel) {
 
 function hide(panel, restore = true) {
   panel.classList.remove("open");
-  const done = () => { if (!panel.classList.contains("open")) panel.hidden = true; };
+  const done = () => {
+    if (panel.classList.contains("open")) return;
+    panel.hidden = true;
+    // 폰: 닫힌 패널의 사진은 메모리에서 내려놓기 (다시 열면 캐시에서 바로 불러와요)
+    if (PHONE) panel.querySelectorAll("img[src]").forEach((i) => { i.dataset.src = i.getAttribute("src"); i.removeAttribute("src"); });
+  };
   panel.addEventListener("transitionend", done, { once: true });
   setTimeout(done, 400);
   if (current === panel) current = null;
