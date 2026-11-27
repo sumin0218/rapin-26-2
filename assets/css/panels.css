@@ -282,3 +282,27 @@ html[lang="en"] .ac-school span:first-child, html[lang^="zh"] .ac-school span:fi
   .ac-wrap .ac-next { right: calc(50% - 110px); }
   .ac-wrap .ac-count { bottom: calc(30px + env(safe-area-inset-bottom)); }
 }
+
+/* 폰: 카드 높이를 화면에 맞춰 고정하고, 사진이 남는 공간만큼만 차지해서 카드 안 스크롤이 생기지 않게 */
+@media (max-width: 640px) {
+  .ac-wrap .ac-paper {
+    display: flex; flex-direction: column; justify-content: center; gap: 6px;
+    height: min(calc(100svh - 124px - env(safe-area-inset-bottom)), 680px); max-height: none; overflow: hidden;
+  }
+  .ac-photo { flex: 1 1 auto; min-height: 0; width: 80%; display: flex; align-items: center; justify-content: center; }
+  .ac-photo img { width: 100%; height: 100%; max-height: none; object-fit: contain; }
+  .ac-info { flex: none; }
+  .ac-name { font-size: clamp(28px, 8.4vw, 40px); }
+  .ac-school { font-size: 13px; }
+  .ac-bio { margin-top: 12px; padding: 10px 12px; font-size: 16px; }
+}
+/* 키 작은 폰은 글씨·간격을 한 번 더 줄여요 */
+@media (max-width: 640px) and (max-height: 700px) {
+  .ac-wrap .ac-paper { padding: 18px 14px 16px; }
+  .ac-dept { font-size: 13px !important; padding: 3px 8px 2px; }
+  .ac-nameline { margin: 8px 0 2px; gap: 10px; }
+  .ac-name { font-size: clamp(24px, 7.4vw, 32px); }
+  .ac-school { font-size: 12px; }
+  .ac-ig { font-size: 14px; }
+  .ac-bio { margin-top: 8px; padding: 8px 10px; font-size: 14.5px; }
+}
