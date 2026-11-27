@@ -99,7 +99,7 @@ function initEgg(audio, start) {
     alt = !alt;
     window.track?.("easter_egg", { on: alt });
     if (alt) pepperRing(); else document.querySelector(".pep-ring")?.remove();
-    audio.src = SRC[alt ? 1 : 0] + "?v=11272007";
+    audio.src = SRC[alt ? 1 : 0] + "?v=11272055";
     audio.currentTime = 0;
     start();
   }, true);

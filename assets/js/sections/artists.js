@@ -22,10 +22,29 @@ let shuffled = null, list = [], LANG = "ko", lastTile = null, T = (k) => k, cur 
 const CROWN = '<svg viewBox="0 0 64 44"><path d="M4 38 L2 10 L18 22 L32 2 L46 22 L62 10 L60 38 Z" fill="var(--c1)" stroke="#111" stroke-width="3" stroke-linejoin="round"/><path d="M32 2 L46 22 L62 10 L60 38 L32 38 Z" fill="var(--c2)" opacity=".55"/><rect x="4" y="34" width="56" height="8" rx="1.5" fill="var(--c2)" stroke="#111" stroke-width="3"/><circle cx="2.5" cy="10" r="3.6" fill="var(--c1)" stroke="#111" stroke-width="2.4"/><circle cx="32" cy="3" r="3.6" fill="var(--c1)" stroke="#111" stroke-width="2.4"/><circle cx="61.5" cy="10" r="3.6" fill="var(--c1)" stroke="#111" stroke-width="2.4"/><path d="M12 30 L16 26 L20 30 L16 34 Z M28 30 L32 26 L36 30 L32 34 Z M44 30 L48 26 L52 30 L48 34 Z" fill="#c8281e" stroke="#111" stroke-width="1.6"/><path d="M8 14 L10 32" stroke="#fff" stroke-width="2.2" opacity=".7" stroke-linecap="round"/></svg>';
 const card = () => document.getElementById("artist-card");
 
+// 큰 사진 미리 받기 (받아서 디코딩까지 끝낸 것만 기록)
+const loaded = new Set(), pending = new Map();
+function preload(url) {
+  if (loaded.has(url)) return Promise.resolve();
+  if (pending.has(url)) return pending.get(url);
+  const im = new Image(); im.decoding = "async"; im.src = url;
+  const p = (im.decode ? im.decode() : new Promise((r, j) => { im.onload = r; im.onerror = j; }))
+    .then(() => { loaded.add(url); pending.delete(url); }, () => { pending.delete(url); });
+  pending.set(url, p);
+  return p;
+}
+
 function fillCard(a) {
   const ci = document.getElementById("ac-img");
   if (!ci.dataset.retryBound) { ci.dataset.retryBound = "1"; ci.addEventListener("error", () => { if (ci.dataset.retried === ci.getAttribute("src")) return; const u = ci.getAttribute("src"); ci.dataset.retried = u; setTimeout(() => { ci.src = u + (u.includes("?") ? "&" : "?") + "r=" + Date.now(); }, 600); }); }
-  ci.src = a.photo;
+  // 이미 받아 둔 작은 사진을 먼저 바로 보여주고(이전 사람 사진이 남지 않게), 큰 사진이 준비되면 바꿔 끼워요
+  const full = a.photo, small = full.replace("/artists/", "/artists/sm/");
+  ci.dataset.want = full;
+  ci.src = loaded.has(full) ? full : small;
+  if (!loaded.has(full)) preload(full).then(() => { if (ci.dataset.want === full) ci.src = full; });
+  // 앞뒤 두 명씩 미리 받아 두기
+  const k = list.indexOf(a);
+  if (k >= 0) [1, -1, 2, -2].forEach((d) => preload(list[(k + d + list.length) % list.length].photo));
   document.getElementById("ac-name").textContent = pick(a.name, LANG);
   document.getElementById("ac-dept").textContent = a.dept || "";
   // 이름 옆: 학과 (줄바꿈) 학번
@@ -170,6 +189,8 @@ export function renderArtists(data, _setlist, lang, t) {
     const b = el("button", "cut-btn");
     b.type = "button";
     b.setAttribute("aria-label", pick(a.name, lang));
+    // 손가락·마우스가 닿는 순간 큰 사진을 미리 받기 시작
+    b.addEventListener("pointerdown", () => preload(a.photo), { passive: true });
     const img = el("img");
     // 패널을 열 때 한꺼번에 불러와요 (lazy 로딩은 아이폰에서 가끔 안 뜨는 사진이 생겨서 뺐어요)
     const url = a.photo.replace("/artists/", "/artists/sm/");
