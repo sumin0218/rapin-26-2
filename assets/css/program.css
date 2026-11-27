@@ -215,7 +215,7 @@ html:not(.reduced):not(.no-gsap) .site-credit { visibility: hidden; }
   position: relative; z-index: 1; display: flex; align-items: center; gap: 10px; height: 0; padding: 0;
   font-family: "Bungee", var(--font); font-size: 10.5px; line-height: 1; letter-spacing: .14em; color: var(--c);
 }
-.cues .mc-seg::before, .cues .mc-seg::after { content: ""; flex: 1; border-top: 2px solid currentColor; }
+.cues .mc-seg::before, .cues .mc-seg::after { content: ""; flex: 1; border-top: 2px solid var(--bone); }
 .cues .cue:has(+ .mc-seg) { border-bottom: 0; }
 .cues .mc-seg + .cue { border-top: 0; }
 /* 1부와 2부 사이 쉬는 시간: 출입금지 테이프 띠 */
