@@ -50,7 +50,7 @@ function openCard(i, tile) {
   c.querySelector(".ac-x").focus({ preventScroll: true });
 }
 // 다음/이전 아티스트: 종이가 옆으로 빠지고 반대편에서 들어와요 (끝에서는 처음으로 돌아가요)
-const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const reduce = (window.RAPIN_LITE || matchMedia("(prefers-reduced-motion: reduce)").matches);
 let busy = false;
 function go(dir, fromDx = 0) {
   if (!list.length || busy) return;
@@ -158,7 +158,7 @@ export function renderArtists(data, _setlist, lang, t) {
     b.type = "button";
     b.setAttribute("aria-label", pick(a.name, lang));
     const img = el("img");
-    img.src = a.photo; img.alt = ""; img.loading = "lazy"; img.decoding = "async";
+    img.src = a.photo.replace("/artists/", "/artists/sm/"); img.alt = ""; img.loading = "lazy"; img.decoding = "async";
     const tag = el("span", "cut-tag", pick(a.name, lang));
     // 임원진은 이름표에 왕관 (회장단 은색, 부장 동색)
     if (a.crown) {

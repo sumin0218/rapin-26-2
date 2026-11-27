@@ -2,19 +2,42 @@
 <html lang="ko" class="no-js">
 <head>
 <meta charset="utf-8">
+<script>
+/* 가벼운 모드: 메모리가 적은 폰이거나, 직전에 이 탭이 강제로 꺼졌으면(메모리 초과) 큰 스크롤 애니메이션 없이 보여줘요 */
+(function () {
+  var d = document.documentElement, ss = null, lite = false;
+  try { ss = sessionStorage; } catch (e) {}
+  var q = location.search;
+  if (/[?&]lite=0/.test(q)) { try { ss && ss.removeItem("rapin-lite"); } catch (e) {} }
+  else {
+    var mem = navigator.deviceMemory;
+    if (/[?&]lite=1/.test(q)) lite = true;
+    if (mem && mem <= 4) lite = true;                     // 안드로이드 크롬: 램 4GB 이하
+    try {
+      if (ss && ss.getItem("rapin-lite")) lite = true;
+      if (ss && ss.getItem("rapin-alive")) lite = true;     // 지난번에 정상 종료 없이 꺼짐 = 튕김
+    } catch (e) {}
+  }
+  if (lite) { d.classList.add("reduced", "lite"); window.RAPIN_LITE = true; try { ss && ss.setItem("rapin-lite", "1"); } catch (e) {} }
+  try {
+    ss && ss.setItem("rapin-alive", "1");
+    addEventListener("pagehide", function () { try { ss.removeItem("rapin-alive"); } catch (e) {} });
+  } catch (e) {}
+})();
+</script>
 <!-- 예전 주소(GitHub Pages)로 들어오면 새 주소로 -->
 <script>if (location.hostname === "sumin0218.github.io" || location.hostname === "sagging2026.vercel.app") location.replace("https://khu-rapin-26-2.vercel.app/" + location.hash);</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>RAP-IN 26-2 정기공연 SAGGING 2026</title>
-<meta name="description" content="12월 3일(목) 19:00 경희대 국제캠퍼스 학생회관 소극장. 셋리스트는 11/27(금) 22:00 공개">
+<meta name="description" content="12월 3일(목) 19:00 경희대 국제캠퍼스 학생회관 소극장. 최종 셋리스트 공개">
 <meta name="theme-color" content="#0d0d0d">
 <!-- 링크 공유 미리보기 (카카오톡, 인스타 DM, 문자 등). 사진은 꼭 https 전체 주소로 -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="RAP-IN">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="RAP-IN 26-2 정기공연 SAGGING 2026">
-<meta property="og:description" content="12월 3일(목) 19:00 경희대 국제캠퍼스 학생회관 소극장. 셋리스트는 11/27(금) 22:00 공개">
-<meta property="og:image" content="https://khu-rapin-26-2.vercel.app/assets/img/og/og-image.jpg?v=11271327">
+<meta property="og:description" content="12월 3일(목) 19:00 경희대 국제캠퍼스 학생회관 소극장. 최종 셋리스트 공개">
+<meta property="og:image" content="https://khu-rapin-26-2.vercel.app/assets/img/og/og-image.jpg?v=11271339">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="SAGGING 2026, 12.03 목 19:00 학생회관 소극장">
@@ -22,19 +45,19 @@
 <link rel="canonical" href="https://khu-rapin-26-2.vercel.app/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="RAP-IN 26-2 정기공연 SAGGING 2026">
-<meta name="twitter:description" content="12월 3일(목) 19:00 경희대 국제캠퍼스 학생회관 소극장. 셋리스트는 11/27(금) 22:00 공개">
-<meta name="twitter:image" content="https://khu-rapin-26-2.vercel.app/assets/img/og/og-image.jpg?v=11271327">
+<meta name="twitter:description" content="12월 3일(목) 19:00 경희대 국제캠퍼스 학생회관 소극장. 최종 셋리스트 공개">
+<meta name="twitter:image" content="https://khu-rapin-26-2.vercel.app/assets/img/og/og-image.jpg?v=11271339">
 
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" href="assets/img/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/PretendardVariable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/audio/bgm.mp3" as="audio" type="audio/mpeg">
-<link rel="stylesheet" href="assets/css/base.css?v=11271327">
-<link rel="stylesheet" href="assets/css/layout.css?v=11271327">
-<link rel="stylesheet" href="assets/css/poster.css?v=11271327">
-<link rel="stylesheet" href="assets/css/program.css?v=11271327">
-<link rel="stylesheet" href="assets/css/panels.css?v=11271327">
+<link rel="stylesheet" href="assets/css/base.css?v=11271339">
+<link rel="stylesheet" href="assets/css/layout.css?v=11271339">
+<link rel="stylesheet" href="assets/css/poster.css?v=11271339">
+<link rel="stylesheet" href="assets/css/program.css?v=11271339">
+<link rel="stylesheet" href="assets/css/panels.css?v=11271339">
 <script>document.documentElement.classList.replace("no-js","js");document.documentElement.classList.add("loading");</script>
 </head>
 <body>
@@ -193,6 +216,6 @@
 <!-- GSAP은 외부 CDN 대신 저장소 안에 같이 둬요 (공연장 와이파이가 불안정해도 동작하게) -->
 <script src="assets/vendor/gsap.min.js" defer></script>
 <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
-<script type="module" src="assets/js/main.js?v=11271327"></script>
+<script type="module" src="assets/js/main.js?v=11271339"></script>
 </body>
 </html>

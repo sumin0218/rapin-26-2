@@ -5,9 +5,9 @@
 //     .Le        처음 등장 연출
 //     .Li (안쪽)  가만히 있을 때 살랑살랑
 //   스크롤 연출은 레이어들을 담은 .poster-cam 전체에 걸어요.
-import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11271327";
+import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11271339";
 
-const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const reduced = (window.RAPIN_LITE || matchMedia("(prefers-reduced-motion: reduce)").matches);
 // SAGGING 2026 글자 높이 미세 조정 (+면 아래로). 휴대폰(좁은 화면)에서만 조금 더 내려요
 const LOGO_LIFT_PC = 34, LOGO_LIFT_MOBILE = 50;
 const $ = (s, r = document) => r.querySelector(s);
@@ -241,6 +241,8 @@ function scrollAnim(gsap) {
       onUpdate: (st) => {
         root.classList.toggle("past-intro", st.progress > 0.02);
         setStorm(st.progress > 0.5);
+        // 다 빠져나간 레이어는 아예 그리지 않게 (폰 메모리 아끼기)
+        root.classList.toggle("layers-gone", st.progress > 0.75);
       },
     },
   });
@@ -281,6 +283,7 @@ function scrollAnim(gsap) {
 
 // 번개: 셋리스트 화면에서만, 불규칙한 간격으로 번쩍. 번개가 칠 때 하늘도 같이 밝아져요.
 let stormOn = false, stormTimer = 0;
+const LITE = matchMedia("(hover: none), (max-width: 1099px)").matches;
 function strike() {
   const { gsap } = window;
   const bolts = $(".poster-bgs .bolts"), flash = $(".poster-bgs .sky-flash");
@@ -299,7 +302,8 @@ function setStorm(on) {
   if (on === stormOn) return;
   stormOn = on;
   clearTimeout(stormTimer);
-  if (on) stormTimer = setTimeout(strike, 350);
+  // 폰에선 번개 번쩍임 생략 (화면 전체를 매번 다시 그려서 무거움). 번개 하늘 그림만 남겨요
+  if (on && !LITE) stormTimer = setTimeout(strike, 350);
   else window.gsap.to(".poster-bgs .bolts, .poster-bgs .sky-flash", { opacity: 0, duration: 0.2 });
 }
 

@@ -121,8 +121,6 @@ export function renderProgram(setlist, lang, t) {
         const fn = s.feat.map((a) => (typeof a === "object" ? a[lang] ?? a.ko : a)).join(", ");
         art.append(" ", el("span", "feat", "feat. " + fn));
       }
-      // 모바일에선 크레딧을 아티스트 줄 끝에 붙여서 한 줄 아끼기 (PC에선 숨김)
-      if (cr) art.append(el("span", "credit-inline", cr));
       song.append(art);
       li.append(song);
 
