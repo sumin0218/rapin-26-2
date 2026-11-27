@@ -79,7 +79,7 @@ export function renderProgram(setlist, lang, t) {
   let no = 0;
 
   setlist.parts.forEach((part, pi) => {
-    const sec = el("section", "part");
+    const sec = el("section", "part p" + (pi + 1));
     const name = t("part").replace("{n}", pi + 1);
     sec.setAttribute("aria-label", name);
 
@@ -88,7 +88,13 @@ export function renderProgram(setlist, lang, t) {
     sec.append(head);
 
     const list = el("ol", "cues");
-    part.songs.forEach((s) => {
+    part.songs.forEach((s, si) => {
+      // 세 곡마다 MC 멘트 구간 (부의 마지막 곡 뒤에는 없음)
+      if (si > 0 && si % 3 === 0) {
+        const mc = el("li", "mc-seg");
+        mc.append(el("span", null, "MC SEGMENT"));
+        list.append(mc);
+      }
       no += 1;
       const li = el("li", "cue");
       li.append(el("span", "no", String(no).padStart(2, "0")));
@@ -125,6 +131,14 @@ export function renderProgram(setlist, lang, t) {
 
     sec.append(list);
     root.append(sec);
+    // 1부와 2부 사이 쉬는 시간
+    if (pi < setlist.parts.length - 1) {
+      const im = el("div", "intermission");
+      im.setAttribute("role", "separator");
+      im.setAttribute("aria-label", "INTERMISSION · " + t("intermission"));
+      im.append(el("b", null, "INTERMISSION"), el("small", null, t("intermission")));
+      root.append(im);
+    }
   });
 }
 
