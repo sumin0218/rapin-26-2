@@ -239,3 +239,7 @@ html:not(.reduced):not(.no-gsap) .site-credit { visibility: hidden; }
   .intermission b { writing-mode: vertical-rl; font-size: 18px; padding: 10px 2px; }
   .intermission small { writing-mode: vertical-rl; padding: 8px 2px; font-size: 11.5px; }
 }
+
+/* 원래 대소문자를 살려야 하는 제목 (예: with the IE X ExtraL) */
+.cue .title.keep-case { text-transform: none; }
+.cue .artists .feat { white-space: nowrap; }

@@ -102,15 +102,23 @@ export function renderProgram(setlist, lang, t) {
       const song = el("div", "song");
       // 윗줄: 제목, 무대 종류 표시, 크레딧 (PC에선 한 줄로, 모바일에선 세로로)
       const top = el("div", "top");
-      top.append(el("b", "title", s.title));
-      for (const tg of s.tags || []) {
-        const label = tg === "sd" ? "STREET DANCE" : tg === "cover" ? "COVER" : tg.toUpperCase();
-        top.append(el("span", "tag tag-" + tg, label));
-      }
+      top.append(el("b", "title" + (s.keepCase ? " keep-case" : ""), s.title));
+      // 무대 종류: STREET DANCE / MC / R&B 는 한 판에 "X"로 묶고, COVER는 따로
+      const KIND = { sd: "STREET DANCE", mc: "MC", rnb: "R&B" };
+      const tags = s.tags || [];
+      const kinds = tags.filter((tg) => KIND[tg]);
+      if (kinds.length) top.append(el("span", "tag tag-" + kinds.join("-"), kinds.map((k) => KIND[k]).join(" X ")));
+      for (const tg of tags) if (!KIND[tg]) top.append(el("span", "tag tag-" + tg, tg.toUpperCase()));
       if (s.credit) top.append(el("small", "credit", typeof s.credit === "object" ? s.credit[lang] ?? s.credit.ko : s.credit));
       song.append(top);
       const names = (s.artists || []).map((a) => (typeof a === "object" ? a[lang] ?? a.ko : a));
-      song.append(el("small", "artists", names.length ? names.join(", ") : t("tba")));
+      const art = el("small", "artists", names.length ? names.join(", ") : t("tba"));
+      // feat. 참여자는 아티스트 줄 끝에 이어서
+      if (s.feat && s.feat.length) {
+        const fn = s.feat.map((a) => (typeof a === "object" ? a[lang] ?? a.ko : a)).join(", ");
+        art.append(" ", el("span", "feat", "feat. " + fn));
+      }
+      song.append(art);
       li.append(song);
 
       if (s.preview) {

@@ -19,7 +19,10 @@
               "zh": "Dongmen Cho"
             }
           ],
-          "preview": "assets/audio/preview/s12.mp3?v=2"
+          "preview": "assets/audio/preview/s12.mp3?v=2",
+          "tags": [
+            "mc"
+          ]
         },
         {
           "id": "s23",
@@ -46,13 +49,16 @@
               "zh": "Lee Jinhyeop"
             }
           ],
-          "preview": "assets/audio/preview/s23.mp3?v=2"
+          "preview": "assets/audio/preview/s23.mp3?v=2",
+          "tags": [
+            "mc"
+          ]
         },
         {
           "id": "s24",
           "title": "Hustle2Ambition",
           "tags": [
-            "team"
+            "mc"
           ],
           "artists": [
             {
@@ -77,7 +83,7 @@
           "id": "s18",
           "title": "Folded",
           "tags": [
-            "team",
+            "rnb",
             "cover"
           ],
           "artists": [
@@ -98,7 +104,7 @@
           "id": "s02",
           "title": "Ohmygod",
           "tags": [
-            "team"
+            "mc"
           ],
           "artists": [
             {
@@ -139,13 +145,16 @@
               "zh": "Lee Seyoung"
             }
           ],
-          "preview": "assets/audio/preview/s05.mp3?v=3"
+          "preview": "assets/audio/preview/s05.mp3?v=3",
+          "tags": [
+            "mc"
+          ]
         },
         {
           "id": "s11",
           "title": "GOAT",
           "tags": [
-            "team"
+            "mc"
           ],
           "artists": [
             {
@@ -186,11 +195,15 @@
               "zh": "Jung Sanghun"
             }
           ],
-          "preview": "assets/audio/preview/s04.mp3?v=2"
+          "preview": "assets/audio/preview/s04.mp3?v=2",
+          "tags": [
+            "mc"
+          ]
         },
         {
           "id": "s28",
           "title": "with the IE X ExtraL",
+          "keepCase": true,
           "tags": [
             "sd"
           ],
@@ -241,7 +254,7 @@
           "id": "s13",
           "title": "Ring",
           "tags": [
-            "team"
+            "mc"
           ],
           "artists": [
             {
@@ -292,7 +305,10 @@
               "zh": "Lee Jinhyeop"
             }
           ],
-          "preview": "assets/audio/preview/s15.mp3?v=2"
+          "preview": "assets/audio/preview/s15.mp3?v=2",
+          "tags": [
+            "mc"
+          ]
         },
         {
           "id": "s22",
@@ -314,7 +330,10 @@
               "zh": "Sohn Sumin"
             }
           ],
-          "preview": "assets/audio/preview/s22.mp3?v=2"
+          "preview": "assets/audio/preview/s22.mp3?v=2",
+          "tags": [
+            "mc"
+          ]
         }
       ]
     },
@@ -340,7 +359,10 @@
               "zh": "Kim Yuseok"
             }
           ],
-          "preview": "assets/audio/preview/s30.mp3?v=2"
+          "preview": "assets/audio/preview/s30.mp3?v=2",
+          "tags": [
+            "mc"
+          ]
         },
         {
           "id": "s10",
@@ -357,7 +379,10 @@
               "zh": "Lan Hongcheng"
             }
           ],
-          "preview": "assets/audio/preview/s10.mp3?v=3"
+          "preview": "assets/audio/preview/s10.mp3?v=3",
+          "tags": [
+            "mc"
+          ]
         },
         {
           "id": "s20",
@@ -374,7 +399,10 @@
               "zh": "Lan Hongcheng"
             }
           ],
-          "preview": "assets/audio/preview/s20.mp3?v=2"
+          "preview": "assets/audio/preview/s20.mp3?v=2",
+          "tags": [
+            "mc"
+          ]
         },
         {
           "id": "s01",
@@ -396,7 +424,10 @@
               "zh": "Kim Minseong"
             }
           ],
-          "preview": "assets/audio/preview/s01.mp3?v=2"
+          "preview": "assets/audio/preview/s01.mp3?v=2",
+          "tags": [
+            "mc"
+          ]
         },
         {
           "id": "s21",
@@ -418,7 +449,10 @@
               "zh": "Kim Dogyun"
             }
           ],
-          "preview": "assets/audio/preview/s21.mp3?v=2"
+          "preview": "assets/audio/preview/s21.mp3?v=2",
+          "tags": [
+            "mc"
+          ]
         },
         {
           "id": "s07",
@@ -435,7 +469,10 @@
               "zh": "In Woosung"
             }
           ],
-          "preview": "assets/audio/preview/s07.mp3?v=2"
+          "preview": "assets/audio/preview/s07.mp3?v=2",
+          "tags": [
+            "mc"
+          ]
         },
         {
           "id": "s03",
@@ -467,7 +504,10 @@
               "zh": "Sohn Sumin"
             }
           ],
-          "preview": "assets/audio/preview/s03.mp3?v=2"
+          "preview": "assets/audio/preview/s03.mp3?v=2",
+          "tags": [
+            "mc"
+          ]
         },
         {
           "id": "s06",
@@ -504,13 +544,17 @@
               "zh": "Kim Gyumin"
             }
           ],
-          "preview": "assets/audio/preview/s06.mp3?v=2"
+          "preview": "assets/audio/preview/s06.mp3?v=2",
+          "tags": [
+            "mc"
+          ]
         },
         {
           "id": "s34",
           "title": "KOO KOO",
           "tags": [
-            "sd"
+            "sd",
+            "mc"
           ],
           "credit": {
             "ko": "원곡. 정준혁",
@@ -564,7 +608,7 @@
           "id": "s33",
           "title": "불켜라",
           "tags": [
-            "team"
+            "mc"
           ],
           "artists": [
             {
@@ -594,13 +638,8 @@
           "id": "s29",
           "title": "트랩하우스",
           "tags": [
-            "team"
+            "mc"
           ],
-          "credit": {
-            "ko": "feat. 손수민",
-            "en": "feat. Sohn Sumin",
-            "zh": "feat. Sohn Sumin"
-          },
           "artists": [
             {
               "ko": "조동민",
@@ -621,6 +660,13 @@
               "ko": "남홍성",
               "en": "Lan Hongcheng",
               "zh": "Lan Hongcheng"
+            }
+          ],
+          "feat": [
+            {
+              "ko": "손수민",
+              "en": "Sohn Sumin",
+              "zh": "Sohn Sumin"
             }
           ],
           "preview": "assets/audio/preview/s29.mp3?v=2"
@@ -650,7 +696,10 @@
               "zh": "Sohn Sumin"
             }
           ],
-          "preview": "assets/audio/preview/s26.mp3?v=2"
+          "preview": "assets/audio/preview/s26.mp3?v=2",
+          "tags": [
+            "mc"
+          ]
         }
       ]
     }
