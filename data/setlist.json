@@ -1,6 +1,650 @@
 {
-  "_note": "셋리스트는 11/27(금) 22:00 에 공개해요. 공개할 때 released 를 true 로 바꾸고 parts 에 곡을 넣어 주세요 (형식은 docs/REQUIREMENTS.md 또는 이전 버전 참고).",
-  "released": false,
+  "released": true,
   "revealAt": "2026-11-27T22:00:00+09:00",
-  "parts": []
+  "parts": [
+    {
+      "songs": [
+        {
+          "id": "s12",
+          "title": "포테토칩",
+          "artists": [
+            {
+              "ko": "곽동규",
+              "en": "Kwak Donggyu",
+              "zh": "Kwak Donggyu"
+            },
+            {
+              "ko": "조동민",
+              "en": "Dongmen Cho",
+              "zh": "Dongmen Cho"
+            }
+          ],
+          "preview": "assets/audio/preview/s12.mp3?v=1"
+        },
+        {
+          "id": "s23",
+          "title": "웰치스",
+          "credit": {
+            "ko": "prod. 김규민, 김유석",
+            "en": "prod. Kim Gyumin, Kim Yuseok",
+            "zh": "prod. Kim Gyumin, Kim Yuseok"
+          },
+          "artists": [
+            {
+              "ko": "곽동규",
+              "en": "Kwak Donggyu",
+              "zh": "Kwak Donggyu"
+            },
+            {
+              "ko": "김유석",
+              "en": "Kim Yuseok",
+              "zh": "Kim Yuseok"
+            },
+            {
+              "ko": "이진협",
+              "en": "Lee Jinhyeop",
+              "zh": "Lee Jinhyeop"
+            }
+          ],
+          "preview": "assets/audio/preview/s23.mp3?v=1"
+        },
+        {
+          "id": "s24",
+          "title": "Hustle2Ambition",
+          "tags": [
+            "team"
+          ],
+          "artists": [
+            {
+              "ko": "김도균",
+              "en": "Kim Dogyun",
+              "zh": "Kim Dogyun"
+            },
+            {
+              "ko": "이시헌",
+              "en": "Lee Siheon",
+              "zh": "Lee Siheon"
+            },
+            {
+              "ko": "권용범",
+              "en": "Kwon Yongbeom",
+              "zh": "Kwon Yongbeom"
+            }
+          ],
+          "preview": "assets/audio/preview/s24.mp3?v=1"
+        },
+        {
+          "id": "s18",
+          "title": "Folded",
+          "tags": [
+            "team",
+            "cover"
+          ],
+          "artists": [
+            {
+              "ko": "전영채",
+              "en": "Jeon Youngchae",
+              "zh": "Jeon Youngchae"
+            },
+            {
+              "ko": "손수민",
+              "en": "Sohn Sumin",
+              "zh": "Sohn Sumin"
+            }
+          ],
+          "preview": "assets/audio/preview/s18.mp3?v=1"
+        },
+        {
+          "id": "s02",
+          "title": "Ohmygod",
+          "tags": [
+            "team"
+          ],
+          "artists": [
+            {
+              "ko": "조동민",
+              "en": "Dongmen Cho",
+              "zh": "Dongmen Cho"
+            },
+            {
+              "ko": "김지민",
+              "en": "Kim Jimin",
+              "zh": "Kim Jimin"
+            },
+            {
+              "ko": "배호진",
+              "en": "Bae Hojin",
+              "zh": "Bae Hojin"
+            },
+            {
+              "ko": "남홍성",
+              "en": "Lan Hongcheng",
+              "zh": "Lan Hongcheng"
+            }
+          ],
+          "preview": "assets/audio/preview/s02.mp3?v=1"
+        },
+        {
+          "id": "s05",
+          "title": "토끼와거북이",
+          "artists": [
+            {
+              "ko": "이시헌",
+              "en": "Lee Siheon",
+              "zh": "Lee Siheon"
+            },
+            {
+              "ko": "이세영",
+              "en": "Lee Seyoung",
+              "zh": "Lee Seyoung"
+            }
+          ],
+          "preview": "assets/audio/preview/s05.mp3?v=1"
+        },
+        {
+          "id": "s11",
+          "title": "GOAT",
+          "tags": [
+            "team"
+          ],
+          "artists": [
+            {
+              "ko": "전정호",
+              "en": "Jeon Jeongho",
+              "zh": "Jeon Jeongho"
+            },
+            {
+              "ko": "양정빈",
+              "en": "Yang Jeongbin",
+              "zh": "Yang Jeongbin"
+            },
+            {
+              "ko": "이세영",
+              "en": "Lee Seyoung",
+              "zh": "Lee Seyoung"
+            },
+            {
+              "ko": "이재윤",
+              "en": "Lee Jaeyun",
+              "zh": "Lee Jaeyun"
+            }
+          ],
+          "preview": "assets/audio/preview/s11.mp3?v=1"
+        },
+        {
+          "id": "s04",
+          "title": "Check it out!",
+          "artists": [
+            {
+              "ko": "문희석",
+              "en": "Moon Heeseok",
+              "zh": "Moon Heeseok"
+            },
+            {
+              "ko": "정상훈",
+              "en": "Jung Sanghun",
+              "zh": "Jung Sanghun"
+            }
+          ],
+          "preview": "assets/audio/preview/s04.mp3?v=1"
+        },
+        {
+          "id": "s28",
+          "title": "with the IE X ExtraL",
+          "tags": [
+            "sd"
+          ],
+          "artists": [
+            {
+              "ko": "심지민",
+              "en": "Shim Jimin",
+              "zh": "Shim Jimin"
+            },
+            {
+              "ko": "장은서",
+              "en": "Jang Eunseo",
+              "zh": "Jang Eunseo"
+            },
+            {
+              "ko": "곽다연",
+              "en": "Kwak Dayeon",
+              "zh": "Kwak Dayeon"
+            },
+            {
+              "ko": "도아현",
+              "en": "Do Ahyeon",
+              "zh": "Do Ahyeon"
+            },
+            {
+              "ko": "Alex",
+              "en": "Alex",
+              "zh": "Alex"
+            },
+            {
+              "ko": "최여진",
+              "en": "Choi Yeojin",
+              "zh": "Choi Yeojin"
+            },
+            {
+              "ko": "D’aira",
+              "en": "D’aira",
+              "zh": "D’aira"
+            }
+          ],
+          "preview": "assets/audio/preview/s28.mp3?v=1"
+        },
+        {
+          "id": "s13",
+          "title": "Ring",
+          "tags": [
+            "team"
+          ],
+          "artists": [
+            {
+              "ko": "김민성",
+              "en": "Kim Minseong",
+              "zh": "Kim Minseong"
+            },
+            {
+              "ko": "인우성",
+              "en": "In Woosung",
+              "zh": "In Woosung"
+            },
+            {
+              "ko": "박도현",
+              "en": "Park Dohyeon",
+              "zh": "Park Dohyeon"
+            }
+          ],
+          "preview": "assets/audio/preview/s13.mp3?v=1"
+        },
+        {
+          "id": "s15",
+          "title": "브로콜리2",
+          "credit": {
+            "ko": "prod. 손수민",
+            "en": "prod. Sohn Sumin",
+            "zh": "prod. Sohn Sumin"
+          },
+          "artists": [
+            {
+              "ko": "조동민",
+              "en": "Dongmen Cho",
+              "zh": "Dongmen Cho"
+            },
+            {
+              "ko": "남홍성",
+              "en": "Lan Hongcheng",
+              "zh": "Lan Hongcheng"
+            },
+            {
+              "ko": "손수민",
+              "en": "Sohn Sumin",
+              "zh": "Sohn Sumin"
+            },
+            {
+              "ko": "이진협",
+              "en": "Lee Jinhyeop",
+              "zh": "Lee Jinhyeop"
+            }
+          ],
+          "preview": "assets/audio/preview/s15.mp3?v=1"
+        },
+        {
+          "id": "s22",
+          "title": "우주위에있는더큰세상",
+          "credit": {
+            "ko": "prod. 손수민",
+            "en": "prod. Sohn Sumin",
+            "zh": "prod. Sohn Sumin"
+          },
+          "artists": [
+            {
+              "ko": "조동민",
+              "en": "Dongmen Cho",
+              "zh": "Dongmen Cho"
+            },
+            {
+              "ko": "손수민",
+              "en": "Sohn Sumin",
+              "zh": "Sohn Sumin"
+            }
+          ],
+          "preview": "assets/audio/preview/s22.mp3?v=1"
+        }
+      ]
+    },
+    {
+      "songs": [
+        {
+          "id": "s30",
+          "title": "귤+CHEETOS",
+          "credit": {
+            "ko": "prod. 김유석, xrface",
+            "en": "prod. Kim Yuseok, xrface",
+            "zh": "prod. Kim Yuseok, xrface"
+          },
+          "artists": [
+            {
+              "ko": "곽동규",
+              "en": "Kwak Donggyu",
+              "zh": "Kwak Donggyu"
+            },
+            {
+              "ko": "김유석",
+              "en": "Kim Yuseok",
+              "zh": "Kim Yuseok"
+            }
+          ],
+          "preview": "assets/audio/preview/s30.mp3?v=1"
+        },
+        {
+          "id": "s10",
+          "title": "大哥",
+          "artists": [
+            {
+              "ko": "강태영",
+              "en": "Kang Taeyoung",
+              "zh": "Kang Taeyoung"
+            },
+            {
+              "ko": "남홍성",
+              "en": "Lan Hongcheng",
+              "zh": "Lan Hongcheng"
+            }
+          ],
+          "preview": "assets/audio/preview/s10.mp3?v=1"
+        },
+        {
+          "id": "s20",
+          "title": "愛",
+          "artists": [
+            {
+              "ko": "강태영",
+              "en": "Kang Taeyoung",
+              "zh": "Kang Taeyoung"
+            },
+            {
+              "ko": "남홍성",
+              "en": "Lan Hongcheng",
+              "zh": "Lan Hongcheng"
+            }
+          ],
+          "preview": "assets/audio/preview/s20.mp3?v=1"
+        },
+        {
+          "id": "s01",
+          "title": "흔들어 body!",
+          "artists": [
+            {
+              "ko": "전정호",
+              "en": "Jeon Jeongho",
+              "zh": "Jeon Jeongho"
+            },
+            {
+              "ko": "문희석",
+              "en": "Moon Heeseok",
+              "zh": "Moon Heeseok"
+            },
+            {
+              "ko": "김민성",
+              "en": "Kim Minseong",
+              "zh": "Kim Minseong"
+            }
+          ],
+          "preview": "assets/audio/preview/s01.mp3?v=1"
+        },
+        {
+          "id": "s21",
+          "title": "all night",
+          "artists": [
+            {
+              "ko": "전정호",
+              "en": "Jeon Jeongho",
+              "zh": "Jeon Jeongho"
+            },
+            {
+              "ko": "김지민",
+              "en": "Kim Jimin",
+              "zh": "Kim Jimin"
+            },
+            {
+              "ko": "김도균",
+              "en": "Kim Dogyun",
+              "zh": "Kim Dogyun"
+            }
+          ],
+          "preview": "assets/audio/preview/s21.mp3?v=1"
+        },
+        {
+          "id": "s07",
+          "title": "AMIGO",
+          "artists": [
+            {
+              "ko": "김도균",
+              "en": "Kim Dogyun",
+              "zh": "Kim Dogyun"
+            },
+            {
+              "ko": "인우성",
+              "en": "In Woosung",
+              "zh": "In Woosung"
+            }
+          ],
+          "preview": "assets/audio/preview/s07.mp3?v=1"
+        },
+        {
+          "id": "s03",
+          "title": "GS25",
+          "credit": {
+            "ko": "prod. 손수민",
+            "en": "prod. Sohn Sumin",
+            "zh": "prod. Sohn Sumin"
+          },
+          "artists": [
+            {
+              "ko": "전정호",
+              "en": "Jeon Jeongho",
+              "zh": "Jeon Jeongho"
+            },
+            {
+              "ko": "김민성",
+              "en": "Kim Minseong",
+              "zh": "Kim Minseong"
+            },
+            {
+              "ko": "김범찬",
+              "en": "Kim Beomchan",
+              "zh": "Kim Beomchan"
+            },
+            {
+              "ko": "손수민",
+              "en": "Sohn Sumin",
+              "zh": "Sohn Sumin"
+            }
+          ],
+          "preview": "assets/audio/preview/s03.mp3?v=1"
+        },
+        {
+          "id": "s06",
+          "title": "X-MEN",
+          "credit": {
+            "ko": "prod. 김유석",
+            "en": "prod. Kim Yuseok",
+            "zh": "prod. Kim Yuseok"
+          },
+          "artists": [
+            {
+              "ko": "조동민",
+              "en": "Dongmen Cho",
+              "zh": "Dongmen Cho"
+            },
+            {
+              "ko": "손수민",
+              "en": "Sohn Sumin",
+              "zh": "Sohn Sumin"
+            },
+            {
+              "ko": "김유석",
+              "en": "Kim Yuseok",
+              "zh": "Kim Yuseok"
+            },
+            {
+              "ko": "곽동규",
+              "en": "Kwak Donggyu",
+              "zh": "Kwak Donggyu"
+            },
+            {
+              "ko": "김규민",
+              "en": "Kim Gyumin",
+              "zh": "Kim Gyumin"
+            }
+          ],
+          "preview": "assets/audio/preview/s06.mp3?v=1"
+        },
+        {
+          "id": "s34",
+          "title": "KOO KOO",
+          "tags": [
+            "sd"
+          ],
+          "artists": [
+            {
+              "ko": "손수민",
+              "en": "Sohn Sumin",
+              "zh": "Sohn Sumin"
+            },
+            {
+              "ko": "인우성",
+              "en": "In Woosung",
+              "zh": "In Woosung"
+            },
+            {
+              "ko": "심지민",
+              "en": "Shim Jimin",
+              "zh": "Shim Jimin"
+            },
+            {
+              "ko": "전영채",
+              "en": "Jeon Youngchae",
+              "zh": "Jeon Youngchae"
+            },
+            {
+              "ko": "도아현",
+              "en": "Do Ahyeon",
+              "zh": "Do Ahyeon"
+            },
+            {
+              "ko": "곽다연",
+              "en": "Kwak Dayeon",
+              "zh": "Kwak Dayeon"
+            },
+            {
+              "ko": "최여진",
+              "en": "Choi Yeojin",
+              "zh": "Choi Yeojin"
+            },
+            {
+              "ko": "D’aira",
+              "en": "D’aira",
+              "zh": "D’aira"
+            }
+          ],
+          "preview": "assets/audio/preview/s34.mp3?v=1"
+        },
+        {
+          "id": "s33",
+          "title": "불켜라",
+          "tags": [
+            "team"
+          ],
+          "artists": [
+            {
+              "ko": "김범찬",
+              "en": "Kim Beomchan",
+              "zh": "Kim Beomchan"
+            },
+            {
+              "ko": "조동민",
+              "en": "Dongmen Cho",
+              "zh": "Dongmen Cho"
+            },
+            {
+              "ko": "김지민",
+              "en": "Kim Jimin",
+              "zh": "Kim Jimin"
+            },
+            {
+              "ko": "배호진",
+              "en": "Bae Hojin",
+              "zh": "Bae Hojin"
+            }
+          ],
+          "preview": "assets/audio/preview/s33.mp3?v=1"
+        },
+        {
+          "id": "s29",
+          "title": "트랩하우스",
+          "tags": [
+            "team"
+          ],
+          "credit": {
+            "ko": "feat. 손수민",
+            "en": "feat. Sohn Sumin",
+            "zh": "feat. Sohn Sumin"
+          },
+          "artists": [
+            {
+              "ko": "조동민",
+              "en": "Dongmen Cho",
+              "zh": "Dongmen Cho"
+            },
+            {
+              "ko": "정상훈",
+              "en": "Jung Sanghun",
+              "zh": "Jung Sanghun"
+            },
+            {
+              "ko": "박성모",
+              "en": "Park Seongmo",
+              "zh": "Park Seongmo"
+            },
+            {
+              "ko": "남홍성",
+              "en": "Lan Hongcheng",
+              "zh": "Lan Hongcheng"
+            }
+          ],
+          "preview": "assets/audio/preview/s29.mp3?v=1"
+        },
+        {
+          "id": "s26",
+          "title": "YT Studio",
+          "artists": [
+            {
+              "ko": "전정호",
+              "en": "Jeon Jeongho",
+              "zh": "Jeon Jeongho"
+            },
+            {
+              "ko": "이진협",
+              "en": "Lee Jinhyeop",
+              "zh": "Lee Jinhyeop"
+            },
+            {
+              "ko": "김민성",
+              "en": "Kim Minseong",
+              "zh": "Kim Minseong"
+            },
+            {
+              "ko": "손수민",
+              "en": "Sohn Sumin",
+              "zh": "Sohn Sumin"
+            }
+          ],
+          "preview": "assets/audio/preview/s26.mp3?v=1"
+        }
+      ]
+    }
+  ]
 }
