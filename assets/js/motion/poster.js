@@ -5,7 +5,7 @@
 //     .Le        처음 등장 연출
 //     .Li (안쪽)  가만히 있을 때 살랑살랑
 //   스크롤 연출은 레이어들을 담은 .poster-cam 전체에 걸어요.
-import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11272003";
+import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11271913";
 
 const reduced = (window.RAPIN_LITE || matchMedia("(prefers-reduced-motion: reduce)").matches);
 // SAGGING 2026 글자 높이 미세 조정 (+면 아래로). 휴대폰(좁은 화면)에서만 조금 더 내려요
@@ -97,17 +97,10 @@ function buildLayers(art) {
 //   높이는 포스터 높이(842)를 화면 높이에 맞추고,
 //   가로는 화면이 좁으면 레이어들을 가운데로 모으고(조금 작게), 넓으면 옆으로 벌려요.
 //   배경 레이어는 화면 전체를 덮도록 키워요.
-const MIN_VW = 480;   // 사파리 아이폰 화면(약 390×664)과 비슷한 비율까지만 높이 기준
-
 function fit(stage, art) {
   const W = stage.clientWidth, H = stage.clientHeight;
-  // 보통은 화면 높이에 맞춰요. 인스타·카톡 앱 안 브라우저처럼 화면이 유난히 길쭉하면
-  // 높이에 맞추는 순간 사람들이 위아래로 벌어져 보여서, 너비 기준으로 맞추고 남는 위아래는 배경이 채워요
-  let s = H / POSTER_H;
-  if (W / s < MIN_VW) s = W / MIN_VW;
+  const s = H / POSTER_H;
   const VW = W / s;                         // 포스터 좌표 기준 화면 너비
-  const PH = H / s;                         // 포스터 좌표 기준 화면 높이 (길쭉한 화면이면 842보다 큼)
-  const oy = PH - POSTER_H;                 // 남는 높이는 위(하늘)로: 사람들 아랫부분이 화면 바닥에 딱 붙게
   const ox = (VW - POSTER_W) / 2;           // 포스터 원래 가운데를 화면 가운데로
   // PC처럼 화면이 넓어도 사람들을 벌리지 않고 인쇄 포스터(A3) 배치 그대로 가운데에 둬요. 남는 양옆은 배경이 채워요
   const k = Math.min(1, Math.max(0.62, VW / POSTER_W));
@@ -115,7 +108,6 @@ function fit(stage, art) {
   const wide = VW >= POSTER_W;
 
   art.style.width = VW + "px";
-  art.style.height = PH + "px";
   art.style.transform = `scale(${s})`;
 
   LAYERS.forEach((L) => {
@@ -135,18 +127,18 @@ function fit(stage, art) {
     }
 
     if (L.kind === "bg") {
-      const c = Math.max(1, VW / w, PH / h);
-      const bcx = ox + x + w / 2, bcy = oy + y + h / 2;
+      const c = Math.max(1, VW / w, POSTER_H / h);
+      const bcx = ox + x + w / 2, bcy = y + h / 2;
       el.style.width = w * c + "px";
       el.style.height = h * c + "px";
       el.style.left = Math.min(0, Math.max(VW - w * c, bcx - (w * c) / 2)) + "px";
-      el.style.top = Math.min(0, Math.max(PH - h * c, bcy - (h * c) / 2)) + "px";
+      el.style.top = Math.min(0, bcy - (h * c) / 2) + "px";
       return;
     }
 
     const ncx = cx + (x + w / 2 - cx) * k;
     el.style.left = ox + ncx - w / 2 + "px";
-    el.style.top = oy + y + (L.kind === "logo" ? (W < 640 ? LOGO_LIFT_MOBILE : LOGO_LIFT_PC) : 0) + (L.dy || 0) + "px";
+    el.style.top = y + (L.kind === "logo" ? (W < 640 ? LOGO_LIFT_MOBILE : LOGO_LIFT_PC) : 0) + (L.dy || 0) + "px";
 
     let rs = 1, origin = "50% 50%";
     if (L.kind === "logo") { rs = Math.min(k, 1); origin = "50% 27%"; }
