@@ -194,6 +194,11 @@
           "tags": [
             "sd"
           ],
+          "credit": {
+            "ko": "원곡. Jennie",
+            "en": "orig. Jennie",
+            "zh": "原曲. Jennie"
+          },
           "artists": [
             {
               "ko": "심지민",
@@ -507,6 +512,11 @@
           "tags": [
             "sd"
           ],
+          "credit": {
+            "ko": "원곡. 정준혁",
+            "en": "orig. Jeong Junhyeok",
+            "zh": "原曲. Jeong Junhyeok"
+          },
           "artists": [
             {
               "ko": "손수민",
