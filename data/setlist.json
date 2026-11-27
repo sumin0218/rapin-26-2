@@ -26,6 +26,46 @@
           ]
         },
         {
+          "id": "s04",
+          "title": "Check it out!",
+          "artists": [
+            {
+              "ko": "문희석",
+              "en": "Moon Heeseok",
+              "zh": "Moon Heeseok"
+            },
+            {
+              "ko": "정상훈",
+              "en": "Jung Sanghun",
+              "zh": "Jung Sanghun"
+            }
+          ],
+          "preview": "assets/audio/preview/s04.mp3?v=5",
+          "tags": [
+            "mc"
+          ]
+        },
+        {
+          "id": "s10",
+          "title": "大哥",
+          "artists": [
+            {
+              "ko": "강태영",
+              "en": "Kang Taeyoung",
+              "zh": "Kang Taeyoung"
+            },
+            {
+              "ko": "남홍성",
+              "en": "Lan Hongcheng",
+              "zh": "Lan Hongcheng"
+            }
+          ],
+          "preview": "assets/audio/preview/s10.mp3?v=4",
+          "tags": [
+            "mc"
+          ]
+        },
+        {
           "id": "s23",
           "title": "웰치스",
           "titleEn": "Welch's",
@@ -57,26 +97,6 @@
           ]
         },
         {
-          "id": "s10",
-          "title": "大哥",
-          "artists": [
-            {
-              "ko": "강태영",
-              "en": "Kang Taeyoung",
-              "zh": "Kang Taeyoung"
-            },
-            {
-              "ko": "남홍성",
-              "en": "Lan Hongcheng",
-              "zh": "Lan Hongcheng"
-            }
-          ],
-          "preview": "assets/audio/preview/s10.mp3?v=4",
-          "tags": [
-            "mc"
-          ]
-        },
-        {
           "id": "s18",
           "title": "Folded",
           "tags": [
@@ -98,45 +118,59 @@
           "preview": "assets/audio/preview/s18.mp3?v=4"
         },
         {
-          "id": "s04",
-          "title": "Check it out!",
-          "artists": [
-            {
-              "ko": "문희석",
-              "en": "Moon Heeseok",
-              "zh": "Moon Heeseok"
-            },
-            {
-              "ko": "정상훈",
-              "en": "Jung Sanghun",
-              "zh": "Jung Sanghun"
-            }
-          ],
-          "preview": "assets/audio/preview/s04.mp3?v=5",
+          "id": "s02",
+          "title": "Ohmygod",
           "tags": [
             "mc"
-          ]
+          ],
+          "artists": [
+            {
+              "ko": "조동민",
+              "en": "Dongmen Cho",
+              "zh": "Dongmen Cho"
+            },
+            {
+              "ko": "김지민",
+              "en": "Kim Jimin",
+              "zh": "Kim Jimin"
+            },
+            {
+              "ko": "배호진",
+              "en": "Bae Hojin",
+              "zh": "Bae Hojin"
+            },
+            {
+              "ko": "남홍성",
+              "en": "Lan Hongcheng",
+              "zh": "Lan Hongcheng"
+            }
+          ],
+          "preview": "assets/audio/preview/s02.mp3?v=4"
         },
         {
-          "id": "s05",
-          "title": "토끼와거북이",
-          "titleEn": "The Tortoise and the Hare",
+          "id": "s24",
+          "title": "Hustle2Ambition",
+          "tags": [
+            "mc"
+          ],
           "artists": [
+            {
+              "ko": "김도균",
+              "en": "Kim Dogyun",
+              "zh": "Kim Dogyun"
+            },
             {
               "ko": "이시헌",
               "en": "Lee Siheon",
               "zh": "Lee Siheon"
             },
             {
-              "ko": "이세영",
-              "en": "Lee Seyoung",
-              "zh": "Lee Seyoung"
+              "ko": "권용범",
+              "en": "Kwon Yongbeom",
+              "zh": "Kwon Yongbeom"
             }
           ],
-          "preview": "assets/audio/preview/s05.mp3?v=4",
-          "tags": [
-            "mc"
-          ]
+          "preview": "assets/audio/preview/s24.mp3?v=4"
         },
         {
           "id": "s15",
@@ -173,31 +207,6 @@
           "tags": [
             "mc"
           ]
-        },
-        {
-          "id": "s24",
-          "title": "Hustle2Ambition",
-          "tags": [
-            "mc"
-          ],
-          "artists": [
-            {
-              "ko": "김도균",
-              "en": "Kim Dogyun",
-              "zh": "Kim Dogyun"
-            },
-            {
-              "ko": "이시헌",
-              "en": "Lee Siheon",
-              "zh": "Lee Siheon"
-            },
-            {
-              "ko": "권용범",
-              "en": "Kwon Yongbeom",
-              "zh": "Kwon Yongbeom"
-            }
-          ],
-          "preview": "assets/audio/preview/s24.mp3?v=4"
         },
         {
           "id": "s28",
@@ -371,6 +380,41 @@
           ]
         },
         {
+          "id": "s03",
+          "title": "GS25",
+          "credit": {
+            "ko": "prod. 손수민",
+            "en": "prod. Sohn Sumin",
+            "zh": "prod. Sohn Sumin"
+          },
+          "artists": [
+            {
+              "ko": "전정호",
+              "en": "Jeon Jeongho",
+              "zh": "Jeon Jeongho"
+            },
+            {
+              "ko": "김민성",
+              "en": "Kim Minseong",
+              "zh": "Kim Minseong"
+            },
+            {
+              "ko": "김범찬",
+              "en": "Kim Beomchan",
+              "zh": "Kim Beomchan"
+            },
+            {
+              "ko": "손수민",
+              "en": "Sohn Sumin",
+              "zh": "Sohn Sumin"
+            }
+          ],
+          "preview": "assets/audio/preview/s03.mp3?v=4",
+          "tags": [
+            "mc"
+          ]
+        },
+        {
           "id": "s20",
           "title": "愛",
           "artists": [
@@ -386,62 +430,6 @@
             }
           ],
           "preview": "assets/audio/preview/s20.mp3?v=4",
-          "tags": [
-            "mc"
-          ]
-        },
-        {
-          "id": "s02",
-          "title": "Ohmygod",
-          "tags": [
-            "mc"
-          ],
-          "artists": [
-            {
-              "ko": "조동민",
-              "en": "Dongmen Cho",
-              "zh": "Dongmen Cho"
-            },
-            {
-              "ko": "김지민",
-              "en": "Kim Jimin",
-              "zh": "Kim Jimin"
-            },
-            {
-              "ko": "배호진",
-              "en": "Bae Hojin",
-              "zh": "Bae Hojin"
-            },
-            {
-              "ko": "남홍성",
-              "en": "Lan Hongcheng",
-              "zh": "Lan Hongcheng"
-            }
-          ],
-          "preview": "assets/audio/preview/s02.mp3?v=4"
-        },
-        {
-          "id": "s01",
-          "title": "흔들어 body!",
-          "titleEn": "Shake That Body!",
-          "artists": [
-            {
-              "ko": "전정호",
-              "en": "Jeon Jeongho",
-              "zh": "Jeon Jeongho"
-            },
-            {
-              "ko": "문희석",
-              "en": "Moon Heeseok",
-              "zh": "Moon Heeseok"
-            },
-            {
-              "ko": "김민성",
-              "en": "Kim Minseong",
-              "zh": "Kim Minseong"
-            }
-          ],
-          "preview": "assets/audio/preview/s01.mp3?v=4",
           "tags": [
             "mc"
           ]
@@ -477,6 +465,32 @@
           "preview": "assets/audio/preview/s11.mp3?v=4"
         },
         {
+          "id": "s01",
+          "title": "흔들어 body!",
+          "titleEn": "Shake That Body!",
+          "artists": [
+            {
+              "ko": "전정호",
+              "en": "Jeon Jeongho",
+              "zh": "Jeon Jeongho"
+            },
+            {
+              "ko": "문희석",
+              "en": "Moon Heeseok",
+              "zh": "Moon Heeseok"
+            },
+            {
+              "ko": "김민성",
+              "en": "Kim Minseong",
+              "zh": "Kim Minseong"
+            }
+          ],
+          "preview": "assets/audio/preview/s01.mp3?v=4",
+          "tags": [
+            "mc"
+          ]
+        },
+        {
           "id": "s07",
           "title": "AMIGO",
           "artists": [
@@ -497,36 +511,22 @@
           ]
         },
         {
-          "id": "s03",
-          "title": "GS25",
-          "credit": {
-            "ko": "prod. 손수민",
-            "en": "prod. Sohn Sumin",
-            "zh": "prod. Sohn Sumin"
-          },
+          "id": "s05",
+          "title": "토끼와거북이",
+          "titleEn": "The Tortoise and the Hare",
           "artists": [
             {
-              "ko": "전정호",
-              "en": "Jeon Jeongho",
-              "zh": "Jeon Jeongho"
+              "ko": "이시헌",
+              "en": "Lee Siheon",
+              "zh": "Lee Siheon"
             },
             {
-              "ko": "김민성",
-              "en": "Kim Minseong",
-              "zh": "Kim Minseong"
-            },
-            {
-              "ko": "김범찬",
-              "en": "Kim Beomchan",
-              "zh": "Kim Beomchan"
-            },
-            {
-              "ko": "손수민",
-              "en": "Sohn Sumin",
-              "zh": "Sohn Sumin"
+              "ko": "이세영",
+              "en": "Lee Seyoung",
+              "zh": "Lee Seyoung"
             }
           ],
-          "preview": "assets/audio/preview/s03.mp3?v=4",
+          "preview": "assets/audio/preview/s05.mp3?v=4",
           "tags": [
             "mc"
           ]
