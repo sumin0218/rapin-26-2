@@ -1,15 +1,15 @@
 // 진입점: 데이터 불러오기 → 언어 적용 → 순서표 그리기 → 포스터 모션 시작
-import { loadJSON } from "./data.js?v=11272055";
+import { loadJSON } from "./data.js?v=11280204";
 import { initI18n, t, getLang, onLangChange } from "./i18n.js";
-import { renderInfo } from "./sections/info.js?v=11272055";
-import { renderArtists } from "./sections/artists.js?v=11272055";
-import { renderProgram } from "./sections/program.js?v=11272055";
-import { initPoster } from "./motion/poster.js?v=11272055";
-import { initPanels } from "./sections/panels.js?v=11272055";
-import { initBgm } from "./bgm.js?v=11272055";
-import { initBeat } from "./motion/beat.js?v=11272055";
+import { renderInfo } from "./sections/info.js?v=11280204";
+import { renderArtists } from "./sections/artists.js?v=11280204";
+import { renderProgram } from "./sections/program.js?v=11280204";
+import { initPoster } from "./motion/poster.js?v=11280204";
+import { initPanels } from "./sections/panels.js?v=11280204";
+import { initBgm } from "./bgm.js?v=11280204";
+import { initBeat } from "./motion/beat.js?v=11280204";
 
-const reduced = (window.RAPIN_LITE || matchMedia("(prefers-reduced-motion: reduce)").matches);
+const reduced = false /* 항상 애니메이션 (기기 설정과 상관없이) */;
 if (reduced) document.documentElement.classList.add("reduced");
 
 // 상단 띠: 한 줄에 다 들어가면 그대로, 넘치면 전광판처럼 끊김 없이 흘러가요
@@ -36,7 +36,7 @@ addEventListener("resize", () => { clearTimeout(bandTimer); bandTimer = setTimeo
 // 처음 들어올 때 한 번 주목 (포스터 등장이 거의 끝날 즈음)
 function pingBand(delay) {
   const bar = document.querySelector(".topbar");
-  if (!bar || (window.RAPIN_LITE || matchMedia("(prefers-reduced-motion: reduce)").matches)) return;
+  if (!bar || false /* 항상 애니메이션 (기기 설정과 상관없이) */) return;
   setTimeout(() => {
     bar.classList.remove("band-ping"); void bar.offsetWidth; bar.classList.add("band-ping");
   }, delay);

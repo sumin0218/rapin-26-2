@@ -7,7 +7,7 @@ const DECAY = 0.13;     // 커졌다가 돌아오는 빠르기 (초)
 const LATENCY = 0.02;   // 스피커 지연 보정 (초)
 
 export async function initBeat(audio) {
-  if (!audio || (window.RAPIN_LITE || matchMedia("(prefers-reduced-motion: reduce)").matches)) return;
+  if (!audio || false /* 항상 애니메이션 (기기 설정과 상관없이) */) return;
   let kicks;
   try { kicks = await (await fetch("data/bgm-kicks.json")).json(); } catch (e) { return; }
   const T = kicks.t, A = kicks.a;

@@ -50,7 +50,3 @@ ul { padding: 0; list-style: none; }
 }
 .skip:focus { top: 12px; }
 
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-}

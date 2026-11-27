@@ -82,7 +82,7 @@ function openCard(i, tile) {
   c.querySelector(".ac-x").focus({ preventScroll: true });
 }
 // 다음/이전 아티스트: 종이가 옆으로 빠지고 반대편에서 들어와요 (끝에서는 처음으로 돌아가요)
-const reduce = (window.RAPIN_LITE || matchMedia("(prefers-reduced-motion: reduce)").matches);
+const reduce = false /* 항상 애니메이션 (기기 설정과 상관없이) */;
 let busy = false;
 function go(dir, fromDx = 0) {
   if (!list.length || busy) return;

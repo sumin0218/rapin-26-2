@@ -99,7 +99,7 @@ function initEgg(audio, start) {
     alt = !alt;
     window.track?.("easter_egg", { on: alt });
     if (alt) pepperRing(); else document.querySelector(".pep-ring")?.remove();
-    audio.src = SRC[alt ? 1 : 0] + "?v=11272055";
+    audio.src = SRC[alt ? 1 : 0] + "?v=11280204";
     audio.currentTime = 0;
     start();
   }, true);
@@ -108,7 +108,7 @@ function initEgg(audio, start) {
 // 닥터 페퍼 캔 여러 개가 화면 가운데를 중심으로 원을 그리며 돌다가 사라져요
 function pepperRing() {
   document.querySelector(".pep-ring")?.remove();
-  if ((window.RAPIN_LITE || matchMedia("(prefers-reduced-motion: reduce)").matches)) return;
+  if (false /* 항상 애니메이션 (기기 설정과 상관없이) */) return;
   const w = innerWidth, h = innerHeight;
   const cw = Math.round(Math.max(38, Math.min(78, Math.min(w, h) * 0.11)));
   const r = Math.min(w, h) / 2 - cw * 0.55;              // 화면 가장자리를 따라 감싸는 원

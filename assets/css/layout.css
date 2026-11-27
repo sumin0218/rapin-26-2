@@ -23,11 +23,6 @@
 .band.is-marquee .band-track { animation: band-scroll var(--band-dur, 18s) linear infinite; }
 .band.is-marquee:hover .band-track { animation-play-state: paused; }
 @keyframes band-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-@media (prefers-reduced-motion: reduce) {
-  .band.is-marquee .band-track { animation: none; }
-  .band { white-space: normal; }
-  .band-track .band-item + .band-item { display: none; }
-}
 /* 처음 들어올 때 한 번 주목 */
 .band-ping { animation: band-ping 1.1s cubic-bezier(.2, .9, .3, 1) 1; }
 .band-ping .band-when { animation: when-ping 1.1s ease-out 1; }
@@ -107,7 +102,6 @@
 .side-tab { animation: tab-peek 1.1s cubic-bezier(.3,.7,.3,1) 1.4s both; }
 .side-tab + .side-tab { animation-delay: 1.55s; }
 @keyframes tab-peek { 0% { transform: translateX(100%); } 45% { transform: translateX(-10px); } 70% { transform: translateX(0); } 100% { transform: translateX(0); } }
-@media (prefers-reduced-motion: reduce) { .side-tab { animation: none; } }
 @media (max-width: 560px) {
   .side-tabs { gap: 8px; }
   .side-tab { font-size: 13px; padding: 13px 7px 13px 8px; }

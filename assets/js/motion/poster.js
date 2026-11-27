@@ -5,9 +5,9 @@
 //     .Le        처음 등장 연출
 //     .Li (안쪽)  가만히 있을 때 살랑살랑
 //   스크롤 연출은 레이어들을 담은 .poster-cam 전체에 걸어요.
-import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11272055";
+import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11280204";
 
-const reduced = (window.RAPIN_LITE || matchMedia("(prefers-reduced-motion: reduce)").matches);
+const reduced = false /* 항상 애니메이션 (기기 설정과 상관없이) */;
 // SAGGING 2026 글자 높이 미세 조정 (+면 아래로). 휴대폰(좁은 화면)에서만 조금 더 내려요
 const LOGO_LIFT_PC = 34, LOGO_LIFT_MOBILE = 50;
 const $ = (s, r = document) => r.querySelector(s);
@@ -387,7 +387,24 @@ function flatPoster(stage, art) {
   art.append(img);
 }
 
+// 애니메이션 라이브러리(GSAP)를 못 받았으면 두 번까지 다시 받아 봐요
+function loadGsap(tries = 2) {
+  return new Promise((resolve, reject) => {
+    if (window.gsap && window.ScrollTrigger) return resolve();
+    const sc = document.createElement("script");
+    sc.src = "assets/vendor/gsap.min.js?retry=" + Date.now();
+    sc.onload = () => (window.gsap && window.ScrollTrigger ? resolve() : reject());
+    sc.onerror = reject;
+    document.head.append(sc);
+  }).catch(() => (tries > 1 ? new Promise((r) => setTimeout(r, 800)).then(() => loadGsap(tries - 1)) : Promise.reject()));
+}
+
 export function initPoster() {
+  if (!(window.gsap && window.ScrollTrigger) && !initPoster.retried) {
+    initPoster.retried = true;
+    loadGsap().then(initPoster, () => { window.track?.("motion_fallback", { reason: "gsap_load_failed" }); initPoster(); });
+    return;
+  }
   const stage = $(".poster .stage");
   const art = $(".poster-art", stage);
   if (window.RAPIN_LITE) {
