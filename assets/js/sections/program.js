@@ -102,14 +102,17 @@ export function renderProgram(setlist, lang, t) {
       const song = el("div", "song");
       // 윗줄: 제목, 무대 종류 표시, 크레딧 (PC에선 한 줄로, 모바일에선 세로로)
       const top = el("div", "top");
-      top.append(el("b", "title" + (s.keepCase ? " keep-case" : ""), s.title));
+      // 영어·중국어 화면에선 한글 제목 대신 영문 제목
+      const title = lang !== "ko" && s.titleEn ? s.titleEn : s.title;
+      top.append(el("b", "title" + (s.keepCase ? " keep-case" : ""), title));
       // 무대 종류: STREET DANCE / MC / R&B 는 한 판에 "X"로 묶고, COVER는 따로
       const KIND = { sd: "STREET DANCE", mc: "MC", rnb: "R&B" };
       const tags = s.tags || [];
       const kinds = tags.filter((tg) => KIND[tg]);
       if (kinds.length) top.append(el("span", "tag tag-" + kinds.join("-"), kinds.map((k) => KIND[k]).join(" X ")));
       for (const tg of tags) if (!KIND[tg]) top.append(el("span", "tag tag-" + tg, tg.toUpperCase()));
-      if (s.credit) top.append(el("small", "credit", typeof s.credit === "object" ? s.credit[lang] ?? s.credit.ko : s.credit));
+      const cr = s.credit ? (typeof s.credit === "object" ? s.credit[lang] ?? s.credit.ko : s.credit) : "";
+      if (cr) top.append(el("small", "credit", cr));
       song.append(top);
       const names = (s.artists || []).map((a) => (typeof a === "object" ? a[lang] ?? a.ko : a));
       const art = el("small", "artists", names.length ? names.join(", ") : t("tba"));
@@ -118,6 +121,8 @@ export function renderProgram(setlist, lang, t) {
         const fn = s.feat.map((a) => (typeof a === "object" ? a[lang] ?? a.ko : a)).join(", ");
         art.append(" ", el("span", "feat", "feat. " + fn));
       }
+      // 모바일에선 크레딧을 아티스트 줄 끝에 붙여서 한 줄 아끼기 (PC에선 숨김)
+      if (cr) art.append(el("span", "credit-inline", cr));
       song.append(art);
       li.append(song);
 
@@ -125,7 +130,7 @@ export function renderProgram(setlist, lang, t) {
         const b = el("button", "pv");
         b.type = "button";
         b.dataset.src = s.preview;
-        b.dataset.title = s.title;
+        b.dataset.title = title;
         b.dataset.playLabel = t("previewPlay");
         b.dataset.stopLabel = t("previewStop");
         b.innerHTML = '<span class="fill" aria-hidden="true"></span><span class="ic" aria-hidden="true"></span><span class="lb" aria-hidden="true"></span>';

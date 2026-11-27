@@ -7,6 +7,7 @@
         {
           "id": "s12",
           "title": "포테토칩",
+          "titleEn": "Potato Chip",
           "artists": [
             {
               "ko": "곽동규",
@@ -27,6 +28,7 @@
         {
           "id": "s23",
           "title": "웰치스",
+          "titleEn": "Welch's",
           "credit": {
             "ko": "prod. 김규민, 김유석",
             "en": "prod. Kim Gyumin, Kim Yuseok",
@@ -133,6 +135,7 @@
         {
           "id": "s05",
           "title": "토끼와거북이",
+          "titleEn": "The Tortoise and the Hare",
           "artists": [
             {
               "ko": "이시헌",
@@ -278,6 +281,7 @@
         {
           "id": "s15",
           "title": "브로콜리2",
+          "titleEn": "Broccoli 2",
           "credit": {
             "ko": "prod. 손수민",
             "en": "prod. Sohn Sumin",
@@ -313,6 +317,7 @@
         {
           "id": "s22",
           "title": "우주위에있는더큰세상",
+          "titleEn": "A Bigger World Above the Universe",
           "credit": {
             "ko": "prod. 손수민",
             "en": "prod. Sohn Sumin",
@@ -342,6 +347,7 @@
         {
           "id": "s30",
           "title": "귤+CHEETOS",
+          "titleEn": "Tangerine + CHEETOS",
           "credit": {
             "ko": "prod. 김유석, xrface",
             "en": "prod. Kim Yuseok, xrface",
@@ -407,6 +413,7 @@
         {
           "id": "s01",
           "title": "흔들어 body!",
+          "titleEn": "Shake That Body!",
           "artists": [
             {
               "ko": "전정호",
@@ -607,6 +614,7 @@
         {
           "id": "s33",
           "title": "불켜라",
+          "titleEn": "Lights On",
           "tags": [
             "mc"
           ],
@@ -637,6 +645,7 @@
         {
           "id": "s29",
           "title": "트랩하우스",
+          "titleEn": "Trap House",
           "tags": [
             "mc"
           ],
