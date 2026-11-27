@@ -5,7 +5,7 @@
 //     .Le        처음 등장 연출
 //     .Li (안쪽)  가만히 있을 때 살랑살랑
 //   스크롤 연출은 레이어들을 담은 .poster-cam 전체에 걸어요.
-import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11271354";
+import { LAYERS, POSTER_W, POSTER_H } from "./poster-layers.js?v=11271621";
 
 const reduced = (window.RAPIN_LITE || matchMedia("(prefers-reduced-motion: reduce)").matches);
 // SAGGING 2026 글자 높이 미세 조정 (+면 아래로). 휴대폰(좁은 화면)에서만 조금 더 내려요
@@ -249,6 +249,7 @@ function scrollAnim(gsap) {
       onUpdate: (st) => {
         root.classList.toggle("past-intro", st.progress > 0.02);
         setStorm(st.progress > 0.5);
+        if (st.progress > 0.6 && !seenSetlist) { seenSetlist = true; window.track?.("setlist_view"); }
         // 다 빠져나간 레이어는 아예 그리지 않게 (폰 메모리 아끼기)
         root.classList.toggle("layers-gone", st.progress > 0.75);
       },
@@ -290,7 +291,7 @@ function scrollAnim(gsap) {
 }
 
 // 번개: 셋리스트 화면에서만, 불규칙한 간격으로 번쩍. 번개가 칠 때 하늘도 같이 밝아져요.
-let stormOn = false, stormTimer = 0;
+let stormOn = false, stormTimer = 0, seenSetlist = false;
 const LITE = matchMedia("(hover: none), (max-width: 1099px)").matches;
 function strike() {
   const { gsap } = window;

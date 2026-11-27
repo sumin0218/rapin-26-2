@@ -12,6 +12,7 @@ function panelFor(hash) {
 
 function show(panel) {
   if (current === panel) return;
+  window.track?.("panel_open", { panel: panel.id });
   if (current) hide(current, false);
   lastFocus = document.activeElement;
   panel.hidden = false;

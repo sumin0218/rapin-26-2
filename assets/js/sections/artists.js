@@ -23,7 +23,9 @@ const CROWN = '<svg viewBox="0 0 64 44"><path d="M4 38 L2 10 L18 22 L32 2 L46 22
 const card = () => document.getElementById("artist-card");
 
 function fillCard(a) {
-  document.getElementById("ac-img").src = a.photo;
+  const ci = document.getElementById("ac-img");
+  if (!ci.dataset.retryBound) { ci.dataset.retryBound = "1"; ci.addEventListener("error", () => { if (ci.dataset.retried === ci.getAttribute("src")) return; const u = ci.getAttribute("src"); ci.dataset.retried = u; setTimeout(() => { ci.src = u + (u.includes("?") ? "&" : "?") + "r=" + Date.now(); }, 600); }); }
+  ci.src = a.photo;
   document.getElementById("ac-name").textContent = pick(a.name, LANG);
   document.getElementById("ac-dept").textContent = a.dept || "";
   // 이름 옆: 학과 (줄바꿈) 학번
@@ -41,10 +43,21 @@ function fillCard(a) {
   document.getElementById("ac-dept").hidden = !a.dept;
   document.getElementById("ac-count").textContent = `${cur + 1} / ${list.length}`;
 }
+// 사진이 네트워크 문제로 실패하면 잠깐 뒤 한 번 더 받아요
+function retryOnError(img) {
+  img.addEventListener("error", () => {
+    if (img.dataset.retried || !img.getAttribute("src")) return;
+    img.dataset.retried = "1";
+    const u = img.getAttribute("src");
+    setTimeout(() => { img.src = u + (u.includes("?") ? "&" : "?") + "r=" + Date.now(); }, 600);
+  });
+}
+
 function openCard(i, tile) {
   lastTile = tile; cur = i;
   const c = card();
   fillCard(list[i]);
+  window.track?.("artist_open", { artist: list[i].id });
   c.hidden = false;
   requestAnimationFrame(() => c.classList.add("open"));
   c.querySelector(".ac-x").focus({ preventScroll: true });
@@ -158,7 +171,12 @@ export function renderArtists(data, _setlist, lang, t) {
     b.type = "button";
     b.setAttribute("aria-label", pick(a.name, lang));
     const img = el("img");
-    img.src = a.photo.replace("/artists/", "/artists/sm/"); img.alt = ""; img.loading = "lazy"; img.decoding = "async";
+    // 패널을 열 때 한꺼번에 불러와요 (lazy 로딩은 아이폰에서 가끔 안 뜨는 사진이 생겨서 뺐어요)
+    const url = a.photo.replace("/artists/", "/artists/sm/");
+    const panel = img.closest?.(".panel") || document.getElementById("artists");
+    if (panel && panel.hidden) img.dataset.src = url; else img.src = url;
+    img.alt = ""; img.decoding = "async";
+    retryOnError(img);
     const tag = el("span", "cut-tag", pick(a.name, lang));
     // 임원진은 이름표에 왕관 (회장단 은색, 부장 동색)
     if (a.crown) {

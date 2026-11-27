@@ -54,6 +54,7 @@ function toggle(btn) {
   if (playingBtn === btn) { stop(); return; }
   stop();
   dispatchEvent(new Event("preview:play"));
+  window.track?.("preview_play", { song: btn.dataset.title, song_id: btn.dataset.id });
   playingBtn = btn;
   setBtn(btn, "load");
   audio.src = btn.dataset.src;
@@ -128,7 +129,7 @@ export function renderProgram(setlist, lang, t) {
         const b = el("button", "pv");
         b.type = "button";
         b.dataset.src = s.preview;
-        b.dataset.title = title;
+        b.dataset.title = title; b.dataset.id = s.id;
         b.dataset.playLabel = t("previewPlay");
         b.dataset.stopLabel = t("previewStop");
         b.innerHTML = '<span class="fill" aria-hidden="true"></span><span class="ic" aria-hidden="true"></span><span class="lb" aria-hidden="true"></span>';

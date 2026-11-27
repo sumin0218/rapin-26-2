@@ -53,7 +53,7 @@
   "yearFmt": "{n}학번",
   "prevArtist": "이전 아티스트",
   "nextArtist": "다음 아티스트",
-  "privacyNote": "이 사이트는 방문자의 개인정보를 수집하지 않습니다.",
+  "privacyNote": "방문 통계를 위해 Google Analytics(쿠키)를 사용합니다. 이름·연락처 등 개인을 알아볼 수 있는 정보는 수집하지 않습니다.",
   "privacyReq": "아티스트 정보 수정·삭제 요청:",
   "intermission": "쉬는 시간"
 }

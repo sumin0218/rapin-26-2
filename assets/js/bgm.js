@@ -33,6 +33,7 @@ export function initBgm() {
   btn.addEventListener("click", (e) => {
     e.stopPropagation();
     want = !want;
+    window.track?.("bgm_toggle", { on: want });
     try { localStorage.setItem(KEY, want ? "on" : "off"); } catch (err) {}
     if (want && !ducked) play(); else audio.pause();
     sync();
@@ -96,8 +97,9 @@ function initEgg(audio, start) {
     taps = [];
     document.querySelector(".egg-bubble")?.remove();
     alt = !alt;
+    window.track?.("easter_egg", { on: alt });
     if (alt) pepperRing(); else document.querySelector(".pep-ring")?.remove();
-    audio.src = SRC[alt ? 1 : 0] + "?v=11271354";
+    audio.src = SRC[alt ? 1 : 0] + "?v=11271621";
     audio.currentTime = 0;
     start();
   }, true);

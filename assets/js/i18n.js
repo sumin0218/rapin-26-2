@@ -1,6 +1,6 @@
 // 언어: 한국어 / English / 中文
 // 문구는 data/i18n/{ko,en,zh}.json 에 있어요. HTML에는 data-i18n="키"만 달면 돼요.
-import { loadJSON } from "./data.js?v=11271354";
+import { loadJSON } from "./data.js?v=11271621";
 
 const LANGS = ["ko", "en", "zh"];
 const KEY = "rapin262-lang";
@@ -52,7 +52,7 @@ export async function setLang(next) {
 export async function initI18n() {
   fallback = await loadJSON("data/i18n/ko.json");
   document.querySelectorAll(".lang [data-lang]").forEach((b) => {
-    b.addEventListener("click", () => setLang(b.dataset.lang));
+    b.addEventListener("click", () => { window.track?.("language_change", { language: b.dataset.lang }); setLang(b.dataset.lang); });
   });
   await setLang(pickInitial());
 }
