@@ -1,13 +1,13 @@
 // 진입점: 데이터 불러오기 → 언어 적용 → 순서표 그리기 → 포스터 모션 시작
-import { loadJSON } from "./data.js?v=11271222";
+import { loadJSON } from "./data.js?v=11271248";
 import { initI18n, t, getLang, onLangChange } from "./i18n.js";
-import { renderInfo } from "./sections/info.js?v=11271222";
-import { renderArtists } from "./sections/artists.js?v=11271222";
-import { renderProgram } from "./sections/program.js?v=11271222";
-import { initPoster } from "./motion/poster.js?v=11271222";
-import { initPanels } from "./sections/panels.js?v=11271222";
-import { initBgm } from "./bgm.js?v=11271222";
-import { initBeat } from "./motion/beat.js?v=11271222";
+import { renderInfo } from "./sections/info.js?v=11271248";
+import { renderArtists } from "./sections/artists.js?v=11271248";
+import { renderProgram } from "./sections/program.js?v=11271248";
+import { initPoster } from "./motion/poster.js?v=11271248";
+import { initPanels } from "./sections/panels.js?v=11271248";
+import { initBgm } from "./bgm.js?v=11271248";
+import { initBeat } from "./motion/beat.js?v=11271248";
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 if (reduced) document.documentElement.classList.add("reduced");

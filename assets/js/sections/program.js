@@ -7,7 +7,7 @@ const el = (tag, cls, text) => {
   if (text != null) e.textContent = text;
   return e;
 };
-const PREVIEW_SEC = 20;
+const PREVIEW_SEC = 15;
 
 // 영문 전용 포스터 글씨(Bungee)와 한글/한자가 섞일 때, 한글/한자는 굵은 Pretendard로 따로 감싸요
 function mixed(cls, text) {

@@ -19,7 +19,7 @@
               "zh": "Dongmen Cho"
             }
           ],
-          "preview": "assets/audio/preview/s12.mp3?v=1"
+          "preview": "assets/audio/preview/s12.mp3?v=2"
         },
         {
           "id": "s23",
@@ -46,7 +46,7 @@
               "zh": "Lee Jinhyeop"
             }
           ],
-          "preview": "assets/audio/preview/s23.mp3?v=1"
+          "preview": "assets/audio/preview/s23.mp3?v=2"
         },
         {
           "id": "s24",
@@ -71,7 +71,7 @@
               "zh": "Kwon Yongbeom"
             }
           ],
-          "preview": "assets/audio/preview/s24.mp3?v=1"
+          "preview": "assets/audio/preview/s24.mp3?v=2"
         },
         {
           "id": "s18",
@@ -92,7 +92,7 @@
               "zh": "Sohn Sumin"
             }
           ],
-          "preview": "assets/audio/preview/s18.mp3?v=1"
+          "preview": "assets/audio/preview/s18.mp3?v=2"
         },
         {
           "id": "s02",
@@ -122,7 +122,7 @@
               "zh": "Lan Hongcheng"
             }
           ],
-          "preview": "assets/audio/preview/s02.mp3?v=1"
+          "preview": "assets/audio/preview/s02.mp3?v=2"
         },
         {
           "id": "s05",
@@ -139,7 +139,7 @@
               "zh": "Lee Seyoung"
             }
           ],
-          "preview": "assets/audio/preview/s05.mp3?v=1"
+          "preview": "assets/audio/preview/s05.mp3?v=2"
         },
         {
           "id": "s11",
@@ -169,7 +169,7 @@
               "zh": "Lee Jaeyun"
             }
           ],
-          "preview": "assets/audio/preview/s11.mp3?v=1"
+          "preview": "assets/audio/preview/s11.mp3?v=2"
         },
         {
           "id": "s04",
@@ -186,7 +186,7 @@
               "zh": "Jung Sanghun"
             }
           ],
-          "preview": "assets/audio/preview/s04.mp3?v=1"
+          "preview": "assets/audio/preview/s04.mp3?v=2"
         },
         {
           "id": "s28",
@@ -230,8 +230,7 @@
               "en": "D’aira",
               "zh": "D’aira"
             }
-          ],
-          "preview": "assets/audio/preview/s28.mp3?v=1"
+          ]
         },
         {
           "id": "s13",
@@ -256,7 +255,7 @@
               "zh": "Park Dohyeon"
             }
           ],
-          "preview": "assets/audio/preview/s13.mp3?v=1"
+          "preview": "assets/audio/preview/s13.mp3?v=2"
         },
         {
           "id": "s15",
@@ -288,7 +287,7 @@
               "zh": "Lee Jinhyeop"
             }
           ],
-          "preview": "assets/audio/preview/s15.mp3?v=1"
+          "preview": "assets/audio/preview/s15.mp3?v=2"
         },
         {
           "id": "s22",
@@ -310,7 +309,7 @@
               "zh": "Sohn Sumin"
             }
           ],
-          "preview": "assets/audio/preview/s22.mp3?v=1"
+          "preview": "assets/audio/preview/s22.mp3?v=2"
         }
       ]
     },
@@ -336,7 +335,7 @@
               "zh": "Kim Yuseok"
             }
           ],
-          "preview": "assets/audio/preview/s30.mp3?v=1"
+          "preview": "assets/audio/preview/s30.mp3?v=2"
         },
         {
           "id": "s10",
@@ -353,7 +352,7 @@
               "zh": "Lan Hongcheng"
             }
           ],
-          "preview": "assets/audio/preview/s10.mp3?v=1"
+          "preview": "assets/audio/preview/s10.mp3?v=2"
         },
         {
           "id": "s20",
@@ -370,7 +369,7 @@
               "zh": "Lan Hongcheng"
             }
           ],
-          "preview": "assets/audio/preview/s20.mp3?v=1"
+          "preview": "assets/audio/preview/s20.mp3?v=2"
         },
         {
           "id": "s01",
@@ -392,7 +391,7 @@
               "zh": "Kim Minseong"
             }
           ],
-          "preview": "assets/audio/preview/s01.mp3?v=1"
+          "preview": "assets/audio/preview/s01.mp3?v=2"
         },
         {
           "id": "s21",
@@ -414,7 +413,7 @@
               "zh": "Kim Dogyun"
             }
           ],
-          "preview": "assets/audio/preview/s21.mp3?v=1"
+          "preview": "assets/audio/preview/s21.mp3?v=2"
         },
         {
           "id": "s07",
@@ -431,7 +430,7 @@
               "zh": "In Woosung"
             }
           ],
-          "preview": "assets/audio/preview/s07.mp3?v=1"
+          "preview": "assets/audio/preview/s07.mp3?v=2"
         },
         {
           "id": "s03",
@@ -463,7 +462,7 @@
               "zh": "Sohn Sumin"
             }
           ],
-          "preview": "assets/audio/preview/s03.mp3?v=1"
+          "preview": "assets/audio/preview/s03.mp3?v=2"
         },
         {
           "id": "s06",
@@ -500,7 +499,7 @@
               "zh": "Kim Gyumin"
             }
           ],
-          "preview": "assets/audio/preview/s06.mp3?v=1"
+          "preview": "assets/audio/preview/s06.mp3?v=2"
         },
         {
           "id": "s34",
@@ -549,8 +548,7 @@
               "en": "D’aira",
               "zh": "D’aira"
             }
-          ],
-          "preview": "assets/audio/preview/s34.mp3?v=1"
+          ]
         },
         {
           "id": "s33",
@@ -580,7 +578,7 @@
               "zh": "Bae Hojin"
             }
           ],
-          "preview": "assets/audio/preview/s33.mp3?v=1"
+          "preview": "assets/audio/preview/s33.mp3?v=2"
         },
         {
           "id": "s29",
@@ -615,7 +613,7 @@
               "zh": "Lan Hongcheng"
             }
           ],
-          "preview": "assets/audio/preview/s29.mp3?v=1"
+          "preview": "assets/audio/preview/s29.mp3?v=2"
         },
         {
           "id": "s26",
@@ -642,7 +640,7 @@
               "zh": "Sohn Sumin"
             }
           ],
-          "preview": "assets/audio/preview/s26.mp3?v=1"
+          "preview": "assets/audio/preview/s26.mp3?v=2"
         }
       ]
     }
