@@ -210,13 +210,13 @@ html:not(.reduced):not(.no-gsap) .site-credit { visibility: hidden; }
 .site-credit .sc-privacy { flex: 0 0 100%; margin: 10px auto 0; max-width: 36em; font-size: 11.5px; line-height: 1.55; color: rgba(255,255,255,.5); word-break: keep-all; }
 .site-credit .sc-privacy a { color: rgba(255,255,255,.75); }
 
-/* 세 곡마다 MC 멘트 구간: 얇은 점선 줄 */
+/* 세 곡마다 MC 멘트 구간: 곡 사이 구분선 한가운데에 글자만 (따로 높이 없음) */
 .cues .mc-seg {
-  display: flex; align-items: center; gap: 10px; padding: 0 18px; height: 22px;
-  font-family: "Bungee", var(--font); font-size: 10.5px; letter-spacing: .14em; color: var(--c);
-  border-bottom: 1px solid rgba(233, 228, 214, .12);
+  position: relative; z-index: 1; display: flex; align-items: center; gap: 10px; height: 0; padding: 0;
+  font-family: "Bungee", var(--font); font-size: 10.5px; line-height: 1; letter-spacing: .14em; color: var(--c);
 }
-.cues .mc-seg::before, .cues .mc-seg::after { content: ""; flex: 1; border-top: 1px dashed rgba(233, 228, 214, .28); }
+.cues .mc-seg::before, .cues .mc-seg::after { content: ""; flex: 1; border-top: 2px solid currentColor; }
+.cues .cue:has(+ .mc-seg) { border-bottom: 0; }
 .cues .mc-seg + .cue { border-top: 0; }
 /* 1부와 2부 사이 쉬는 시간: 출입금지 테이프 띠 */
 .intermission {
